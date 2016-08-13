@@ -10,7 +10,9 @@
 <div class="tbl-row">
     <div id="site-footer" class="tbl-cell">
         <footer>
-            Footer
+               <div class="container">
+                   <p class="text-center">Created by Reuel Teodoro</p>
+               </div>
         </footer>
     </div>
 </div>

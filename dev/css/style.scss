@@ -70,6 +70,10 @@
     height: 100%;
   }
 
+  &.width-100, .width-100 {
+    width: 100%;
+  }
+
   &.nowrap, .nowrap {
     white-space: nowrap
   }
@@ -117,6 +121,24 @@
  */
 html, body {
   height: 100%;
+}
+
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Tabbable headers
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  &:focus{
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
 }
 
 /**
@@ -266,39 +288,6 @@ table {
 /**
  *  -------------------------------------------------------------------------
  *
- *  Image Center
- */
-.img-center {
-  -webkit-transform: translate(50%, 50%);
-  -moz-transform: translate(50%, 50%);
-  -ms-transform: translate(50%, 50%);
-  -o-transform: translate(50%, 50%);
-  transform: translate(50%, 50%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
-.img-center img {
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 100%;
-  max-height: none;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/**
- *  -------------------------------------------------------------------------
- *
  *  Hoverable items
  */
 .non-hoverable {
@@ -314,6 +303,154 @@ table {
   }
 }
 
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Image Frame
+ */
+.img-frame {
+  overflow: hidden;
+  position: relative;
+
+  .img-container {
+    -webkit-transform: translate(50%, 50%);
+    -moz-transform: translate(50%, 50%);
+    -ms-transform: translate(50%, 50%);
+    -o-transform: translate(50%, 50%);
+    transform: translate(50%, 50%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .img-container img {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .img-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .img-content {
+    color: white;
+    min-height: 250px;
+    position: relative;
+    z-index: 100;
+  }
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Site Header
+ */
+
+// N/A
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Site Footer
+ */
+#site-footer footer {
+  background: $gray-lighter;
+  padding: floor(($grid-gutter-width / 2));
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Bucketlist
+ */
+.bucketlist-list-item {
+  cursor: pointer;
+
+  &:focus{
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .bucketlist-list-badges {
+    left: floor(($grid-gutter-width / 2 ));
+    position: absolute;
+    right: floor(($grid-gutter-width / 2  ));
+    top: floor(($grid-gutter-width / 2));
+    z-index: 200;
+  }
+  .bucketlist-list-badges p {
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    &:hover .sr-only{
+      position: relative;
+    }
+  }
+
+  .bucketlist-list-badges p.complete {
+     background: $brand-success;
+   }
+  .bucketlist-list-badges p.message {
+    background: $brand-danger;
+  }
+
+  .bucketlist-list-item-content {
+    min-height: 190px;
+  }
+  .h4 .small, .bucketlist-list-saving span {
+    color: white;
+  }
+}
+
+.bucketlist-list-item-add {
+  background: $brand-primary;
+  cursor: pointer;
+
+  &:hover {
+    background: $link-hover-color;
+  }
+
+  &:focus{
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+
+  .bucketlist-list-item-content {
+    min-height: 190px;
+  }
+
+  .bucketlist-list-title {
+    margin-top: 0;
+  }
+
+  i {
+    font-size: $font-size-h1;
+  }
+}
 
 /**
  *  -------------------------------------------------------------------------
@@ -327,33 +464,10 @@ table {
 /**
  *  -------------------------------------------------------------------------
  *
- *  Bucketlist
+ *  To Do list
  */
+.todo-list {
+  list-style: none;
+  padding: 0;
 
-
-
-// List Item
-.bucketlist-list-item {
-  overflow: hidden;
-  position: relative;
-
-  .bucketlist-list-item-content {
-    color: white;
-    min-height: 190px;
-    position: relative;
-    z-index: 100;
-  }
-}
-
-// Item
-.bucketlist-item{
-  .bucketlist-item-img{
-    overflow: hidden;
-    position: relative;
-  }
-  .bucketlist-item-img-content{
-    min-height: 250px;
-    position: relative;
-    z-index: 100;
-  }
 }
