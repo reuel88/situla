@@ -2,10 +2,13 @@
  * Created by reuelteodoro on 13/08/2016.
  */
 
+'use strict';
+
 var gulp = require('gulp'),
     rjs = require('gulp-requirejs'),
     uglify = require('gulp-uglify'),
-    htmlmin = require('gulp-htmlmin');
+    htmlmin = require('gulp-htmlmin'),
+    sass = require('gulp-sass');
 
 
 gulp.task('default', function () {
@@ -30,11 +33,22 @@ gulp.task('default', function () {
         .pipe(gulp.dest('./public/js')); // pipe it to the output DIR
 
     gulp.src('dev/components/requirejs/require.js')
+        .pipe(uglify())
         .pipe(gulp.dest('./public/js'));
-
 
     gulp.src('dev/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./public'))
+        .pipe(gulp.dest('./public'));
 
+    gulp.src('dev/**/*.php')
+        .pipe(gulp.dest('./public'));
+
+    gulp.src('dev/css/*.scss')
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(gulp.dest('./public/css'));
+
+});
+
+gulp.task('watch', function () {
+   gulp.watch('dev/**/*.php', ['default'])
 });

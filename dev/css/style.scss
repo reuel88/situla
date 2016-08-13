@@ -1,0 +1,359 @@
+@import "../components/bootstrap-sass/assets/stylesheets/_bootstrap";
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Mixins
+ */
+
+// Responsive Table Div
+@mixin alignment($context, $value) {
+  &.#{$value} > [class*='tbl-row'] > [class*='tbl-cell'],
+  & > [class*='tbl-row'].#{$value} > [class*='tbl-cell'] {
+    #{$context}-align: $value;
+  }
+  & > [class*='tbl-row'] > [class*='tbl-cell'].#{$value} {
+    #{$context}-align: $value !important;
+  }
+}
+
+@mixin clac-tbl-grid($index, $type) {
+  @if ($type == width) and ($index > 0) {
+    &.col-#{$index} {
+      width: percentage(($index / $grid-columns));
+    }
+  }
+
+  @if ($type == push) and ($index > 0) {
+    &.col-push-#{$index} {
+      position: relative;
+      left: percentage(($index / $grid-columns));
+    }
+  }
+  @if ($type == pull) and ($index > 0) {
+    &.col-pull-#{$index} {
+      position: relative;
+      right: percentage(($index / $grid-columns));
+    }
+  }
+
+}
+
+@mixin loop-tbl-column($columns, $type) {
+  @for $i from 0 through $columns {
+    @include clac-tbl-grid($i, $type);
+  }
+}
+
+@mixin inside-tbl() {
+  width: 100%;
+  display: table;
+  > [class*='tbl-row'] {
+    display: table-row;
+
+  }
+  > [class*='tbl-row'] > [class*='tbl-cell'] {
+    display: table-cell;
+
+    @include loop-tbl-column($grid-columns, width);
+    @include loop-tbl-column($grid-columns, push);
+    @include loop-tbl-column($grid-columns, pull);
+
+    > p:last-child,
+    > ul:last-child,
+    > ol:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &.height-100, .height-100 {
+    height: 100%;
+  }
+
+  &.nowrap, .nowrap {
+    white-space: nowrap
+  }
+
+  &.box, &.box > [class*='tbl-row'], &.box > [class*='tbl-row'] > [class*='tbl-cell'], &.box > [class*='tbl-row'] > [class*='tbl-cell'] > * {
+    &, &:after, &:before {
+
+      -webkit-box-sizing: initial;
+      -moz-box-sizing: initial;
+      box-sizing: initial;
+    }
+  }
+
+  @include alignment(vertical, top);
+  @include alignment(vertical, middle);
+  @include alignment(vertical, bottom);
+  @include alignment(text, left);
+  @include alignment(text, center);
+  @include alignment(text, right);
+}
+
+@mixin make-rwd-tbl($size: false) {
+  @if not $size {
+    .tbl {
+      @include inside-tbl();
+    }
+  } @else {
+    .tbl-#{$size} {
+      @include inside-tbl();
+    }
+  }
+
+}
+
+@mixin make-tbl-padding($pos) {
+  .tbl-padding-#{$pos} {
+    padding-#{$pos}: floor(($grid-gutter-width / 2));
+  }
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  HTML
+ */
+html, body {
+  height: 100%;
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Margin
+ */
+.margin-top {
+  margin-top: floor(($grid-gutter-width / 2));
+}
+
+.margin-bottom {
+  margin-bottom: floor(($grid-gutter-width / 2));
+}
+
+.margin-left {
+  margin-left: floor(($grid-gutter-width / 2));
+}
+
+.margin-right {
+  margin-right: floor(($grid-gutter-width / 2));
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Padding
+ */
+.padding-top {
+  padding-top: floor(($grid-gutter-width / 2));
+}
+
+.padding-bottom {
+  padding-bottom: floor(($grid-gutter-width / 2));
+}
+
+.padding-left {
+  padding-left: floor(($grid-gutter-width / 2));
+}
+
+.padding-right {
+  padding-right: floor(($grid-gutter-width / 2));
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Form
+ */
+
+.input-select {
+  width: 100%;
+  .form-control {
+    width: 50%;
+  }
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Responsive Table Div
+ */
+@include make-tbl-padding(top);
+@include make-tbl-padding(right);
+@include make-tbl-padding(bottom);
+@include make-tbl-padding(left);
+
+@include make-rwd-tbl();
+
+@media (min-width: $screen-xs-min) {
+  @include make-rwd-tbl(xs);
+}
+
+@media (min-width: $screen-sm-min) {
+  @include make-rwd-tbl(sm);
+}
+
+@media (min-width: $screen-md-min) {
+  @include make-rwd-tbl(md);
+}
+
+@media (min-width: $screen-lg-min) {
+  @include make-rwd-tbl(lg);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Responsive Tables
+ */
+@media only screen and (max-width: $screen-sm-max) {
+
+  /* Force table to not be like tables anymore */
+  table.responsive, .responsive thead, .responsive tbody, .responsive th, .responsive td, .responsive tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .responsive thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .responsive tr {
+    border: 1px solid #ccc;
+    margin-bottom: floor(($grid-gutter-width / 2));
+  }
+
+  .responsive td:first-child {
+    border-top: none;
+  }
+
+  .responsive td {
+    /* Behave  like a "row" */
+    border: none;
+    position: relative;
+    padding-left: 50% !important;
+    min-height: 37px;
+  }
+
+  .responsive td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 8px;
+    left: 8px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  /*
+  Label the data
+  */
+  .responsive td:before {
+    content: attr(data-table-header);
+  }
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Image Center
+ */
+.img-center {
+  -webkit-transform: translate(50%, 50%);
+  -moz-transform: translate(50%, 50%);
+  -ms-transform: translate(50%, 50%);
+  -o-transform: translate(50%, 50%);
+  transform: translate(50%, 50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.img-center img {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 100%;
+  max-height: none;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Hoverable items
+ */
+.non-hoverable {
+  margin-bottom: 0;
+  padding: floor(($grid-gutter-width / 2));
+}
+
+.hoverable {
+  margin-bottom: 0;
+  padding: floor(($grid-gutter-width / 2));
+  &:hover {
+    background: $gray-lighter;
+  }
+}
+
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Home
+ */
+.page-subtitle {
+  margin-top: 0;
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Bucketlist
+ */
+
+
+
+// List Item
+.bucketlist-list-item {
+  overflow: hidden;
+  position: relative;
+
+  .bucketlist-list-item-content {
+    color: white;
+    min-height: 190px;
+    position: relative;
+    z-index: 100;
+  }
+}
+
+// Item
+.bucketlist-item{
+  .bucketlist-item-img{
+    overflow: hidden;
+    position: relative;
+  }
+  .bucketlist-item-img-content{
+    min-height: 250px;
+    position: relative;
+    z-index: 100;
+  }
+}

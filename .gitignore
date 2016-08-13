@@ -2,5 +2,8 @@
 /dev/components/
 /node_modules/
 /public/
+!/public/fonts
+!/public/img
+
 
 
