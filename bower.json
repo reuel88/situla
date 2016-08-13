@@ -1,0 +1,27 @@
+{
+  "name": "situla-list",
+  "description": "Bucketlist with a difference",
+  "main": "index.js",
+  "authors": [
+    "Reuel Teodoro"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "bicketlist"
+  ],
+  "homepage": "https://github.com/reuel88/situla",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "dev/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "jquery": "^3.1.0",
+    "bootstrap-sass": "^3.3.7",
+    "requirejs": "^2.2.0"
+  }
+}
