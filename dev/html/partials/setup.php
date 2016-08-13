@@ -23,7 +23,7 @@
                 <p class="text-center">We actually believe in reaching your goals,
                     And sometimes your goals take money.</p>
                 <p class="text-center">Completing your bucketlist can be as simple as
-                    budgeting your money.</p>
+                    budgeting your money. That's why we need to ask what is your average income?</p>
 
                 <form action="#">
                     <div class="form-group hoverable">
@@ -61,16 +61,20 @@
                     <div class="home-result">
                         <p class="text-center">You earn</p>
                         <p class="h1 text-center">$999,999.99</p>
-                        <div class="form-group non-hoverable">
-                            <label for="cashFlowFreq" class="sr-only">Cash Flow</label>
-                            <select name="cashFlowFreq" id="cashFlowFreq" class=form-control>
-                                <option value="52">Weekly</option>
-                                <option value="26">Fortnightly</option>
-                                <option value="12">Monthly</option>
-                                <option value="1">Yearly</option>
-                            </select>
-                        </div>
 
+                        <div class="row">
+                            <div class="col-sm-push-3 col-sm-6">
+                                <div class="form-group non-hoverable">
+                                    <label for="cashFlowFreq" class="sr-only">Cash Flow</label>
+                                    <select name="cashFlowFreq" id="cashFlowFreq" class=form-control>
+                                        <option value="52">Weekly</option>
+                                        <option value="26">Fortnightly</option>
+                                        <option value="12">Monthly</option>
+                                        <option value="1">Yearly</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group non-hoverable">

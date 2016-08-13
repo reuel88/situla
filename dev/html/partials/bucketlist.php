@@ -26,10 +26,11 @@
             <div class="col-sm-6 col-md-4">
                 <article class="well img-frame bucketlist-list-item" tabindex="1">
                     <div class="bucketlist-list-badges">
+                        <p class="complete"><span class="sr-only">Complete</span> <i class="glyphicon glyphicon-ok"></i></p>
                         <p class="message">99 <span class="sr-only">Message(s)</span></p>
                     </div>
-                    <div class="img-container">
-                        <img src="./img/9i9rquptxsg-lionello-delpiccolo.jpg" alt="">
+                    <div class="img-container bucketlist-list-img">
+                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/342/342_jpg_320x320_crop_upscale_detail_q85.jpg" alt="">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
                         <div class="tbl-row">
@@ -76,9 +77,10 @@
                 <article class="well img-frame bucketlist-list-item" tabindex="1">
                     <div class="bucketlist-list-badges">
                         <p class="complete"><span class="sr-only">Complete</span> <i class="glyphicon glyphicon-ok"></i></p>
+                        <p class="message">99 <span class="sr-only">Message(s)</span></p>
                     </div>
-                    <div class="img-container">
-                        <img src="./img/9i9rquptxsg-lionello-delpiccolo.jpg" alt="">
+                    <div class="img-container bucketlist-list-img">
+                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/342/342_jpg_320x320_crop_upscale_detail_q85.jpg" alt="">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
                         <div class="tbl-row">
@@ -94,7 +96,6 @@
                         </div>
                     </div>
                     <div class="img-overlay"></div>
-
                 </article>
             </div>
         </div>

@@ -123,19 +123,13 @@ html, body {
   height: 100%;
 }
 
-
 /**
  *  -------------------------------------------------------------------------
  *
  *  Tabbable headers
  */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6{
-  &:focus{
+h1, h2, h3, h4, h5, h6 {
+  &:focus {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
   }
@@ -144,8 +138,54 @@ h6{
 /**
  *  -------------------------------------------------------------------------
  *
+ *  Form
+ */
+input[type="checkbox"] {
+  display: none;
+  + label{
+    margin: 0;
+  }
+
+  + label .checkbox {
+    -webkit-font-smoothing: antialiased;
+    background: white;
+    border: 1px solid $gray;
+    border-radius: $border-radius-base;
+    cursor:pointer;
+    display:inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    height:19px;
+    line-height: 1;
+    margin:10px 15px 10px 0;
+    position: relative;
+    width:19px;
+    vertical-align:middle;
+  }
+
+  &:checked + label .checkbox:before{
+    content: "\e013";
+  }
+
+}
+
+.input-select {
+  width: 100%;
+  .form-control {
+    width: 50%;
+  }
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
  *  Margin
  */
+.margin-0 {
+  margin: 0;
+}
+
 .margin-top {
   margin-top: floor(($grid-gutter-width / 2));
 }
@@ -167,6 +207,10 @@ h6{
  *
  *  Padding
  */
+.padding-0 {
+  padding: 0;
+}
+
 .padding-top {
   padding-top: floor(($grid-gutter-width / 2));
 }
@@ -181,19 +225,6 @@ h6{
 
 .padding-right {
   padding-right: floor(($grid-gutter-width / 2));
-}
-
-/**
- *  -------------------------------------------------------------------------
- *
- *  Form
- */
-
-.input-select {
-  width: 100%;
-  .form-control {
-    width: 50%;
-  }
 }
 
 /**
@@ -290,15 +321,26 @@ table {
  *
  *  Hoverable items
  */
+.hoverable {
+  margin-bottom: 0;
+  padding: floor(($grid-gutter-width / 2));
+  &:hover {
+    background: $gray-lighter;
+  }
+}
+
 .non-hoverable {
   margin-bottom: 0;
   padding: floor(($grid-gutter-width / 2));
 }
 
-.hoverable {
+.expand-hoverable {
   margin-bottom: 0;
-  padding: floor(($grid-gutter-width / 2));
+  padding-left: floor(($grid-gutter-width / 2));
+  padding-right: floor(($grid-gutter-width / 2));
+
   &:hover {
+    padding: floor(($grid-gutter-width / 2));
     background: $gray-lighter;
   }
 }
@@ -339,6 +381,7 @@ table {
     top: 0;
     left: 0;
   }
+
   .img-overlay {
     background: rgba(0, 0, 0, 0.5);
     position: absolute;
@@ -346,6 +389,10 @@ table {
     left: 0;
     height: 100%;
     width: 100%;
+  }
+
+  &:hover .img-overlay {
+    background: rgba(0, 0, 0, 0.2);
   }
 
   .img-content {
@@ -385,14 +432,14 @@ table {
 .bucketlist-list-item {
   cursor: pointer;
 
-  &:focus{
+  &:focus {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
   }
   .bucketlist-list-badges {
-    left: floor(($grid-gutter-width / 2 ));
+    left: floor(($grid-gutter-width / 2));
     position: absolute;
-    right: floor(($grid-gutter-width / 2  ));
+    right: floor(($grid-gutter-width / 2));
     top: floor(($grid-gutter-width / 2));
     z-index: 200;
   }
@@ -406,14 +453,14 @@ table {
     padding: 5px;
     text-align: center;
     float: right;
-    &:hover .sr-only{
+    &:hover .sr-only {
       position: relative;
     }
   }
 
   .bucketlist-list-badges p.complete {
-     background: $brand-success;
-   }
+    background: $brand-success;
+  }
   .bucketlist-list-badges p.message {
     background: $brand-danger;
   }
@@ -434,7 +481,7 @@ table {
     background: $link-hover-color;
   }
 
-  &:focus{
+  &:focus {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
   }
@@ -452,10 +499,15 @@ table {
   }
 }
 
+.bucketlist-item-title, .bucketlist-item-description, .bucketlist-item-savings, .bucketlist-item-date {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /**
  *  -------------------------------------------------------------------------
  *
- *  Home
+ *  Setup
  */
 .page-subtitle {
   margin-top: 0;
@@ -469,5 +521,17 @@ table {
 .todo-list {
   list-style: none;
   padding: 0;
+}
 
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Comment list
+ */
+.comment-list {
+  list-style: none;
+  padding: 0;
+  hr {
+    margin-bottom: 0;
+  }
 }

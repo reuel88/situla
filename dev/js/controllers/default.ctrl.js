@@ -7,7 +7,9 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
     controller.controller('default.ctrl', ['$scope', function ($scope) {
 
 
-
     }]);
+
+    $('[data-toggle="tooltip"]').tooltip();
+
 
 });

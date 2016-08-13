@@ -5,13 +5,12 @@
 
             <div class="container">
 
-
-<!--                --><?php //include 'html/partials/comments.php' ?>
-<!--                --><?php //include 'html/partials/goalNew.php' ?>
-<!--                --><?php //include 'html/partials/goalSelect.php' ?>
-<!--                --><?php //include 'html/partials/home.php' ?>
+                <!--                --><?php //include 'html/partials/goalNew.php' ?>
 
 
+                <?php include 'html/partials/goalShow.php' ?>
+                <?php include 'html/partials/goalSelect.php' ?>
+                <?php include 'html/partials/setup.php' ?>
                 <?php include 'html/partials/bucketList.php' ?>
 
             </div>
