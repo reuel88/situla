@@ -18,6 +18,8 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
                 editing: false
             };
 
+            obj.originalModel = {};
+
             obj.model = {};
 
             /**
@@ -30,6 +32,8 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
                 var deferred = $q.defer(); // Creates a promise
 
                 obj.attrs.open = true; // opens modal
+
+                obj.originalModel = model; // saves the original model
 
                 obj.model = angular.copy(model); // sets the model
 
@@ -61,6 +65,9 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
                 $rootScope.$broadcast('modal-close');
             };
 
+            /**
+             * Cancel Editing
+             */
             obj.cancel = function () {
                 obj.attrs.editing = false;
                 $rootScope.$broadcast('modal-close');

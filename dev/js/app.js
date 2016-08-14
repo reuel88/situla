@@ -4,6 +4,8 @@
 
 define(
     [
+        'utils/isEmpty',
+
         'angular',
 
         'controllers/_index', // handles the controllers
@@ -11,7 +13,7 @@ define(
         'factories/_index', // handles the factories
         'services/_index' // handles the services
     ],
-    function (angular) {
+    function (isEmpty, angular) {
 
         var app = angular.module('app', ['ngCookies', 'ngRoute', 'app.controllers', 'app.directives', 'app.factories', 'app.services']);
 
@@ -30,7 +32,7 @@ define(
                         templateUrl: "html/partials/goalSelect.php",
                         controller: 'default.ctrl'
                     })
-                    .otherwise('/');
+                    .otherwise('/')
                 ;
             }])
 
@@ -39,7 +41,7 @@ define(
 
                     if (!storage.getValue('user')) {
                         $location.path("/start");
-                    } else if (!storage.getValue('bucketlist')) {
+                    } else if (!storage.getValue('bucketlist') || isEmpty(storage.getValue('bucketlist'))) { // Check if exist or is empty
                         $location.path("/select");
                     }
 

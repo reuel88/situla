@@ -461,6 +461,9 @@ table {
 
   .bucketlist-list-badges p.complete {
     background: $brand-success;
+    i {
+      top: 3px;
+    }
   }
   .bucketlist-list-badges p.message {
     background: $brand-danger;
@@ -477,7 +480,7 @@ table {
     bottom: 0;
     display: block;
     height: 5px;
-    left:0;
+    left: 0;
     position: absolute;
     z-index: 300;
   }
@@ -512,6 +515,7 @@ table {
 // Bucketlist item
 .bucketlist-item {
   margin-top: floor(($grid-gutter-width / 2));
+  overflow: hidden;
   .pointer {
     cursor: pointer;
   }

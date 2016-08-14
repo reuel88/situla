@@ -10,15 +10,19 @@ define(['angular', 'factories/_module'], function (angular, factory) {
 
         var factories = {};
 
-        var bucketlistFactory = function (model) {
+        var bucketlistFactory = function (key, model) {
 
             var obj = {};
+
+            /**
+             * Key to the storage and obj
+             */
+            obj.key = key;
 
             /**
              * The model Array
              */
             obj.model = model;
-
 
             /**
              * Creates a new bucketlist item
@@ -54,7 +58,7 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     /**
                      * Save the model to localStorage
                      */
-                    storage.setValue('bucketlist', obj.model);
+                    storage.setValue(obj.key, obj.model);
                     $location.path("/"); // redirect to home
 
                     /**
@@ -71,13 +75,14 @@ define(['angular', 'factories/_module'], function (angular, factory) {
 
             /**
              * Updates the bucketlist item
+             *
              * @param model
              */
             obj.update = function (model) {
                 model.edit = true;
 
                 /**
-                 * Retrives the factory
+                 * Retrieves the factory
                  */
                 var bucketlistModal = modal('bucketlistModal');
 
@@ -92,18 +97,21 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                  * handles the promises, you've made
                  */
                 promise.then(function success(response) {
+
+
                     response.new = false; // FIXME: This is a dirty way to manipulate the layout
 
                     /**
                      * Replace the old object with new
                      */
                     var index = obj.model.indexOf(model);
-                    if(index !== -1)obj.model[index] = response;
+                    if (index !== -1) obj.model[index] = response;
+
 
                     /**
                      * Save the model to localStorage
                      */
-                    storage.setValue('bucketlist', obj.model);
+                    storage.setValue(obj.key, obj.model);
                     $location.path("/"); // redirect to home
 
                 }, function fail(response) {
@@ -114,6 +122,72 @@ define(['angular', 'factories/_module'], function (angular, factory) {
 
             };
 
+            /**
+             * Delete The Goal
+             *
+             * @param model
+             */
+            obj.delete = function (model) {
+
+                // TODO: Fix Confirmation
+                if (confirm('Are you sure?')) {
+                    /**
+                     * Delete from array
+                     */
+                    var index = obj.model.indexOf(model);
+                    if (index !== -1) obj.model.splice(index, 1);
+
+                    /**
+                     * Save the model to localStorage
+                     */
+                    storage.setValue(obj.key, obj.model);
+
+                    /**
+                     * Retrieves the factory
+                     */
+                    var bucketlistModal = modal('bucketlistModal');
+                    bucketlistModal.close();
+                }
+
+            };
+
+            obj.complete = function (model) {
+                // TODO: Fix Confirmation
+                if (confirm('Congratulations!!!')) {
+                    model.complete = true;
+
+                    /**
+                     * Retrieve the completeBucketlist
+                     */
+                    var completeBucketlist = factories['completebucketlist']; // Remember it got lowercase
+
+                    /**
+                     * save response to model
+                     */
+                    completeBucketlist.model.push(model);
+
+
+                    /**
+                     * Delete from array
+                     */
+                    var index = obj.model.indexOf(model);
+                    if (index !== -1) obj.model.splice(index, 1);
+
+                    /**
+                     * Save the model to localStorage
+                     */
+                    storage.setValue('bucketlist', obj.model);
+                    storage.setValue('completeBucketlist', completeBucketlist.model);
+
+
+                    /**
+                     * Retrieves the modal and closes it, lol
+                     */
+                    var bucketlistModal = modal('bucketlistModal');
+                    bucketlistModal.close();
+                }
+
+            };
 
             return obj;
         };
@@ -125,23 +199,23 @@ define(['angular', 'factories/_module'], function (angular, factory) {
              *
              * @type {string}
              */
-            key = key.replace(/\s+/g, '-').toLowerCase();
+            var newKey = key.replace(/\s+/g, '-').toLowerCase();
 
             /**
              * Finds the Factory and returns it
              */
-            if (factories[key]) return factories[key];
+            if (factories[newKey]) return factories[newKey];
 
             /**
              * Creates the factory
              */
-            factories[key] = new bucketlistFactory(model);
+            factories[newKey] = new bucketlistFactory(key, model);
 
 
             /**
              * Don't forget to return the object
              */
-            return factories[key];
+            return factories[newKey];
         };
 
     }]);

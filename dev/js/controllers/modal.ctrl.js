@@ -5,10 +5,34 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('modal.ctrl', ['$scope', 'modal.fctry', function ($scope, modal) {
+    controller.controller('modal.ctrl', ['$scope', 'storage.serv', 'bucketlist.fctry', 'modal.fctry', function ($scope, storage, bucketlist, modal) {
 
 
-            $scope.modal = modal('bucketlistModal');
+        /**
+         * Get Bucketlist
+         */
+        var bucketlistModel = storage.getValue('bucketlist');
+
+        bucketlistModel = (bucketlistModel) ? bucketlistModel : [];
+
+        $scope.bucketlist = bucketlist('bucketlist', bucketlistModel);
+
+
+        /**
+         * Get Complete Bucketlist
+         */
+        var completeBucketlistModel = storage.getValue('completeBucketlist');
+
+        completeBucketlistModel = (completeBucketlistModel) ? completeBucketlistModel : [];
+
+        $scope.completeBucketlist = bucketlist('completeBucketlist', completeBucketlistModel);
+
+
+
+        /**
+         * Get Modal
+         */
+        $scope.modal = modal('bucketlistModal');
 
     }]);
 

@@ -39,14 +39,30 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
 
 
         /**
+         * Get Complete Bucketlist
+         */
+        var completeBucketlistModel = storage.getValue('completeBucketlist');
+
+        completeBucketlistModel = (completeBucketlistModel) ? completeBucketlistModel : [];
+
+        $scope.completeBucketlist = bucketlist('completeBucketlist', completeBucketlistModel);
+
+
+        /**
          * Quick path redirect
          */
-        $scope.pathTo = function(path){
+        $scope.pathTo = function (path) {
 
-            if(path)
-                $location.path(path);
+            if (path) $location.path(path);
 
         };
+
+        /**
+         * FIXME: Quick dirty way to check if bucketlist is available
+         */
+        $scope.bucketlistAvailable = function () {
+            return storage.getValue('bucketlist') ? true : false;
+        }
 
 
     }]);

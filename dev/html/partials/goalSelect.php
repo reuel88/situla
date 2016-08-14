@@ -122,6 +122,9 @@
             </div>
 
         </div>
+
+        <a href="#/" class="btn btn-link" ng-show="bucketlistAvailable()"><i class="glyphicon glyphicon-chevron-left"></i> Back to Bucketlist</a>
+
     </div>
 </section>
 

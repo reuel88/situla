@@ -30,8 +30,8 @@
                         <div class="sr-only sr-only-focusable"><a href="#site-content" title="Skip to content">Skip to content</a></div>
                         <ul class="nav navbar-nav">
                             <li>
-                                <a itemprop="url" href="#/setup">
-                                    <span itemprop="name">Link 1</span>
+                                <a itemprop="url" href="#/start">
+                                    <span itemprop="name">Start</span>
                                 </a>
                             </li>
                         </ul>
