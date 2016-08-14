@@ -13,7 +13,39 @@ define(
     ],
     function (angular) {
 
-        var app = angular.module('app',['app.controllers', 'app.directives', 'app.factories', 'app.services']);
+        var app = angular.module('app', ['ngCookies', 'ngRoute', 'app.controllers', 'app.directives', 'app.factories', 'app.services']);
+
+        app
+            .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+                $routeProvider
+                    .when("/", {
+                        templateUrl: "html/partials/bucketList.php",
+                        controller: 'default.ctrl'
+                    })
+                    .when("/start", {
+                        templateUrl: "html/partials/start.php",
+                        controller: 'default.ctrl'
+                    })
+                    .when("/select", {
+                        templateUrl: "html/partials/goalSelect.php",
+                        controller: 'default.ctrl'
+                    })
+                ;
+            }])
+
+            .run(['$rootScope', '$location', 'storage.serv', function ($rootScope, $location, storage) {
+                $rootScope.$on("$routeChangeStart", function (event, next, current) {
+
+                    if (!storage.getValue('user')) {
+                        $location.path("/start");
+                    } else if (!storage.getValue('bucketlist')) {
+                        $location.path("/select");
+                    }
+
+
+                });
+            }])
+        ;
 
         /**
          * Had to seperate because there where issues when minifying

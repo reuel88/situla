@@ -10,5 +10,4 @@ define(['angular', 'services/_module'], function (angular, service) {
 
     }]);
 
-
 });

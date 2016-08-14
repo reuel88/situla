@@ -21,6 +21,8 @@ gulp.task('default', function () {
         preserveLicenseComments: false,
         paths: {
             'angular': '../components/angular/angular.min',
+            'angular-cookies': '../components/angular-cookies/angular-cookies.min',
+            'angular-route': '../components/angular-route/angular-route.min',
             'jquery': '../components/jquery/dist/jquery',
             'twitter-bootstrap': '../components/bootstrap-sass/assets/javascripts/bootstrap'
         },
@@ -29,16 +31,16 @@ gulp.task('default', function () {
         }
         // ... more require.js options
     })
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('./public/js')); // pipe it to the output DIR
 
-    gulp.src('dev/components/requirejs/require.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('./public/js'));
+    // gulp.src('dev/components/requirejs/require.js')
+    //     .pipe(uglify())
+    //     .pipe(gulp.dest('./public/js'));
 
-    gulp.src('dev/*.html')
-        .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./public'));
+    // gulp.src('dev/*.html')
+    //     .pipe(htmlmin({collapseWhitespace: true}))
+    //     .pipe(gulp.dest('./public'));
 
     gulp.src('dev/**/*.php')
         .pipe(gulp.dest('./public'));
@@ -50,5 +52,5 @@ gulp.task('default', function () {
 });
 
 gulp.task('watch', function () {
-   gulp.watch('dev/**/*.php', ['default'])
+   gulp.watch('dev/**/*.js', ['default'])
 });

@@ -6,6 +6,8 @@ require.config(
     {
         paths: {
             'angular': '../components/angular/angular.min',
+            'angular-cookies': '../components/angular-cookies/angular-cookies.min',
+            'angular-route': '../components/angular-route/angular-route.min',
             'jquery': '../components/jquery/dist/jquery',
             'twitter-bootstrap': '../components/bootstrap-sass/assets/javascripts/bootstrap'
         },
@@ -13,6 +15,12 @@ require.config(
             'angular': {
                 exports: 'angular',
                 deps: ['jquery']
+            },
+            'angular-cookies': {
+                deps: ['angular']
+            },
+            'angular-route': {
+                deps: ['angular']
             },
             'jquery': {
                 exports: '$'
@@ -22,6 +30,6 @@ require.config(
             }
         },
         // Initialize the app
-        deps: ['angular','bootstrap', 'jquery', 'twitter-bootstrap']
+        deps: ['angular','angular-cookies', 'angular-route', 'bootstrap', 'jquery', 'twitter-bootstrap']
     }
 );

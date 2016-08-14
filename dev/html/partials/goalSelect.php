@@ -18,7 +18,7 @@
 
         <div class="row bucketlist-list">
             <div class="col-sm-6 col-md-4">
-                <article class="well img-frame bucketlist-list-item" tabindex="1">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.new()">
                     <div class="img-container">
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/342/342_jpg_320x320_crop_upscale_detail_q85.jpg" alt="See the Northen Lights">
                     </div>
