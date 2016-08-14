@@ -6,7 +6,7 @@
 
 define(['angular', 'factories/_module'], function (angular, factory) {
 
-    factory.factory('bucketlist.fctry', ['$rootScope', '$location', 'modal.fctry', 'storage.serv', function ($rootScope, $location, modal, storage) {
+    factory.factory('bucketlist.fctry', ['$rootScope', '$location', 'modal.serv', 'storage.serv', 'todo.serv', function ($rootScope, $location, modal, storage, todo) {
 
         var factories = {};
 
@@ -20,7 +20,7 @@ define(['angular', 'factories/_module'], function (angular, factory) {
             obj.key = key;
 
             /**
-             * The model Array
+             * The model Array - saved to the object so it easy to manipulate
              */
             obj.model = model;
 
@@ -33,16 +33,11 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                 model.new = true; // FIXME: This is a dirty way to manipulate the layout
 
                 /**
-                 * Retrives the factory
-                 */
-                var bucketlistModal = modal('bucketlistModal');
-
-                /**
                  * Expects a promise
                  *
                  * @type object
                  */
-                var promise = bucketlistModal.open(model);
+                var promise = modal.open(model);
 
                 /**
                  * handles the promises, you've made
@@ -64,12 +59,8 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     /**
                      * Close Modal
                      */
-                    bucketlistModal.close();
+                    modal.close();
 
-                }, function fail(response) {
-                    /**
-                     * Does nothing at the moment, but it's here because I like have a fail response
-                     */
                 });
             };
 
@@ -82,43 +73,33 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                 model.edit = true;
 
                 /**
-                 * Retrieves the factory
-                 */
-                var bucketlistModal = modal('bucketlistModal');
-
-                /**
                  * Expects a promise
                  *
                  * @type object
                  */
-                var promise = bucketlistModal.open(model);
+                var bucketlistPromise = modal.open(model);
 
                 /**
                  * handles the promises, you've made
                  */
-                promise.then(function success(response) {
-
-
+                bucketlistPromise.then(function success(response) {
                     response.new = false; // FIXME: This is a dirty way to manipulate the layout
 
                     /**
                      * Replace the old object with new
                      */
                     var index = obj.model.indexOf(model);
-                    if (index !== -1) obj.model[index] = response;
-
+                    if (index !== -1) obj.model[index] = model = response;
 
                     /**
                      * Save the model to localStorage
                      */
                     storage.setValue(obj.key, obj.model);
                     $location.path("/"); // redirect to home
-
-                }, function fail(response) {
-                    /**
-                     * Does nothing at the moment, but it's here because I like have a fail response
-                     */
                 });
+
+                var todoPromise = todo(model);
+
 
             };
 
@@ -145,8 +126,7 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     /**
                      * Retrieves the factory
                      */
-                    var bucketlistModal = modal('bucketlistModal');
-                    bucketlistModal.close();
+                    modal.close();
                 }
 
             };
@@ -186,8 +166,7 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     /**
                      * Retrieves the modal and closes it, lol
                      */
-                    var bucketlistModal = modal('bucketlistModal');
-                    bucketlistModal.close();
+                    modal.close();
                 }
 
             };
@@ -213,8 +192,7 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                 /**
                  * Retrieves the factory
                  */
-                var bucketlistModal = modal('bucketlistModal');
-                bucketlistModal.attrs.contributing = false;
+                modal.attrs.contributing = false;
             };
 
             return obj;
@@ -238,7 +216,6 @@ define(['angular', 'factories/_module'], function (angular, factory) {
              * Creates the factory
              */
             factories[newKey] = new bucketlistFactory(key, model);
-
 
             /**
              * Don't forget to return the object

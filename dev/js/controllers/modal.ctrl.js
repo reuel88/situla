@@ -5,7 +5,7 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('modal.ctrl', ['$scope', 'storage.serv', 'bucketlist.fctry', 'modal.fctry', function ($scope, storage, bucketlist, modal) {
+    controller.controller('modal.ctrl', ['$scope', 'storage.serv', 'bucketlist.fctry', 'modal.serv', function ($scope, storage, bucketlist, modal) {
 
 
         /**
@@ -32,7 +32,7 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
         /**
          * Get Modal
          */
-        $scope.modal = modal('bucketlistModal');
+        $scope.modal = modal;
 
     }]);
 

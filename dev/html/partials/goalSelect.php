@@ -23,11 +23,8 @@
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/342/342_jpg_320x320_crop_upscale_detail_q85.jpg" alt="See the Northern Lights">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
-
-                        <div class="tbl-row bottom">
-                            <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">See the Northern Lights</h3>
-                            </div>
+                        <div class="tbl-cell bottom">
+                            <h3 class="h2 bucketlist-list-title">See the Northern Lights</h3>
                         </div>
                     </div>
                     <div class="img-overlay"></div>
@@ -40,11 +37,8 @@
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/19/19_jpg_320x320_crop_upscale_detail_q85.jpg" alt="Sky Diving">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
-
-                        <div class="tbl-row bottom">
-                            <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">Sky Diving</h3>
-                            </div>
+                        <div class="tbl-cell bottom">
+                            <h3 class="h2 bucketlist-list-title">Sky Diving</h3>
                         </div>
                     </div>
                     <div class="img-overlay"></div>
@@ -57,11 +51,8 @@
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/28/28_jpg_320x320_crop_upscale_detail_q85.jpg" alt="Get a Tattoo">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
-
-                        <div class="tbl-row bottom">
-                            <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">Get a Tattoo</h3>
-                            </div>
+                        <div class="tbl-cell bottom">
+                            <h3 class="h2 bucketlist-list-title">Get a Tattoo</h3>
                         </div>
                     </div>
                     <div class="img-overlay"></div>
@@ -74,11 +65,8 @@
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/25/25_jpeg_320x320_crop_upscale_detail_q85.jpg" alt="Swim with Dolphins">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
-
-                        <div class="tbl-row bottom">
-                            <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">Swim with Dolphins</h3>
-                            </div>
+                        <div class="tbl-cell bottom">
+                            <h3 class="h2 bucketlist-list-title">Swim with Dolphins</h3>
                         </div>
                     </div>
                     <div class="img-overlay"></div>
@@ -92,11 +80,8 @@
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/35/35_JPG_320x320_crop_upscale_detail_q85.jpg" alt="Go on a Cruise">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
-
-                        <div class="tbl-row bottom">
-                            <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">Go on a Cruise</h3>
-                            </div>
+                        <div class="tbl-cell bottom">
+                            <h3 class="h2 bucketlist-list-title">Go on a Cruise</h3>
                         </div>
                     </div>
                     <div class="img-overlay"></div>
@@ -109,11 +94,8 @@
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/410/410_jpg_320x320_crop_upscale_detail_q85.jpg" alt="Other">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
-
-                        <div class="tbl-row bottom">
-                            <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">Other (Add your own)</h3>
-                            </div>
+                        <div class="tbl-cell bottom">
+                            <h3 class="h2 bucketlist-list-title">Other (Add your own)</h3>
                         </div>
                     </div>
                     <div class="img-overlay"></div>

@@ -5,7 +5,7 @@
 require([
     'factories/bucketlist.fctry',
     'factories/default.fctry',
-    'factories/modal.fctry',
+    // 'factories/modal.fctry',
     'factories/start.fctry'
 ], function () {
     

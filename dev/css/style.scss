@@ -10,10 +10,12 @@
 // Responsive Table Div
 @mixin alignment($context, $value) {
   &.#{$value} > [class*='tbl-row'] > [class*='tbl-cell'],
+  &.#{$value} > [class*='tbl-cell'],
   & > [class*='tbl-row'].#{$value} > [class*='tbl-cell'] {
     #{$context}-align: $value;
   }
-  & > [class*='tbl-row'] > [class*='tbl-cell'].#{$value} {
+  & > [class*='tbl-row'] > [class*='tbl-cell'].#{$value},
+  & > [class*='tbl-cell'].#{$value} {
     #{$context}-align: $value !important;
   }
 }
@@ -53,7 +55,7 @@
     display: table-row;
 
   }
-  > [class*='tbl-row'] > [class*='tbl-cell'] {
+  > [class*='tbl-row'] > [class*='tbl-cell'], > [class*='tbl-cell'] {
     display: table-cell;
 
     @include loop-tbl-column($grid-columns, width);
@@ -530,7 +532,7 @@ table {
       display: block;
       height: 1px;
     }
-    p{
+    p {
       background: $brand-success;
       border-radius: 20px;
       color: white;

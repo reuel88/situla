@@ -22,15 +22,17 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
                 contributing: false
             };
 
-            /**
-             * The original model
-             */
-            obj.originalModel = {};
 
             /**
              * A copy of the model that we edit
              */
             obj.model = {};
+
+
+            /**
+             * The to do service handler
+             */
+            obj.todo = {};
 
             /**
              * Opens the modal
@@ -47,11 +49,13 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
 
                 obj.model = angular.copy(model); // sets the model
 
+
                 /**
                  * listens for modal close
                  */
                 $rootScope.$on('modal-close', function () {
-                    obj.model =  angular.copy(model);
+                    console.log('modal-close');
+                    obj.model = angular.copy(model);
                     deferred.reject(); // goes back on the promise and laughs in your face, lol
                 });
 
@@ -59,6 +63,7 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
                  * listens for modal submit
                  */
                 $rootScope.$on('modal-submit', function () {
+                    console.log('modal-submit');
                     deferred.resolve(obj.model); // keep it promise, now your best friend, lol
                 });
 
@@ -69,18 +74,22 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
              * Close the modal
              */
             obj.close = function () {
+
                 obj.attrs.open = false;
                 obj.attrs.editing = false;
 
                 $rootScope.$broadcast('modal-close');
+
             };
 
             /**
              * Cancel Editing
              */
             obj.cancel = function () {
+
                 obj.attrs.editing = false;
                 $rootScope.$broadcast('modal-close');
+
             };
 
 
@@ -88,8 +97,8 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
              * You know where i'm going here. Submits the modal form
              */
             obj.submit = function () {
-                obj.attrs.editing = false;
 
+                obj.attrs.editing = false;
                 $rootScope.$broadcast('modal-submit');
             };
 
