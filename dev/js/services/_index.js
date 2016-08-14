@@ -3,9 +3,9 @@
  */
 
 require([
-    'services/default.serv',
     'services/formatNumbers.serv',
     'services/storage.serv',
+    'services/todo.serv',
     'services/validation.required.serv'
 ], function () {
 

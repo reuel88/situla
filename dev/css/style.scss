@@ -455,6 +455,7 @@ table {
     text-align: center;
     float: right;
     &:hover .sr-only {
+      margin: 0 5px;
       position: relative;
     }
   }
@@ -518,6 +519,33 @@ table {
   overflow: hidden;
   .pointer {
     cursor: pointer;
+  }
+
+  .bucketlist-list-progress {
+    display: block;
+    position: relative;
+    width: 100%;
+    .bar {
+      background: $brand-success;
+      display: block;
+      height: 1px;
+    }
+    p{
+      background: $brand-success;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      min-height: 30px;
+      min-width: 30px;
+      padding: 5px;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      top: -15px;
+      i {
+        top: 3px;
+      }
+    }
   }
 }
 

@@ -13,13 +13,23 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
 
             var obj = {};
 
+            /**
+             * Some attributes I use to know what state the modal is
+             */
             obj.attrs = {
                 open: false,
-                editing: false
+                editing: false,
+                contributing: false
             };
 
+            /**
+             * The original model
+             */
             obj.originalModel = {};
 
+            /**
+             * A copy of the model that we edit
+             */
             obj.model = {};
 
             /**

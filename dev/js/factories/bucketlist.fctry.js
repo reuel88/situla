@@ -151,6 +151,11 @@ define(['angular', 'factories/_module'], function (angular, factory) {
 
             };
 
+            /**
+             * Set the Goal as Complete
+             *
+             * @param model
+             */
             obj.complete = function (model) {
                 // TODO: Fix Confirmation
                 if (confirm('Congratulations!!!')) {
@@ -166,7 +171,6 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                      */
                     completeBucketlist.model.push(model);
 
-
                     /**
                      * Delete from array
                      */
@@ -179,7 +183,6 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     storage.setValue('bucketlist', obj.model);
                     storage.setValue('completeBucketlist', completeBucketlist.model);
 
-
                     /**
                      * Retrieves the modal and closes it, lol
                      */
@@ -187,6 +190,31 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     bucketlistModal.close();
                 }
 
+            };
+
+
+            /**
+             * @param original - The original model
+             * @param model - The new model
+             */
+            obj.contribute = function (original, model) {
+                model.alreadySaved = parseInt(model.alreadySaved || 0) + parseInt(model._contribute || 0);
+
+                delete model['_contribute'];
+
+                var index = obj.model.indexOf(original);
+                if (index !== -1) obj.model[index] = model;
+
+                /**
+                 * Save the model to localStorage
+                 */
+                storage.setValue(obj.key, obj.model);
+
+                /**
+                 * Retrieves the factory
+                 */
+                var bucketlistModal = modal('bucketlistModal');
+                bucketlistModal.attrs.contributing = false;
             };
 
             return obj;

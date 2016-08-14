@@ -66,35 +66,10 @@
 
         </li>
 
-
-        <li class="expand-hoverable">
-
-            <div class="tbl">
-                <div class="tbl-row">
-                    <div class="tbl-cell middle">
-
-                        <input type="checkbox" id="todo-item-1">
-                        <label for="todo-item-1">
-                            <span class="checkbox"></span>
-                            <span class="sr-only">Todo</span>
-                        </label>
-
-                    </div>
-                    <div class="tbl-cell middle width-100">
-
-
-                        <div class="tbl">
-                            <div class="tbl-row">
-                                <div class="tbl-cell">Todo</div>
-                                <div class="tbl-cell right">July 2012</div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
+        <li>
+            <button class="btn btn-link">Add New Item...</button>
         </li>
+
+
     </ol>
 </section>

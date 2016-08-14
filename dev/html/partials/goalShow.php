@@ -12,8 +12,8 @@
 
             <form class="" enctype="multipart/form-data" ng-submit="modal.submit()">
                 <div class="visible-xs-block visible-sm-block visible-md-block visible-lg-block clearfix">
-                    <input type="button" value="Delete your Goal" class="btn btn-link" ng-click="bucketlist.delete(modal.originalModel)" ng-show="modal.model.edit && !modal.model.complete" >
-                    <input type="button" value="Delete Completed Goal" class="btn btn-link" ng-click="completeBucketlist.delete(modal.originalModel)" ng-show="modal.model.complete" >
+                    <input type="button" value="Delete your Goal" class="btn btn-link" ng-click="bucketlist.delete(modal.originalModel)" ng-show="modal.model.edit && !modal.model.complete">
+                    <input type="button" value="Delete Completed Goal" class="btn btn-link" ng-click="completeBucketlist.delete(modal.originalModel)" ng-show="modal.model.complete">
                     <button class="pull-right btn btn-default" ng-click="modal.close()">Close</button>
                 </div>
 
@@ -50,11 +50,11 @@
                         <input type="text" name="title" id="title" class="form-control" ng-model="modal.model.title">
                     </div>
 
-<!--                    No longer using to difficult to maintain - handles individual updates to fields -->
-<!--                    <div ng-show="(!modal.model.new && !modal.model.edit) || modal.attrs.editing.title">-->
-<!--                        <input type="submit" value="Save" class="btn btn-primary">-->
-<!--                        <input type="button" value="Cancel" class="btn btn-link" ng-click="modal.attrs.editing.title = false">-->
-<!--                    </div>-->
+                    <!--                    No longer using to difficult to maintain - handles individual updates to fields -->
+                    <!--                    <div ng-show="(!modal.model.new && !modal.model.edit) || modal.attrs.editing.title">-->
+                    <!--                        <input type="submit" value="Save" class="btn btn-primary">-->
+                    <!--                        <input type="button" value="Cancel" class="btn btn-link" ng-click="modal.attrs.editing.title = false">-->
+                    <!--                    </div>-->
                 </div>
                 <!-- end of, title-->
 
@@ -68,8 +68,6 @@
                         <textarea name="description" id="description" cols="30" rows="3" class="form-control" ng-model="modal.model.description"></textarea>
                     </div>
 
-
-
                 </div>
                 <!-- end of, description-->
 
@@ -77,7 +75,11 @@
                 <!-- start of, cost-->
                 <div ng-class="modal.model.new || modal.attrs.editing? 'hoverable' : 'expand-hoverable'">
 
-                    <p class="h3 bucketlist-item-savings pointer" ng-show="!modal.model.new && !modal.attrs.editing" ng-click="modal.attrs.editing = true">{{modal.model.alreadySaved | currency}} <span class="small" ng-show="modal.model.totalCost">of {{modal.model.totalCost | currency}}</span></p>
+                    <p class="h3 bucketlist-item-savings pointer" ng-show="!modal.model.new && !modal.attrs.editing" ng-click="modal.attrs.editing = true">{{modal.model.alreadySaved | currency}} <span class="small" ng-show="modal.model.totalCost"><span ng-show="modal.model.alreadySaved">of</span> {{modal.model.totalCost | currency}}</span></p>
+
+                    <div class="bucketlist-list-progress" ng-show="!modal.model.new && !modal.attrs.editing">
+                        <div class="bar" style=" width: {{modal.model.alreadySaved / modal.model.totalCost * 100}}%;"></div>
+                        <p ng-show="(modal.model.alreadySaved / modal.model.totalCost * 100) >= 100"><i class="glyphicon glyphicon-ok"></i></p></div>
 
                     <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing ">
                         <label for="already-saved" class="control-label">Already Saved <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="How much have you saved towards your Goal"><span class="sr-only">description</span></i></label>
@@ -119,20 +121,35 @@
                     <div class="form-group text-center ">
                         <input type="button" value="Complete your Goal" class="btn btn-lg btn-primary" ng-click="bucketlist.complete(modal.originalModel)">
                     </div>
-                    <div class="form-group text-center">
+                    <div class="form-group text-center" ng-show="!modal.attrs.contributing" ng-click="modal.attrs.contributing = true">
                         <input type="button" value="Contributions to your Goal" class="btn btn-default">
+                    </div>
+
+                    <div class="form-group" ng-show="modal.attrs.contributing">
+                        <label for="contribute" class="control-label">Contribute to my Savings <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Contribute more money to your goal"><span class="sr-only">description</span></i></label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" name="contribute" id="contribute" class="form-control" ng-model="modal.model._contribute" currency>
+                        </div>
+                    </div>
+
+                    <div ng-show="modal.attrs.contributing">
+                        <input type="button" value="Save" class="btn btn-primary" ng-click="bucketlist.contribute(modal.originalModel, modal.model)">
+                        <input type="button" value="Cancel" class="btn btn-link" ng-click="modal.attrs.contributing = false">
                     </div>
                 </div>
 
                 <!-- start of, save-->
                 <div class="form-group non-hoverable" ng-show="modal.model.new || modal.attrs.editing">
                     <input type="submit" value="Save" class="btn btn-lg btn-primary">
-                    <button class="pull-right btn btn-link" ng-click="modal.cancel()">Cancel</button>
+                    <button class="pull-right btn btn-link" ng-show="modal.model.new " ng-click="modal.close()">Cancel</button>
+                    <button class="pull-right btn btn-link" ng-show="!modal.model.new || modal.attrs.editing" ng-click="modal.cancel()">Cancel</button>
                 </div>
                 <!-- esnd of, save-->
             </form>
 
-            <!--            --><?php //include 'html/partials/todoList.php' ?>
+            <?php include 'html/partials/todoList.php' ?>
             <!--            --><?php //include 'html/partials/comments.php' ?>
 
         </section>

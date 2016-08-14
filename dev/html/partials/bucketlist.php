@@ -25,10 +25,10 @@
         <div class="row bucketlist-list">
             <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in bucketlist.model track by $index">
                 <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.update(bucketlist.model[k])">
-<!--                    <div class="bucketlist-list-badges">-->
-<!--                        <p class="complete"><span class="sr-only">Complete</span> <i class="glyphicon glyphicon-ok"></i></p>-->
+                    <div class="bucketlist-list-badges" ng-show="(v.alreadySaved / v.totalCost * 100) >= 100">
+                        <p class="complete"><span class="sr-only">Ready to Complete</span> <i class="glyphicon glyphicon-ok"></i></p>
 <!--                        <p class="message">99 <span class="sr-only">Message(s)</span></p>-->
-<!--                    </div>-->
+                    </div>
                     <div class="img-container bucketlist-list-img">
                         <img  alt="{{v.title}}" ng-src="{{v.img}}">
                     </div>
@@ -41,7 +41,7 @@
                         <div class="tbl-row bottom">
                             <div class="tbl-cell">
                                 <h3 class="h2 bucketlist-list-title">{{v.title}}</h3>
-                                <p class="h4 bucketlist-list-saving" ng-show="v.alreadySaved">Saved {{v.alreadySaved | currency}} <span class="small" ng-show="v.totalCost">of {{v.totalCost | currency}}</span></p>
+                                <p class="h4 bucketlist-list-saving" ><span ng-show="v.alreadySaved">Saved</span> {{v.alreadySaved | currency}} <span class="small" ng-show="v.totalCost"><span ng-show="v.alreadySaved">of</span> {{v.totalCost | currency}}</span></p>
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@
                         <div class="tbl-row bottom">
                             <div class="tbl-cell">
                                 <h3 class="h2 bucketlist-list-title">{{v.title}}</h3>
-                                <p class="h4 bucketlist-list-saving" ng-show="v.alreadySaved">Saved {{v.alreadySaved | currency}} <span class="small" ng-show="v.totalCost">of {{v.totalCost | currency}}</span></p>
+                                <p class="h4 bucketlist-list-saving"><span ng-show="v.alreadySaved">Saved</span> {{v.alreadySaved | currency}} <span class="small" ng-show="v.totalCost"><span ng-show="v.alreadySaved">of</span>  {{v.totalCost | currency}}</span></p>
                             </div>
                         </div>
 
