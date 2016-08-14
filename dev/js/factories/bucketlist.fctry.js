@@ -14,7 +14,11 @@ define(['angular', 'factories/_module'], function (angular, factory) {
 
             var obj = {};
 
+            /**
+             * The model Array
+             */
             obj.model = model;
+
 
             /**
              * Creates a new bucketlist item
@@ -34,12 +38,13 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                  *
                  * @type object
                  */
-                var promise = bucketlistModal.open(angular.copy(model));
+                var promise = bucketlistModal.open(model);
 
                 /**
                  * handles the promises, you've made
                  */
                 promise.then(function success(response) {
+                    response.new = false; // FIXME: This is a dirty way to manipulate the layout
 
                     /**
                      * save response to model
@@ -64,19 +69,51 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                 });
             };
 
-            obj.show = function () {
-                console.log('show');
+            /**
+             * Updates the bucketlist item
+             * @param model
+             */
+            obj.update = function (model) {
+                model.edit = true;
+
+                /**
+                 * Retrives the factory
+                 */
+                var bucketlistModal = modal('bucketlistModal');
+
+                /**
+                 * Expects a promise
+                 *
+                 * @type object
+                 */
+                var promise = bucketlistModal.open(model);
+
+                /**
+                 * handles the promises, you've made
+                 */
+                promise.then(function success(response) {
+                    response.new = false; // FIXME: This is a dirty way to manipulate the layout
+
+                    /**
+                     * Replace the old object with new
+                     */
+                    var index = obj.model.indexOf(model);
+                    if(index !== -1)obj.model[index] = response;
+
+                    /**
+                     * Save the model to localStorage
+                     */
+                    storage.setValue('bucketlist', obj.model);
+                    $location.path("/"); // redirect to home
+
+                }, function fail(response) {
+                    /**
+                     * Does nothing at the moment, but it's here because I like have a fail response
+                     */
+                });
+
             };
 
-            obj.update = function () {
-                console.log('update');
-
-            };
-
-            obj.delete = function () {
-                console.log('delete');
-
-            };
 
             return obj;
         };

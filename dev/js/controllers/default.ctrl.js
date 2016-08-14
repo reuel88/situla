@@ -4,7 +4,7 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('default.ctrl', ['$scope', 'storage.serv', 'start.fctry', 'bucketlist.fctry', function ($scope, storage, start, bucketlist) {
+    controller.controller('default.ctrl', ['$scope', '$location', 'storage.serv', 'start.fctry', 'bucketlist.fctry', function ($scope, $location, storage, start, bucketlist) {
 
 
         /**
@@ -28,7 +28,6 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
 
         $scope.start = start('start', user);
 
-
         /**
          * Get Bucketlist
          */
@@ -38,6 +37,16 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
 
         $scope.bucketlist = bucketlist('bucketlist', bucketlistModel);
 
+
+        /**
+         * Quick path redirect
+         */
+        $scope.pathTo = function(path){
+
+            if(path)
+                $location.path(path);
+
+        };
 
 
     }]);

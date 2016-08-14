@@ -7,15 +7,15 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
     factory.factory('modal.fctry', ['$rootScope', '$http', '$q', function ($rootScope, $http, $q) {
 
 
-
         var factories = {};
 
-        var fctry = function (model){
+        var fctry = function (model) {
 
             var obj = {};
 
             obj.attrs = {
-              open: false
+                open: false,
+                editing: false
             };
 
             obj.model = {};
@@ -31,12 +31,13 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
 
                 obj.attrs.open = true; // opens modal
 
-                obj.model = model; // sets the model
+                obj.model = angular.copy(model); // sets the model
 
                 /**
                  * listens for modal close
                  */
                 $rootScope.$on('modal-close', function () {
+                    obj.model =  angular.copy(model);
                     deferred.reject(); // goes back on the promise and laughs in your face, lol
                 });
 
@@ -55,14 +56,23 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
              */
             obj.close = function () {
                 obj.attrs.open = false;
+                obj.attrs.editing = false;
 
                 $rootScope.$broadcast('modal-close');
             };
+
+            obj.cancel = function () {
+                obj.attrs.editing = false;
+                $rootScope.$broadcast('modal-close');
+            };
+
 
             /**
              * You know where i'm going here. Submits the modal form
              */
             obj.submit = function () {
+                obj.attrs.editing = false;
+
                 $rootScope.$broadcast('modal-submit');
             };
 
@@ -81,7 +91,7 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
             /**
              * Finds the Factory and returns it
              */
-            if(factories[key]) return factories[key];
+            if (factories[key]) return factories[key];
 
             /**
              * Creates the factory

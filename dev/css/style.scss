@@ -143,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 input[type="checkbox"] {
   display: none;
-  + label{
+  + label {
     margin: 0;
   }
 
@@ -152,20 +152,20 @@ input[type="checkbox"] {
     background: white;
     border: 1px solid $gray;
     border-radius: $border-radius-base;
-    cursor:pointer;
-    display:inline-block;
+    cursor: pointer;
+    display: inline-block;
     font-family: 'Glyphicons Halflings';
     font-style: normal;
     font-weight: normal;
-    height:19px;
+    height: 19px;
     line-height: 1;
-    margin:10px 15px 10px 0;
+    margin: 10px 15px 10px 0;
     position: relative;
-    width:19px;
-    vertical-align:middle;
+    width: 19px;
+    vertical-align: middle;
   }
 
-  &:checked + label .checkbox:before{
+  &:checked + label .checkbox:before {
     content: "\e013";
   }
 
@@ -472,6 +472,15 @@ table {
   .h4 .small, .bucketlist-list-saving span {
     color: white;
   }
+  .bucketlist-list-progress {
+    background: $brand-success;
+    bottom: 0;
+    display: block;
+    height: 5px;
+    left:0;
+    position: absolute;
+    z-index: 300;
+  }
 }
 
 .bucketlist-list-item-add {
@@ -500,10 +509,12 @@ table {
   }
 }
 
-
 // Bucketlist item
-.bucketlist-item{
+.bucketlist-item {
   margin-top: floor(($grid-gutter-width / 2));
+  .pointer {
+    cursor: pointer;
+  }
 }
 
 .bucketlist-item-title, .bucketlist-item-description, .bucketlist-item-savings, .bucketlist-item-date {
@@ -512,8 +523,8 @@ table {
 }
 
 // Bucketlist Modal
-.bucketlist-modal{
-  background: rgba(0,0,0,0.5);
+.bucketlist-modal {
+  background: rgba(0, 0, 0, 0.5);
   bottom: 0;
   display: none;
   left: 0;
@@ -522,17 +533,15 @@ table {
   top: 0;
   z-index: 300;
 
-  &.ng-scope{
+  &.ng-scope {
     display: block;
   }
 
-  .scrollable{
+  .scrollable {
     overflow: scroll;
     height: 100%;
   }
 }
-
-
 
 /**
  *  -------------------------------------------------------------------------

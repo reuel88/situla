@@ -33,13 +33,13 @@ gulp.task('default', function () {
         }
         // ... more require.js options
     })
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('./public/js')); // pipe it to the output DIR
 
     // gulp.src('dev/components/requirejs/require.js')
     //     .pipe(uglify())
     //     .pipe(gulp.dest('./public/js'));
-
+    //
     // gulp.src('dev/*.html')
     //     .pipe(htmlmin({collapseWhitespace: true}))
     //     .pipe(gulp.dest('./public'));
@@ -54,5 +54,5 @@ gulp.task('default', function () {
 });
 
 gulp.task('watch', function () {
-   gulp.watch('dev/**/*.js', ['default'])
+    gulp.watch('dev/**/*.js', ['default'])
 });

@@ -7,11 +7,6 @@
 
                 <div ng-view></div>
 
-<!--                --><?php //include 'html/partials/goalShow.php' ?>
-<!--                --><?php //include 'html/partials/goalSelect.php' ?>
-<!--                --><?php //include 'html/partials/setup.php' ?>
-<!--                --><?php //include 'html/partials/bucketList.php' ?>
-
             </div>
 
         </div>

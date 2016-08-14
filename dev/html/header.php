@@ -23,7 +23,7 @@
             <div id="site-navbar" class="navbar navbar-default">
                 <div class="container-fluid">
                     <header class="navbar-header" itemscope itemtype="http://schema.org/WPHeader">
-                        <a href="/" class="h1 site-nav-title">Situla List</a>
+                        <a href="#/" class="h1 site-nav-title">Situla List</a>
                     </header>
 
                     <nav class="pull-right">

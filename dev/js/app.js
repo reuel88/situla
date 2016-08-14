@@ -19,7 +19,7 @@ define(
             .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
                 $routeProvider
                     .when("/", {
-                        templateUrl: "html/partials/bucketList.php",
+                        templateUrl: "html/partials/bucketlist.php",
                         controller: 'default.ctrl'
                     })
                     .when("/start", {
@@ -30,6 +30,7 @@ define(
                         templateUrl: "html/partials/goalSelect.php",
                         controller: 'default.ctrl'
                     })
+                    .otherwise('/');
                 ;
             }])
 
