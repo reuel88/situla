@@ -1,4 +1,5 @@
 @import "../components/bootstrap-sass/assets/stylesheets/_bootstrap";
+@import "../components/bootstrap-daterangepicker/daterangepicker.scss";
 
 /**
  *  -------------------------------------------------------------------------
@@ -499,10 +500,39 @@ table {
   }
 }
 
+
+// Bucketlist item
+.bucketlist-item{
+  margin-top: floor(($grid-gutter-width / 2));
+}
+
 .bucketlist-item-title, .bucketlist-item-description, .bucketlist-item-savings, .bucketlist-item-date {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+// Bucketlist Modal
+.bucketlist-modal{
+  background: rgba(0,0,0,0.5);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 300;
+
+  &.ng-scope{
+    display: block;
+  }
+
+  .scrollable{
+    overflow: scroll;
+    height: 100%;
+  }
+}
+
+
 
 /**
  *  -------------------------------------------------------------------------

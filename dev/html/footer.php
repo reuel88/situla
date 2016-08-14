@@ -18,7 +18,7 @@
 </div>
 </div>
 
-
+<?php include 'html/partials/bucketlistModal.php' ?>
 
 <script src="js/require.js" data-main="js/main.min.js"></script>
 </body>

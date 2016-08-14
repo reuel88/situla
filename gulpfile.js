@@ -23,7 +23,9 @@ gulp.task('default', function () {
             'angular': '../components/angular/angular.min',
             'angular-cookies': '../components/angular-cookies/angular-cookies.min',
             'angular-route': '../components/angular-route/angular-route.min',
+            'bootstrap-daterangepicker': '../components/bootstrap-daterangepicker/daterangepicker',
             'jquery': '../components/jquery/dist/jquery',
+            'moment': '../components/moment/min/moment.min',
             'twitter-bootstrap': '../components/bootstrap-sass/assets/javascripts/bootstrap'
         },
         shim: {
@@ -31,7 +33,7 @@ gulp.task('default', function () {
         }
         // ... more require.js options
     })
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('./public/js')); // pipe it to the output DIR
 
     // gulp.src('dev/components/requirejs/require.js')

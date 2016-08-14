@@ -5,7 +5,8 @@
 require([
     'directives/convertToInteger.dir',
     'directives/currency.dir',
-    'directives/default.dir',
+    'directives/datePicker.dir',
+    'directives/fileUpload.dir',
     'directives/tooltip.dir'
 ], function () {
     

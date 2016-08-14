@@ -18,15 +18,15 @@
 
         <div class="row bucketlist-list">
             <div class="col-sm-6 col-md-4">
-                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.new()">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.new({title:'See the Northern Lights', img: 'http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/342/342_jpg_320x320_crop_upscale_detail_q85.jpg'})">
                     <div class="img-container">
-                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/342/342_jpg_320x320_crop_upscale_detail_q85.jpg" alt="See the Northen Lights">
+                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/342/342_jpg_320x320_crop_upscale_detail_q85.jpg" alt="See the Northern Lights">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
 
                         <div class="tbl-row bottom">
                             <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">See the Northen Lights</h3>
+                                <h3 class="h2 bucketlist-list-title">See the Northern Lights</h3>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="col-sm-6 col-md-4">
-                <article class="well img-frame bucketlist-list-item" tabindex="1">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.new({title:'Sky Diving', img:'http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/19/19_jpg_320x320_crop_upscale_detail_q85.jpg'})">
                     <div class="img-container">
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/19/19_jpg_320x320_crop_upscale_detail_q85.jpg" alt="Sky Diving">
                     </div>
@@ -52,9 +52,9 @@
             </div>
 
             <div class="col-sm-6 col-md-4">
-                <article class="well img-frame bucketlist-list-item" tabindex="1">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.new({title:'Get a Tattoo', img : 'http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/28/28_jpg_320x320_crop_upscale_detail_q85.jpg'})">
                     <div class="img-container">
-                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/28/28_jpg_320x320_crop_upscale_detail_q85.jpg" alt="Get A Tattoo">
+                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/28/28_jpg_320x320_crop_upscale_detail_q85.jpg" alt="Get a Tattoo">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
 
@@ -69,15 +69,15 @@
             </div>
 
             <div class="col-sm-6 col-md-4">
-                <article class="well img-frame bucketlist-list-item" tabindex="1">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.new({title:'Swim with Dolphins', img:'http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/25/25_jpeg_320x320_crop_upscale_detail_q85.jpg'})">
                     <div class="img-container">
-                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/25/25_jpeg_320x320_crop_upscale_detail_q85.jpg" alt="Swim With Dolphins">
+                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/25/25_jpeg_320x320_crop_upscale_detail_q85.jpg" alt="Swim with Dolphins">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
 
                         <div class="tbl-row bottom">
                             <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">Swim With Dolphins</h3>
+                                <h3 class="h2 bucketlist-list-title">Swim with Dolphins</h3>
                             </div>
                         </div>
                     </div>
@@ -86,16 +86,16 @@
             </div>
 
             <div class="col-sm-6 col-md-4">
-                <article class="well img-frame bucketlist-list-item" tabindex="1">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.new({title:'Go on a Cruise', img: 'http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/35/35_JPG_320x320_crop_upscale_detail_q85.jpg'})">
 
                     <div class="img-container">
-                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/35/35_JPG_320x320_crop_upscale_detail_q85.jpg" alt="Go On A Cruise">
+                        <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/35/35_JPG_320x320_crop_upscale_detail_q85.jpg" alt="Go on a Cruise">
                     </div>
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
 
                         <div class="tbl-row bottom">
                             <div class="tbl-cell">
-                                <h3 class="h2 bucketlist-list-title">Go On A Cruise</h3>
+                                <h3 class="h2 bucketlist-list-title">Go on a Cruise</h3>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
             </div>
 
             <div class="col-sm-6 col-md-4">
-                <article class="well img-frame bucketlist-list-item" tabindex="1">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.new({title:'Other', img :'http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/410/410_jpg_320x320_crop_upscale_detail_q85.jpg'})">
                     <div class="img-container">
                         <img src="http://www.bucketlist.net/site_media/media/thumbnails/Anonymous/410/410_jpg_320x320_crop_upscale_detail_q85.jpg" alt="Other">
                     </div>
@@ -124,3 +124,4 @@
         </div>
     </div>
 </section>
+

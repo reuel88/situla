@@ -6,7 +6,7 @@
  * Time: 7:42 PM
  */
 ?>
-<section class="comments">
+<section class="comments" ng-show="!modal.model.new">
     <header class="non-hoverable">
         <h2>Comments</h2>
     </header>
