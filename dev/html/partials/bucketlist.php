@@ -79,7 +79,7 @@
             <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in completeBucketlist.get('_data') track by $index">
                 <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="completeBucketlist.open(k)">
                     <div class="bucketlist-list-badges">
-                        <p class="complete"><span class="sr-only">Complete</span> <i class="glyphicon glyphicon-ok"></i></p>
+                        <p class="complete"><span class="sr-only">Completed</span> <i class="glyphicon glyphicon-ok"></i></p>
                         <!--                        <p class="message">99 <span class="sr-only">Message(s)</span></p>-->
                     </div>
                     <div class="img-container bucketlist-list-img">

@@ -142,15 +142,15 @@
                                     <div class="form-group non-hoverable" ng-show="modal.model.new || modal.attrs.editing">
                                         <input type="submit" value="Save" class="btn btn-lg btn-primary">
                                         <input type="button" value="Cancel" class="pull-right btn btn-link" ng-show="modal.model.new " ng-click="modal.close()">
-                                        <input type="button" value="Cancel"class="pull-right btn btn-link" ng-show="!modal.model.new || modal.attrs.editing" ng-click="modal.cancel();">
+                                        <input type="button" value="Cancel" class="pull-right btn btn-link" ng-show="!modal.model.new || modal.attrs.editing" ng-click="modal.cancel();">
                                     </div>
                                     <!-- esnd of, save-->
 
                                 </form>
 
-                                <?php include 'html/partials/todoList.php' ?>
+                                <?php include 'todoList.php' ?>
 
-                                <!--            --><?php //include 'html/partials/comments.php' ?>
+                                <?php include 'comments.php' ?>
 
                             </section>
                         </div>
