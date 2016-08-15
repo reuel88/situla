@@ -5,7 +5,7 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('modal.ctrl', ['$scope', 'storage.serv', 'bucketlist.fctry', 'modal.serv', function ($scope, storage, bucketlist, modal) {
+    controller.controller('modal.ctrl', ['$scope', '$parse', 'storage.serv', 'bucketlist.fctry', 'modal.serv', 'todo.serv',  function ($scope, $parse, storage, bucketlist, modal, todo) {
 
 
         /**
@@ -27,12 +27,35 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
 
         $scope.completeBucketlist = bucketlist('completeBucketlist', completeBucketlistModel);
 
+        /**
+         * Get Modal
+         *
+         * Allow the modal to be accessed by the view
+         */
+        $scope.modal = modal;
 
 
         /**
-         * Get Modal
+         * Get To Do
+         *
+         * Allow the modal to be accessed by the view
          */
-        $scope.modal = modal;
+        $scope.todo = todo;
+
+        /**
+         * Call function with strings
+         *
+         * @param key
+         * @param fname
+         * @param params
+         */
+        $scope.handler = function (key, fname, params) {
+
+            var fn = $parse(key)($scope)[fname];
+
+            if (typeof fn === 'function') fn(params);
+
+        };
 
     }]);
 

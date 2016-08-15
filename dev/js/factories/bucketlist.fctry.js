@@ -10,7 +10,7 @@ define(['angular', 'factories/_module'], function (angular, factory) {
 
         var factories = {};
 
-        var bucketlistFactory = function (key, model) {
+        var bucketlistFactory = function (key, data) {
 
             var obj = {};
 
@@ -22,7 +22,17 @@ define(['angular', 'factories/_module'], function (angular, factory) {
             /**
              * The model Array - saved to the object so it easy to manipulate
              */
-            obj.model = model;
+            obj.data = data;
+
+
+            obj.model = {};
+
+
+            obj.refresh = function (model) {
+
+                obj.model = model;
+
+            };
 
             /**
              * Creates a new bucketlist item
@@ -31,13 +41,17 @@ define(['angular', 'factories/_module'], function (angular, factory) {
              */
             obj.new = function (model) {
                 model.new = true; // FIXME: This is a dirty way to manipulate the layout
+                model.todo = [];
+                model.comments = [];
+
+                obj.model = model;
 
                 /**
                  * Expects a promise
                  *
                  * @type object
                  */
-                var promise = modal.open(model);
+                var promise = modal.open(obj.key, obj.model);
 
                 /**
                  * handles the promises, you've made
@@ -48,12 +62,12 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     /**
                      * save response to model
                      */
-                    obj.model.push(response);
+                    obj.data.push(response);
 
                     /**
                      * Save the model to localStorage
                      */
-                    storage.setValue(obj.key, obj.model);
+                    storage.setValue(obj.key, obj.data);
                     $location.path("/"); // redirect to home
 
                     /**
@@ -72,12 +86,14 @@ define(['angular', 'factories/_module'], function (angular, factory) {
             obj.update = function (model) {
                 model.edit = true;
 
+                obj.model = model;
+
                 /**
                  * Expects a promise
                  *
                  * @type object
                  */
-                var bucketlistPromise = modal.open(model);
+                var bucketlistPromise = modal.open(obj.key, obj.model);
 
                 /**
                  * handles the promises, you've made
@@ -88,18 +104,18 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     /**
                      * Replace the old object with new
                      */
-                    var index = obj.model.indexOf(model);
-                    if (index !== -1) obj.model[index] = model = response;
+                    var index = obj.data.indexOf(obj.model);
+                    if (index !== -1) obj.data[index] = response;
 
                     /**
                      * Save the model to localStorage
                      */
-                    storage.setValue(obj.key, obj.model);
-                    $location.path("/"); // redirect to home
+                    storage.setValue(obj.key, obj.data);
+
+                    todo.refresh(obj.key, obj.data, response);
                 });
 
-                var todoPromise = todo(model);
-
+                todo.init(obj.key, obj.data, obj.model);
 
             };
 
@@ -109,19 +125,20 @@ define(['angular', 'factories/_module'], function (angular, factory) {
              * @param model
              */
             obj.delete = function (model) {
-
                 // TODO: Fix Confirmation
                 if (confirm('Are you sure?')) {
+                    obj.model = model;
+
                     /**
                      * Delete from array
                      */
-                    var index = obj.model.indexOf(model);
-                    if (index !== -1) obj.model.splice(index, 1);
+                    var index = obj.data.indexOf(obj.model);
+                    if (index !== -1) obj.data.splice(index, 1);
 
                     /**
-                     * Save the model to localStorage
+                     * Save the data to localStorage
                      */
-                    storage.setValue(obj.key, obj.model);
+                    storage.setValue(obj.key, obj.data);
 
                     /**
                      * Retrieves the factory
@@ -137,9 +154,12 @@ define(['angular', 'factories/_module'], function (angular, factory) {
              * @param model
              */
             obj.complete = function (model) {
+
                 // TODO: Fix Confirmation
                 if (confirm('Congratulations!!!')) {
                     model.complete = true;
+
+                    obj.model = model;
 
                     /**
                      * Retrieve the completeBucketlist
@@ -149,18 +169,18 @@ define(['angular', 'factories/_module'], function (angular, factory) {
                     /**
                      * save response to model
                      */
-                    completeBucketlist.model.push(model);
+                    completeBucketlist.model.push(obj.model);
 
                     /**
                      * Delete from array
                      */
-                    var index = obj.model.indexOf(model);
-                    if (index !== -1) obj.model.splice(index, 1);
+                    var index = obj.data.indexOf(obj.model);
+                    if (index !== -1) obj.data.splice(index, 1);
 
                     /**
                      * Save the model to localStorage
                      */
-                    storage.setValue('bucketlist', obj.model);
+                    storage.setValue('bucketlist', obj.data);
                     storage.setValue('completeBucketlist', completeBucketlist.model);
 
                     /**
@@ -177,17 +197,21 @@ define(['angular', 'factories/_module'], function (angular, factory) {
              * @param model - The new model
              */
             obj.contribute = function (original, model) {
-                model.alreadySaved = parseInt(model.alreadySaved || 0) + parseInt(model._contribute || 0);
 
-                delete model['_contribute'];
+                obj.model = model;
 
-                var index = obj.model.indexOf(original);
-                if (index !== -1) obj.model[index] = model;
+
+                obj.model.alreadySaved = parseInt(obj.model.alreadySaved || 0) + parseInt(obj.model._contribute || 0);
+
+                delete obj.model['_contribute'];
+
+                var index = obj.data.indexOf(original);
+                if (index !== -1) obj.data[index] = obj.model;
 
                 /**
                  * Save the model to localStorage
                  */
-                storage.setValue(obj.key, obj.model);
+                storage.setValue(obj.key, obj.data);
 
                 /**
                  * Retrieves the factory
@@ -198,7 +222,7 @@ define(['angular', 'factories/_module'], function (angular, factory) {
             return obj;
         };
 
-        return function (key, model) {
+        return function (key, data) {
 
             /**
              * Lowercase and dashes key
@@ -215,7 +239,7 @@ define(['angular', 'factories/_module'], function (angular, factory) {
             /**
              * Creates the factory
              */
-            factories[newKey] = new bucketlistFactory(key, model);
+            factories[newKey] = new bucketlistFactory(key, data);
 
             /**
              * Don't forget to return the object

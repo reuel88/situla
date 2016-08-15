@@ -45,7 +45,7 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
 
                 obj.attrs.open = true; // opens modal
 
-                obj.originalModel = model; // saves the original model
+                obj.original = model; // saves the original model
 
                 obj.model = angular.copy(model); // sets the model
 

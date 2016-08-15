@@ -13,7 +13,7 @@
     </header>
 
     <ol class="todo-list">
-        <li class="expand-hoverable" ng-repeat="(k,v) in modal.todo.model track by $index">
+        <li class="expand-hoverable" ng-repeat="(k,v) in todo.model.todo track by $index">
 
             <div class="tbl">
                 <div class="tbl-row">
@@ -63,22 +63,22 @@
         </li>
 
         <li>
-            <div class="non-hoverable" ng-show="modal.todo.attrs.new">
+            <div class="non-hoverable" ng-show="todo.attrs.new">
                 <div class="form-group">
                     <label for="todo-label" class="control-label sr-only">Label</label>
-                    <input type="text" placeholder="Label" id="todo-label" class="form-control" ng-model="modal.todo._model.label">
+                    <input type="text" placeholder="Label" id="todo-label" class="form-control" ng-model="todo._model.label">
                 </div>
 
                 <div class="form-group">
                     <label for="todo-date" class="control-date sr-only">Date</label>
-                    <input type="text" placeholder="Date" id="todo-date" class="form-control" ng-model="modal.todo._model.date">
+                    <input type="text" placeholder="Date" id="todo-date" class="form-control" ng-model="todo._model.date">
                 </div>
 
-                <input type="submit" value="Create" class="btn btn-primary" ng-click="modal.todo.new()">
-                <input type="button" value="Cancel" class="btn btn-link" ng-click="modal.todo.attrs.new = false">
+                <input type="submit" value="Create" class="btn btn-primary" ng-click="todo.new()">
+                <input type="button" value="Cancel" class="btn btn-link" ng-click="todo.attrs.new = false">
             </div>
 
-            <input type="button" value="Add New Item..." class="btn btn-link" ng-click="modal.todo.attrs.new = true;">
+            <input type="button" value="Add New Item..." class="btn btn-link" ng-click="todo.attrs.new = true;">
         </li>
 
 

@@ -23,8 +23,8 @@
         </div>
 
         <div class="row bucketlist-list">
-            <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in bucketlist.model track by $index">
-                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.update(bucketlist.model[k])">
+            <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in bucketlist.data track by $index">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.update(bucketlist.data[k])">
                     <div class="bucketlist-list-badges" ng-show="(v.alreadySaved / v.totalCost * 100) >= 100">
                         <p class="complete"><span class="sr-only">Ready to Complete</span> <i class="glyphicon glyphicon-ok"></i></p>
 <!--                        <p class="message">99 <span class="sr-only">Message(s)</span></p>-->
@@ -75,8 +75,8 @@
     <div class="page-content">
 
         <div class="row bucketlist-list">
-            <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in completeBucketlist.model track by $index">
-                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="completeBucketlist.update(completeBucketlist.model[k])">
+            <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in completeBucketlist.data track by $index">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="completeBucketlist.update(completeBucketlist.data[k])">
                     <div class="bucketlist-list-badges">
                         <p class="complete"><span class="sr-only">Complete</span> <i class="glyphicon glyphicon-ok"></i></p>
 <!--                        <p class="message">99 <span class="sr-only">Message(s)</span></p>-->

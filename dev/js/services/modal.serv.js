@@ -8,6 +8,8 @@ define(['angular', 'services/_module'], function (angular, service) {
 
         var obj = {};
 
+        obj.key = '';
+
         /**
          * Some attributes I use to know what state the modal is
          */
@@ -16,6 +18,11 @@ define(['angular', 'services/_module'], function (angular, service) {
             editing: false,
             contributing: false
         };
+
+        /**
+         *  The original modal
+         */
+        obj.original = {};
 
 
         /**
@@ -35,21 +42,21 @@ define(['angular', 'services/_module'], function (angular, service) {
          * @param model
          * @returns {Promise}
          */
-        obj.open = function (model) {
+        obj.open = function (key, model) {
             var deferred = $q.defer(); // Creates a promise
 
             obj.attrs.open = true; // opens modal
 
-            obj.originalModel = model; // saves the original model
+            obj.key = key;
+
+            obj.original = model; // saves the original model
 
             obj.model = angular.copy(model); // sets the model
-
 
             /**
              * listens for modal close
              */
             $rootScope.$on('modal-close', function () {
-                console.log('modal-close');
                 obj.model = angular.copy(model);
                 deferred.reject(); // goes back on the promise and laughs in your face, lol
             });
@@ -58,12 +65,12 @@ define(['angular', 'services/_module'], function (angular, service) {
              * listens for modal submit
              */
             $rootScope.$on('modal-submit', function () {
-                console.log('modal-submit');
                 deferred.resolve(obj.model); // keep it promise, now your best friend, lol
             });
 
             return deferred.promise; // returns promise
         };
+
 
         /**
          * Close the modal
