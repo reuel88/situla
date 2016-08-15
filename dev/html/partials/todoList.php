@@ -18,15 +18,15 @@
             <div class="tbl">
                 <div class="tbl-row">
                     <div class="tbl-cell middle">
-                        <input type="checkbox" id="todo-item" ng-model="v.done" ng-click="todo.check(modal.model.todo, k)">
-                        <label for="todo-item">
+                        <input type="checkbox" id="todo-item_{{k}}" ng-model="v.done" ng-click="todo.check(modal.model.todo, k)">
+                        <label for="todo-item_{{k}}">
                             <span class="checkbox"></span>
                             <span class="sr-only">{{v.label}}</span>
                         </label>
                     </div>
 
                     <div class="tbl-cell middle width-100">
-                        <div class="tbl pointer" ng-class="{'done': todo.temp.done}" ng-click="todo.edit(modal.model.todo, k)" ng-show="!v.editing">
+                        <div class="tbl pointer" ng-class="{'done': v.done}" ng-click="todo.edit(modal.model.todo, k)" ng-show="!v.editing">
                             <div class="tbl-row" >
                                 <div class="tbl-cell">{{v.label}}</div>
                                 <div class="tbl-cell right">{{v.date}}</div>
