@@ -19,7 +19,7 @@
 
                                 <form class="" enctype="multipart/form-data" ng-submit="modal.submit()">
                                     <div class="visible-xs-block visible-sm-block visible-md-block visible-lg-block clearfix">
-                                        <input type="button" value="Delete your Goal" class="btn btn-link" ng-click="handler(modal.key, 'delete', modal.original)">
+                                        <input type="button" value="Delete your Goal" class="btn btn-link" ng-click="modal.delete()">
                                         <input type="button" value="Close" class="pull-right btn btn-default" ng-click="modal.close()">
                                     </div>
 
@@ -31,7 +31,7 @@
                                                 <img alt="{{modal.model.title}}" ng-src="{{modal.model.img}}">
                                             </div>
 
-                                            <div class="img-content bucketlist-item-img-content tbl height-100" ng-click="(modal.model.edit) ? (modal.attrs.editing = true): (modal.attrs.editing = false)">
+                                            <div class="img-content bucketlist-item-img-content tbl height-100" ng-click="(modal.model.edit) ? (modal.attrs.editing = true) : (modal.attrs.editing = false)">
                                                 <div class="tbl-cell height-100 bottom right">
                                                     <div class="form-group container-fluid" ng-show="!modal.model.edit || modal.attrs.editing">
                                                         <label for="img" class="btn btn-default">Replace Image</label>
@@ -117,7 +117,7 @@
 
                                     <div class="non-hoverable" ng-show="!modal.model.new && !modal.attrs.editing && !modal.model.complete">
                                         <div class="form-group text-center ">
-                                            <input type="button" value="Complete your Goal" class="btn btn-lg btn-primary" ng-click="handler(modal.key, 'complete', modal.original)">
+                                            <input type="button" value="Complete your Goal" class="btn btn-lg btn-primary" ng-click="modal.complete()">
                                         </div>
                                         <div class="form-group text-center" ng-show="!modal.attrs.contributing" ng-click="modal.attrs.contributing = true">
                                             <input type="button" value="Contributions to your Goal" class="btn btn-default">
@@ -133,7 +133,7 @@
                                         </div>
 
                                         <div ng-show="modal.attrs.contributing">
-                                            <input type="button" value="Save" class="btn btn-primary" ng-click="handler(modal.key, 'contribute', modal.original, modal.model)">
+                                            <input type="button" value="Save" class="btn btn-primary" ng-click="modal.contribute()">
                                             <input type="button" value="Cancel" class="btn btn-link" ng-click="modal.attrs.contributing = false">
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@
                                     <div class="form-group non-hoverable" ng-show="modal.model.new || modal.attrs.editing">
                                         <input type="submit" value="Save" class="btn btn-lg btn-primary">
                                         <input type="button" value="Cancel" class="pull-right btn btn-link" ng-show="modal.model.new " ng-click="modal.close()">
-                                        <input type="button" value="Cancel"class="pull-right btn btn-link" ng-show="!modal.model.new || modal.attrs.editing" ng-click="modal.cancel()">
+                                        <input type="button" value="Cancel"class="pull-right btn btn-link" ng-show="!modal.model.new || modal.attrs.editing" ng-click="modal.cancel();">
                                     </div>
                                     <!-- esnd of, save-->
 

@@ -4,7 +4,7 @@
 
 
 
-define(['angular', 'factories/_module'], function (angular, factory) {
+define(['angular', 'jquery', 'factories/_module'], function (angular, $, factory) {
 
     factory.factory('bucketlist.fctry', ['$rootScope', '$location', 'modal.serv', 'storage.serv', 'todo.serv', function ($rootScope, $location, modal, storage, todo) {
 
@@ -16,22 +16,35 @@ define(['angular', 'factories/_module'], function (angular, factory) {
 
             /**
              * Key to the storage and obj
+             *
+             * @type {string}
+             * @private
              */
-            obj.key = key;
+            obj._key = key;
 
             /**
-             * The model Array - saved to the object so it easy to manipulate
+             * The array of the localStorage
+             *
+             * @type {Array}
+             * @private
              */
-            obj.data = data;
+            obj._data = data;
 
-
+            /**
+             * The Original Model
+             *
+             * @type {Object}
+             */
             obj.model = {};
 
-
-            obj.refresh = function (model) {
-
-                obj.model = model;
-
+            /**
+             * retrieve variables
+             *
+             * @param key
+             * @returns {*}
+             */
+            obj.get = function (key) {
+                return obj[key];
             };
 
             /**
@@ -40,183 +53,52 @@ define(['angular', 'factories/_module'], function (angular, factory) {
              * @param model
              */
             obj.new = function (model) {
-                model.new = true; // FIXME: This is a dirty way to manipulate the layout
-                model.todo = [];
-                model.comments = [];
 
-                obj.model = model;
+                var defaults = {
+                    img: 'Because, I\'ll be over written, lol',
+                    new: true,
+                    todo: [],
+                    comments: []
+                };
 
-                /**
-                 * Expects a promise
-                 *
-                 * @type object
-                 */
-                var promise = modal.open(obj.key, obj.model);
+                obj.model = $.extend({}, defaults, model);
 
-                /**
-                 * handles the promises, you've made
-                 */
-                promise.then(function success(response) {
-                    response.new = false; // FIXME: This is a dirty way to manipulate the layout
-
-                    /**
-                     * save response to model
-                     */
-                    obj.data.push(response);
-
-                    /**
-                     * Save the model to localStorage
-                     */
-                    storage.setValue(obj.key, obj.data);
-                    $location.path("/"); // redirect to home
-
-                    /**
-                     * Close Modal
-                     */
-                    modal.close();
-
-                });
+                modal.init(obj._key, obj._data, obj.model);
             };
 
             /**
-             * Updates the bucketlist item
+             * Opens the bucketlist item
              *
-             * @param model
+             * @param index
              */
-            obj.update = function (model) {
+            obj.open = function (index) {
+
+                var model = obj._data[index];
+
+                /**
+                 * could not you jQuery extends because it transform the object
+                 */
                 model.edit = true;
-
                 obj.model = model;
 
-                /**
-                 * Expects a promise
-                 *
-                 * @type object
-                 */
-                var bucketlistPromise = modal.open(obj.key, obj.model);
+                modal.init(obj._key, obj._data, obj.model);
 
-                /**
-                 * handles the promises, you've made
-                 */
-                bucketlistPromise.then(function success(response) {
-                    response.new = false; // FIXME: This is a dirty way to manipulate the layout
-
-                    /**
-                     * Replace the old object with new
-                     */
-                    var index = obj.data.indexOf(obj.model);
-                    if (index !== -1) obj.data[index] = response;
-
-                    /**
-                     * Save the model to localStorage
-                     */
-                    storage.setValue(obj.key, obj.data);
-
-                    todo.refresh(obj.key, obj.data, response);
-                });
-
-                todo.init(obj.key, obj.data, obj.model);
+                todo.init(obj._key, obj._data, obj.model);
 
             };
 
             /**
-             * Delete The Goal
-             *
+             * function that adds to the data programmatically
              * @param model
              */
-            obj.delete = function (model) {
-                // TODO: Fix Confirmation
-                if (confirm('Are you sure?')) {
-                    obj.model = model;
-
-                    /**
-                     * Delete from array
-                     */
-                    var index = obj.data.indexOf(obj.model);
-                    if (index !== -1) obj.data.splice(index, 1);
-
-                    /**
-                     * Save the data to localStorage
-                     */
-                    storage.setValue(obj.key, obj.data);
-
-                    /**
-                     * Retrieves the factory
-                     */
-                    modal.close();
-                }
-
-            };
-
-            /**
-             * Set the Goal as Complete
-             *
-             * @param model
-             */
-            obj.complete = function (model) {
-
-                // TODO: Fix Confirmation
-                if (confirm('Congratulations!!!')) {
-                    model.complete = true;
-
-                    obj.model = model;
-
-                    /**
-                     * Retrieve the completeBucketlist
-                     */
-                    var completeBucketlist = factories['completebucketlist']; // Remember it got lowercase
-
-                    /**
-                     * save response to model
-                     */
-                    completeBucketlist.model.push(obj.model);
-
-                    /**
-                     * Delete from array
-                     */
-                    var index = obj.data.indexOf(obj.model);
-                    if (index !== -1) obj.data.splice(index, 1);
-
-                    /**
-                     * Save the model to localStorage
-                     */
-                    storage.setValue('bucketlist', obj.data);
-                    storage.setValue('completeBucketlist', completeBucketlist.model);
-
-                    /**
-                     * Retrieves the modal and closes it, lol
-                     */
-                    modal.close();
-                }
-
-            };
-
-
-            /**
-             * @param original - The original model
-             * @param model - The new model
-             */
-            obj.contribute = function (original, model) {
-
+            obj.add = function (model) {
                 obj.model = model;
 
+                obj.model.complete = true;
 
-                obj.model.alreadySaved = parseInt(obj.model.alreadySaved || 0) + parseInt(obj.model._contribute || 0);
+                obj._data.push(obj.model);
 
-                delete obj.model['_contribute'];
-
-                var index = obj.data.indexOf(original);
-                if (index !== -1) obj.data[index] = obj.model;
-
-                /**
-                 * Save the model to localStorage
-                 */
-                storage.setValue(obj.key, obj.data);
-
-                /**
-                 * Retrieves the factory
-                 */
-                modal.attrs.contributing = false;
+                storage.setValue(obj._key, obj._data);
             };
 
             return obj;

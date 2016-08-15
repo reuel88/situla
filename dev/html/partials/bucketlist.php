@@ -23,8 +23,8 @@
         </div>
 
         <div class="row bucketlist-list">
-            <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in bucketlist.data track by $index">
-                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.update(bucketlist.data[k])">
+            <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in bucketlist.get('_data') track by $index">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="bucketlist.open(k)">
                     <div class="bucketlist-list-badges" ng-show="(v.alreadySaved / v.totalCost * 100) >= 100">
                         <p class="complete"><span class="sr-only">Ready to Complete</span> <i class="glyphicon glyphicon-ok"></i></p>
 <!--                        <p class="message">99 <span class="sr-only">Message(s)</span></p>-->
@@ -75,11 +75,12 @@
     <div class="page-content">
 
         <div class="row bucketlist-list">
-            <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in completeBucketlist.data track by $index">
-                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="completeBucketlist.update(completeBucketlist.data[k])">
+
+            <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in completeBucketlist.get('_data') track by $index">
+                <article class="well img-frame bucketlist-list-item" tabindex="1" ng-click="completeBucketlist.open(k)">
                     <div class="bucketlist-list-badges">
                         <p class="complete"><span class="sr-only">Complete</span> <i class="glyphicon glyphicon-ok"></i></p>
-<!--                        <p class="message">99 <span class="sr-only">Message(s)</span></p>-->
+                        <!--                        <p class="message">99 <span class="sr-only">Message(s)</span></p>-->
                     </div>
                     <div class="img-container bucketlist-list-img">
                         <img  alt="{{v.title}}" ng-src="{{v.img}}">
@@ -93,7 +94,7 @@
                         <div class="tbl-row bottom">
                             <div class="tbl-cell">
                                 <h3 class="h2 bucketlist-list-title">{{v.title}}</h3>
-                                <p class="h4 bucketlist-list-saving"><span ng-show="v.alreadySaved">Saved</span> {{v.alreadySaved | currency}} <span class="small" ng-show="v.totalCost"><span ng-show="v.alreadySaved">of</span>  {{v.totalCost | currency}}</span></p>
+                                <p class="h4 bucketlist-list-saving" ><span ng-show="v.alreadySaved">Saved</span> {{v.alreadySaved | currency}} <span class="small" ng-show="v.totalCost"><span ng-show="v.alreadySaved">of</span> {{v.totalCost | currency}}</span></p>
                             </div>
                         </div>
 
@@ -102,6 +103,7 @@
                     <div class="img-overlay"></div>
                 </article>
             </div>
+
         </div>
 
     </div>
