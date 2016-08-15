@@ -197,8 +197,6 @@ define(['angular', 'services/_module'], function (angular, service) {
             storage.setValue(obj._key, obj._data);
 
 
-            console.log(storage.getValue(obj._key));
-
             /**
              * Refresh for that minty goodness
              */
