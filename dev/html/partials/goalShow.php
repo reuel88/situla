@@ -42,6 +42,10 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="alert alert-warning" ng-show="modal.errors.img">
+                                        <p ng-repeat="(k,v) in modal.errors.img track by $index">{{v}}</p>
+                                    </div>
                                     <!-- end of, title-->
 
 
@@ -54,6 +58,10 @@
                                             <input type="text" name="title" id="title" class="form-control" ng-model="modal.model.title">
                                         </div>
                                     </div>
+
+                                    <div class="alert alert-warning" ng-show="modal.errors.title">
+                                        <p ng-repeat="(k,v) in modal.errors.title track by $index">{{v}}</p>
+                                    </div>
                                     <!-- end of, title-->
 
                                     <!-- start of, description-->
@@ -64,6 +72,9 @@
                                             <label for="description" class="control-label">Short Description <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Short Description of your Goal"><span class="sr-only">description</span></i></label>
                                             <textarea name="description" id="description" cols="30" rows="3" class="form-control" ng-model="modal.model.description"></textarea>
                                         </div>
+                                    </div>
+                                    <div class="alert alert-warning" ng-show="modal.errors.description">
+                                        <p ng-repeat="(k,v) in modal.errors.description track by $index">{{v}}</p>
                                     </div>
                                     <!-- end of, description-->
 
@@ -110,6 +121,10 @@
 
 
                                     </div>
+                                    <div class="alert alert-warning" ng-show="modal.errors.alreadySaved || modal.errors.totalCost">
+                                        <p ng-repeat="(k,v) in modal.errors.alreadySaved track by $index"> Already Saved - {{v}}</p>
+                                        <p ng-repeat="(k,v) in modal.errors.totalCost track by $index">Total Cost - {{v}}</p>
+                                    </div>
                                     <!-- end of, cost-->
 
 
@@ -123,6 +138,9 @@
                                             <!--                                            <input type="date" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" format-date>-->
                                         </div>
 
+                                    </div>
+                                    <div class="alert alert-warning" ng-show="modal.errors.date">
+                                        <p ng-repeat="(k,v) in modal.errors.date track by $index">Targert Date - {{v}}</p>
                                     </div>
                                     <!-- end of, date-->
 

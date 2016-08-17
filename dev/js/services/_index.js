@@ -8,7 +8,7 @@ require([
     'services/modal.serv',
     'services/storage.serv',
     'services/todo.serv',
-    'services/validation.required.serv'
+    'services/validation.serv'
 ], function () {
 
 });

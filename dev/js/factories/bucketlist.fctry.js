@@ -120,6 +120,13 @@ define(['angular', 'jquery', 'factories/_module'], function (angular, $, factory
              */
             if (factories[newKey]) return factories[newKey];
 
+
+            /**
+             * Check if data is not an array
+             */
+            if(!data || (data && data.constructor !== Array))
+                data = [];
+
             /**
              * Creates the factory
              */

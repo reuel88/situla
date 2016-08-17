@@ -9,24 +9,15 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
         '$scope', '$parse', 'bucketlist.fctry', 'comment.serv', 'modal.serv', 'storage.serv', 'todo.serv',
         function ($scope, $parse, bucketlist, comment, modal, storage, todo) {
 
-
             /**
              * Get Bucketlist
              */
-            var bucketlistModel = storage.getValue('bucketlist');
-
-            bucketlistModel = (bucketlistModel) ? bucketlistModel : [];
-
-            $scope.bucketlist = bucketlist('bucketlist', bucketlistModel);
+            $scope.bucketlist = bucketlist('bucketlist', storage.getValue('bucketlist'));
 
             /**
              * Get Complete Bucketlist
              */
-            var completeBucketlistModel = storage.getValue('completeBucketlist');
-
-            completeBucketlistModel = (completeBucketlistModel) ? completeBucketlistModel : [];
-
-            $scope.completeBucketlist = bucketlist('completeBucketlist', completeBucketlistModel);
+            $scope.completeBucketlist = bucketlist('completeBucketlist', storage.getValue('completeBucketlist'));
 
             /**
              * Get Modal
@@ -48,8 +39,6 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
              * Allow the modal to be accessed by the view
              */
             $scope.comment = comment;
-
-
 
 
             /**

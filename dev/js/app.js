@@ -8,6 +8,7 @@ define(
 
         'angular',
 
+        'calculators/_index', // handles the calculators
         'controllers/_index', // handles the controllers
         'directives/_index', // handles the directives
         'factories/_index', // handles the factories
@@ -15,7 +16,7 @@ define(
     ],
     function (isEmpty, angular) {
 
-        var app = angular.module('app', ['ngAnimate', 'ngCookies', 'ngRoute', 'app.controllers', 'app.directives', 'app.factories',  'app.services']);
+        var app = angular.module('app', ['ngAnimate', 'ngCookies', 'ngRoute','app.calculators', 'app.controllers', 'app.directives', 'app.factories',  'app.services']);
 
         app
             .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

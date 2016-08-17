@@ -4,19 +4,19 @@
 
 define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, service, isEmpty) {
 
-    service.directive('modal', ['$parse','modal.serv', function ($parse, modal) {
+    service.directive('modal', ['$parse', 'modal.serv', function ($parse, modal) {
         return {
             link: function (scope, elem, attrs) {
 
 
-
-                $(elem).on('click', function(e) {
+                $(elem).on('click', function (e) {
                     if (e.target !== this)
                         return;
 
                     $parse('modal')(scope).close();
 
-                    scope.$apply(function () {}); // Applys the close
+                    scope.$apply(function () {
+                    }); // Applys the close
                 });
 
             }
@@ -25,7 +25,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
     }]);
 
 
-    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'storage.serv', 'validation.required.serv', function ($rootScope, $location, $parse, storage, validationRequired) {
+    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'storage.serv', 'validation.serv', function ($rootScope, $location, $parse, storage, validation) {
 
         var obj = {};
 
@@ -74,11 +74,11 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
         obj.errors = {};
 
 
-        var validations = {
-            img: ['validationRequired'],
-            title: ['validationRequired'],
-            totalCost: ['validationRequired'],
-            date:['validationRequired']
+        var fields = {
+            img: ['required'],
+            title: ['required'],
+            totalCost: ['required'],
+            date: ['required']
         };
 
 
@@ -90,6 +90,9 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
          * @param model
          */
         obj.init = function (key, data, model) {
+
+            document.getElementsByTagName('body')[0].className+=' modal-open';
+
             obj.attrs.open = true;
 
             obj._key = key;
@@ -115,89 +118,64 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.model = angular.copy(model); // sets the model
         };
 
+
         /**
          * create a new item
          */
         obj.new = function () {
-            /**
-             * Remove new to clean up code
-             */
-            delete obj.model.new;
 
-            /**
-             * save response to model
-             */
-            obj._data.push(obj.model);
+            obj.errors = validation.execute(fields, obj.model);
 
-            /**
-             * Save the model to localStorage
-             */
-            storage.setValue(obj._key, obj._data);
+            if (isEmpty(obj.errors)) {
+                /**
+                 * Remove new to clean up code
+                 */
+                delete obj.model.new;
 
-            /**
-             * Redirect to home
-             */
-            $location.path("/");
+                /**
+                 * save response to model
+                 */
+                obj._data.push(obj.model);
 
-            /**
-             * Close the modal
-             *
-             * @type {boolean}
-             */
-            obj.attrs.open = false;
+                /**
+                 * Save the model to localStorage
+                 */
+                storage.setValue(obj._key, obj._data);
+
+                /**
+                 * Redirect to home
+                 */
+                $location.path("/");
+
+                /**
+                 * Close the modal
+                 *
+                 * @type {boolean}
+                 */
+                obj.attrs.open = false;
+                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open","");
+
+            }
         };
 
         /**
          * update the item
          */
         obj.update = function () {
-            /**
-             * save to array
-             */
-            var index = obj._data.indexOf(obj._original);
-            if (index !== -1) obj._data[index] = obj.model;
 
-            /**
-             * Save the data to localStorage
-             */
-            storage.setValue(obj._key, obj._data);
+            obj.errors = validation.execute(fields, obj.model);
 
-            /**
-             * refresh variables to match the saved data
-             */
-            obj.refresh(obj._data, obj.model);
-            $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
-            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
-
-
-            /**
-             * Close editing
-             *
-             * @type {boolean}
-             */
-            obj.attrs.editing = false;
-        };
-
-        obj.contribute = function () {
-                obj.model.alreadySaved = parseInt(obj.model.alreadySaved || 0) + parseInt(obj.model._contribute || 0);
-
-                /**
-                 * Clean up
-                 */
-                delete obj.model['_contribute'];
-
+            if (isEmpty(obj.errors)) {
                 /**
                  * save to array
                  */
                 var index = obj._data.indexOf(obj._original);
                 if (index !== -1) obj._data[index] = obj.model;
 
-
                 /**
                  * Save the data to localStorage
                  */
                 storage.setValue(obj._key, obj._data);
-
 
                 /**
                  * refresh variables to match the saved data
@@ -208,11 +186,49 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
 
 
                 /**
-                 * Cancel contribution
+                 * Close editing
                  *
                  * @type {boolean}
                  */
-                obj.attrs.contributing = false;
+                obj.attrs.editing = false;
+            }
+        };
+
+        obj.contribute = function () {
+            obj.model.alreadySaved = parseInt(obj.model.alreadySaved || 0) + parseInt(obj.model._contribute || 0);
+
+            /**
+             * Clean up
+             */
+            delete obj.model['_contribute'];
+
+            /**
+             * save to array
+             */
+            var index = obj._data.indexOf(obj._original);
+            if (index !== -1) obj._data[index] = obj.model;
+
+
+            /**
+             * Save the data to localStorage
+             */
+            storage.setValue(obj._key, obj._data);
+
+
+            /**
+             * refresh variables to match the saved data
+             */
+            obj.refresh(obj._data, obj.model);
+            $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+
+
+            /**
+             * Cancel contribution
+             *
+             * @type {boolean}
+             */
+            obj.attrs.contributing = false;
 
         };
 
@@ -257,10 +273,15 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
 
                 /**
                  * Close the modal
-                 *
-                 * @type {boolean}
                  */
                 obj.attrs.open = false;
+                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open","");
+
+
+                /**
+                 * empty errors
+                 */
+                obj.errors = {};
             }
 
         };
@@ -295,6 +316,8 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                  * @type {boolean}
                  */
                 obj.attrs.open = false;
+                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open","");
+
             }
         };
 
@@ -304,11 +327,11 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
          */
         obj.submit = function () {
             if (obj.model.new) {
-                // console.log('new');
+                // console.log('new bucketlist item');
 
                 obj.new();
             } else if (obj.model.edit) {
-                // console.log('update');
+                // console.log('update bucketlist item');
 
                 obj.update();
             }
@@ -332,6 +355,13 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.attrs.open = false;
             obj.attrs.editing = false;
             obj.attrs.contributing = false;
+
+            document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open","");
+
+            /**
+             * empty errors
+             */
+            obj.errors = {};
         };
 
         obj.cancel = function () {
@@ -351,13 +381,15 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             $parse('todo')($rootScope.$$childHead).refresh(obj._data, model);
             $parse('comment')($rootScope.$$childHead).refresh(obj._data, model);
 
-
             /**
              * Close editing
-             *
-             * @type {boolean}
              */
             obj.attrs.editing = false;
+
+            /**
+             * empty errors
+             */
+            obj.errors = {};
         };
 
         return obj;

@@ -4,58 +4,29 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('default.ctrl', ['$scope', '$location', 'start.fctry', 'bucketlist.fctry', 'goal.serv', 'storage.serv',  function ($scope, $location, start, bucketlist, goal, storage) {
+    controller.controller('default.ctrl', ['$scope', '$location', 'bucketlist.fctry', 'user.fctry', 'storage.serv', function ($scope, $location, bucketlist, user, storage) {
 
         /**
          * Get User
          */
-        var user = storage.getValue('user');
-
-        /**
-         * Set user defaults
-         *
-         * @type {{income: number, incomeFreq: number, expense: number, expenseFreq: number, _cashFlow: number, _cashFlowFreq: number}}
-         */
-        user = (user) ? user : {
-            'income': 0,
-            'incomeFreq': 52,
-            'expense': 0,
-            'expenseFreq': 52,
-            '_cashFlow': 0, // Underscore for result variables
-            '_cashFlowFreq': 52
-        };
-
-        $scope.start = start('start', user);
+        $scope.user = user('start', storage.getValue('user'));
 
         /**
          * Get Bucketlist
          */
-        var bucketlistModel = storage.getValue('bucketlist');
-
-        bucketlistModel = (bucketlistModel) ? bucketlistModel : [];
-
-        $scope.bucketlist = bucketlist('bucketlist', bucketlistModel);
-
+        $scope.bucketlist = bucketlist('bucketlist', storage.getValue('bucketlist'));
 
         /**
          * Get Complete Bucketlist
          */
-        var completeBucketlistModel = storage.getValue('completeBucketlist');
+        $scope.completeBucketlist = bucketlist('completeBucketlist', storage.getValue('completeBucketlist'));
 
-        completeBucketlistModel = (completeBucketlistModel) ? completeBucketlistModel : [];
-
-        $scope.completeBucketlist = bucketlist('completeBucketlist', completeBucketlistModel);
-
-
-        $scope.goal = goal();
-
-
-            /**
-             * Quick path redirect
-             */
-            $scope.pathTo = function (path) {
-                if (path) $location.path(path);
-            };
+        /**
+         * Quick path redirect
+         */
+        $scope.pathTo = function (path) {
+            if (path) $location.path(path);
+        };
 
         /**
          * FIXME: Quick dirty way to check if bucketlist is available

@@ -4,13 +4,10 @@
 
 define(['angular', 'services/_module'], function (angular, service) {
 
-    service.service('validation.required.serv', ['$rootScope', function ($rootScope) {
+    service.service('required.serv', ['$rootScope', function ($rootScope) {
 
         return function (value, message) {
-
             if(!value) return (message)? message : 'This is required';
-
-
         };
 
     }]);
