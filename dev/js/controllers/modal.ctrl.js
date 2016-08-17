@@ -17,7 +17,6 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
 
         $scope.bucketlist = bucketlist('bucketlist', bucketlistModel);
 
-
         /**
          * Get Complete Bucketlist
          */
@@ -33,7 +32,6 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
          * Allow the modal to be accessed by the view
          */
         $scope.modal = modal;
-
 
         /**
          * Get To Do
