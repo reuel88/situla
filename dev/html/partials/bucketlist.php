@@ -35,7 +35,7 @@
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
                         <div class="tbl-row">
                             <div class="tbl-cell top">
-                                <p class="h4">{{v.date}}</p>
+                                <p class="h4">{{v.date | date : 'MMM d, y'}}</p>
                             </div>
                         </div>
                         <div class="tbl-row bottom">
@@ -88,7 +88,7 @@
                     <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
                         <div class="tbl-row">
                             <div class="tbl-cell top">
-                                <p class="h4">{{v.date}}</p>
+                                <p class="h4">{{v.date | date : 'MMM d, y'}}</p>
                             </div>
                         </div>
                         <div class="tbl-row bottom">

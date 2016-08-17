@@ -21,6 +21,7 @@ gulp.task('default', function () {
         preserveLicenseComments: false,
         paths: {
             'angular': '../components/angular/angular.min',
+            'angular-animate': '../components/angular-animate/angular-animate.min',
             'angular-cookies': '../components/angular-cookies/angular-cookies.min',
             'angular-route': '../components/angular-route/angular-route.min',
             'bootstrap-daterangepicker': '../components/bootstrap-daterangepicker/daterangepicker',
@@ -33,13 +34,13 @@ gulp.task('default', function () {
         }
         // ... more require.js options
     })
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('./public/js')); // pipe it to the output DIR
 
-    // gulp.src('dev/components/requirejs/require.js')
-    //     .pipe(uglify())
-    //     .pipe(gulp.dest('./public/js'));
-    //
+    gulp.src('dev/components/requirejs/require.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./public/js'));
+
     // gulp.src('dev/*.html')
     //     .pipe(htmlmin({collapseWhitespace: true}))
     //     .pipe(gulp.dest('./public'));

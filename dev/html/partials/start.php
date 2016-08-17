@@ -27,7 +27,7 @@
 
                 <form ng-submit="start.save()">
                     <div class="form-group hoverable">
-                        <label for="income" class="control-label">Income</label>
+                        <label for="income" class="control-label">Income <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Your average income"><span class="sr-only">description</span></i></label>
 
                         <div class="input-group input-select">
                             <span class="input-group-addon">$</span>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="form-group hoverable">
-                        <label for="expense" class="control-label">Expense</label>
+                        <label for="expense" class="control-label" >Expenses <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Your average expenses"><span class="sr-only">description</span></i></label>
 
                         <div class="input-group input-select">
                             <span class="input-group-addon">$</span>
@@ -69,7 +69,7 @@
                         <p>{{start.errors.expense}}</p>
                     </div>
 
-                    <div class="home-result">
+                    <div class="home-result" ng-show="((start.model.expense || 0) * (start.model.income || 0)) != 0">
                         <p class="text-center">You earn</p>
                         <p class="h1 text-center">{{start.model._cashFlow | currency}}</p>
 

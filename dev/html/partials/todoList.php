@@ -9,7 +9,7 @@
 
 <section class="todo" ng-show="!modal.model.new ">
     <header class="non-hoverable-side">
-        <h2>Todo</h2>
+        <h2 class="h3">Todo</h2>
     </header>
 
     <ol class="todo-list">
@@ -29,7 +29,7 @@
                         <div class="tbl pointer" ng-class="{'done': v.done}" ng-click="todo.edit(modal.model.todo, k)" ng-show="!v.editing">
                             <div class="tbl-row" >
                                 <div class="tbl-cell">{{v.label}}</div>
-                                <div class="tbl-cell right">{{v.date}}</div>
+                                <div class="tbl-cell right">{{v.date | date : 'MMM d, y'}}</div>
                             </div>
                         </div>
 

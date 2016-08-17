@@ -17,6 +17,8 @@
 </head>
 <body>
 
+<?php include 'html/partials/goalShow.php' ?>
+
 <div class="tbl height-100">
     <div class="tbl-row">
         <div id="site-masterhead" class="tbl-cell">

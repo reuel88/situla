@@ -8,7 +8,7 @@
 ?>
 <section class="comments" ng-show="!modal.model.new">
     <header class="non-hoverable-side">
-        <h2>Comments</h2>
+        <h2 class="h3">Comments</h2>
     </header>
 
     <form class="comment-new non-hoverable" ng-submit="comment.new()">
@@ -44,7 +44,7 @@
         <div class="tbl">
             <div class="tbl-row">
                 <div class="tbl-cell">
-                    <input type="submit" value="Create" class="btn btn-primary">
+                    <input type="submit" value="Create" class="btn btn-default">
                     <input type="button" value="Cancel" class="btn btn-link" ng-click="comment.cancel()" ng-disabled="!comment.temp.img && !comment.temp.content">
                 </div>
 
@@ -56,7 +56,7 @@
 
     <ol class="comment-list">
         <li ng-repeat="(k,v) in modal.model.comment track by $index ">
-
+sud
             <div class="tbl hoverable">
                 <div class="tbl-row" ng-show="!v.editing && v.img">
                     <div class="tbl-cell">
@@ -115,6 +115,7 @@
                     <div class="tbl-cell">
                         <div class="tbl" ng-show="!v.editing">
                             <div class="tbl-cell middle"><span class="small">{{v.date | date : 'MMM d, y h:mma'}}</span></div>
+
                             <div class="tbl-cell middle right">
                                 <input type="button" value="Edit" class="btn btn-link" ng-click="comment.edit(modal.model.comment, k)" ng-disabled="comment.attrs.isEditing">
                             </div>

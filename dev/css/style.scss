@@ -332,6 +332,12 @@ table {
   }
 }
 
+.always-hoverable {
+  margin-bottom: 0;
+  padding: floor(($grid-gutter-width / 2));
+  background: $gray-lighter;
+}
+
 .non-hoverable {
   margin-bottom: 0;
   padding: floor(($grid-gutter-width / 2));
@@ -339,7 +345,7 @@ table {
 
 .non-hoverable-side {
   margin-bottom: 0;
-  padding:0 floor(($grid-gutter-width / 2));
+  padding: 0 floor(($grid-gutter-width / 2));
 }
 
 .expand-hoverable {
@@ -414,10 +420,92 @@ table {
 /**
  *  -------------------------------------------------------------------------
  *
- *  Site Header
+ *  Animation
  */
 
-// N/A
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  ngView
+ */
+
+.ng-enter {
+  animation: 0.5s fadeIn ease;
+}
+
+.ng-leave {
+  animation: 0.5s fadeOut ease;
+
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  alert
+ */
+.alert {
+  &.ng-hide-remove { // showing
+    animation: 0.5s fadeInDown ease;
+  }
+  &.ng-hide-add { // hiding
+    animation: 0.5s fadeOutUp ease;
+  }
+}
+
+.alert.contribute {
+  &.ng-hide-remove { // showing
+    animation: 0.5s fadeIn ease;
+  }
+  &.ng-hide-add { // hiding
+    animation: 0.5s fadeOut ease;
+  }
+}
 
 /**
  *  -------------------------------------------------------------------------
@@ -435,8 +523,42 @@ table {
 /**
  *  -------------------------------------------------------------------------
  *
- *  Bucketlist
+ *  Start
  */
+.home-result {
+  &.ng-hide-remove { // showing
+    animation: 0.5s fadeIn ease;
+  }
+
+  &.ng-hide-add { // hiding
+    animation: 0.5s fadeOut ease;
+  }
+}
+
+/**
+*  -------------------------------------------------------------------------
+*
+*  Bucketlist
+*/
+.bucketlist-modal {
+  &.ng-hide-remove { // showing
+    animation: 0.5s fadeIn ease;
+  }
+
+  &.ng-hide-add { // hiding
+    animation: 0.5s fadeOut ease;
+  }
+}
+
+.alert {
+  &.ng-hide-remove { // showing
+    animation: 0.5s fadeInDown ease;
+  }
+  &.ng-hide-add { // hiding
+    animation: 0.5s fadeOutUp ease;
+  }
+}
+
 .bucketlist-list-item {
   cursor: pointer;
 
@@ -465,7 +587,7 @@ table {
       margin: 0 5px;
       position: relative;
     }
-    &:hover i{
+    &:hover i {
       margin: 0 3px;
     }
   }
@@ -493,7 +615,7 @@ table {
     height: 5px;
     left: 0;
     position: absolute;
-    z-index: 300;
+    z-index: 100;
   }
 }
 
@@ -533,29 +655,37 @@ table {
 
   .bucketlist-list-progress {
     display: block;
+    margin: floor(($grid-gutter-width / 2)) 0;
     position: relative;
     width: 100%;
-    .bar {
-      background: $brand-success;
-      display: block;
-      height: 1px;
+
+  }
+
+  .bucketlist-list-progress .bar {
+    background: $brand-success;
+    display: block;
+    height: 1px;
+  }
+
+  .bucketlist-list-progress p {
+    background: $brand-success;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: -15px;
+    i {
+      top: 3px;
     }
-    p {
-      background: $brand-success;
-      border-radius: 20px;
-      color: white;
-      cursor: pointer;
-      min-height: 30px;
-      min-width: 30px;
-      padding: 5px;
-      position: absolute;
-      right: 0;
-      text-align: center;
-      top: -15px;
-      i {
-        top: 3px;
-      }
-    }
+  }
+
+  .cost-date p{
+    margin-bottom: 10px !important;
   }
 }
 
@@ -603,7 +733,7 @@ table {
   list-style: none;
   padding: 0;
 
-  .done{
+  .done {
     text-decoration: line-through;
   }
 }
@@ -615,17 +745,17 @@ table {
  */
 
 // Comment
-.comments{
-  .comment-img{
+.comments {
+  .comment-img {
     //border: 1px solid $gray;
 
   }
 
-  .img-container.ng-hide + .comment-img-content{
+  .img-container.ng-hide + .comment-img-content {
     min-height: 33px !important;
   }
 
-  .img-container.ng-hide + .comment-img-content .container-fluid{
+  .img-container.ng-hide + .comment-img-content .container-fluid {
     margin-bottom: 0;
     padding: 0;
   }
@@ -638,11 +768,11 @@ table {
     margin-bottom: 0;
   }
 
-  .img-container.ng-hide + .comment-item-img-content{
+  .img-container.ng-hide + .comment-item-img-content {
     min-height: 33px !important;
   }
 
-  .img-container.ng-hide + .comment-item-img-content .container-fluid{
+  .img-container.ng-hide + .comment-item-img-content .container-fluid {
     margin-bottom: 0;
     padding: 0;
   }

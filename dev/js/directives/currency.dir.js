@@ -12,11 +12,13 @@ define(['angular', 'jquery', 'directives/_module'], function (angular, $, direct
             link: function (scope, elem, attrs, ctrl) {
                 if (!ctrl) return;
 
+
                 // This is and init of the current value
                 ctrl.$formatters.unshift(function (a) {
                     if (typeof ctrl.$modelValue == 'undefined' || !ctrl.$modelValue ) return ctrl.$modelValue;
 
                     var plainNumber = ctrl.$modelValue.toString().replace(/[^\d|\.+]/g, '');
+
 
                     return formatNumber(plainNumber);
                 });
@@ -33,6 +35,9 @@ define(['angular', 'jquery', 'directives/_module'], function (angular, $, direct
                     if (typeof parts[1] !== 'undefined' && parts[1].length >= 3) parts[1] = Math.round(parts[1].substring(0, 3) / 10);
 
                     elem.val(parts.join("."));
+
+                    // console.log(ctrl);
+
 
                     return parseFloat(plainNumber);
                 });

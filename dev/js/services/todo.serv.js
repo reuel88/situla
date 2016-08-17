@@ -50,7 +50,8 @@ define(['angular', 'services/_module'], function (angular, service) {
          * Temporary data
          * @type {object}
          */
-        obj.temp = {};
+        obj.temp = {
+        };
 
         /**
          * Setup the variables
@@ -97,7 +98,8 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * empty out temp
              */
-            obj.temp = {};
+            obj.temp = {
+            };
 
             /**
              * save to array

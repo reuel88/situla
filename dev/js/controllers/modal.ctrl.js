@@ -50,6 +50,8 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
             $scope.comment = comment;
 
 
+
+
             /**
              * Call function with strings
              *

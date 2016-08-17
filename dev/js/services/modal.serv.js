@@ -2,9 +2,30 @@
  * Created by reuelteodoro on 16/08/2016.
  */
 
-define(['angular', 'services/_module'], function (angular, service) {
+define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, service, isEmpty) {
 
-    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'storage.serv', function ($rootScope, $location, $parse, storage) {
+    service.directive('modal', ['$parse','modal.serv', function ($parse, modal) {
+        return {
+            link: function (scope, elem, attrs) {
+
+
+
+                $(elem).on('click', function(e) {
+                    if (e.target !== this)
+                        return;
+
+                    $parse('modal')(scope).close();
+
+                    scope.$apply(function () {}); // Applys the close
+                });
+
+            }
+        }
+
+    }]);
+
+
+    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'storage.serv', 'validation.required.serv', function ($rootScope, $location, $parse, storage, validationRequired) {
 
         var obj = {};
 
@@ -45,6 +66,20 @@ define(['angular', 'services/_module'], function (angular, service) {
          * A copy of the model that we edit
          */
         obj.model = {};
+
+
+        /**
+         * Errors
+         */
+        obj.errors = {};
+
+
+        var validations = {
+            img: ['validationRequired'],
+            title: ['validationRequired'],
+            totalCost: ['validationRequired'],
+            date:['validationRequired']
+        };
 
 
         /**
@@ -144,7 +179,6 @@ define(['angular', 'services/_module'], function (angular, service) {
         };
 
         obj.contribute = function () {
-            if (confirm('Congratulations')) {
                 obj.model.alreadySaved = parseInt(obj.model.alreadySaved || 0) + parseInt(obj.model._contribute || 0);
 
                 /**
@@ -179,52 +213,55 @@ define(['angular', 'services/_module'], function (angular, service) {
                  * @type {boolean}
                  */
                 obj.attrs.contributing = false;
-            }
+
         };
 
         /**
          * set to complete item
          */
         obj.complete = function () {
-            /**
-             * Remove new to clean up code
-             */
-            delete obj.model.edit;
-            delete obj._original.edit;
+            if (confirm('Congratulations')) {
 
-            /**
-             * Get completeBucketlist & add it to data
-             */
-            var completeBucketlist = $parse('completeBucketlist')($rootScope.$$childHead);
-            completeBucketlist.add(obj.model);
+                /**
+                 * Remove new to clean up code
+                 */
+                delete obj.model.edit;
+                delete obj._original.edit;
 
-
-            /**
-             * Delete from array
-             */
-            var index = obj._data.indexOf(obj._original);
-            if (index !== -1) obj._data.splice(index, 1);
+                /**
+                 * Get completeBucketlist & add it to data
+                 */
+                var completeBucketlist = $parse('completeBucketlist')($rootScope.$$childHead);
+                completeBucketlist.add(obj.model);
 
 
-            /**
-             * Save the data to localStorage
-             */
-            storage.setValue(obj._key, obj._data);
-
-            /**
-             * refresh variables to match the saved data
-             */
-            obj.refresh(obj._data, obj.model);
-            $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
-            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+                /**
+                 * Delete from array
+                 */
+                var index = obj._data.indexOf(obj._original);
+                if (index !== -1) obj._data.splice(index, 1);
 
 
-            /**
-             * Close the modal
-             *
-             * @type {boolean}
-             */
-            obj.attrs.open = false;
+                /**
+                 * Save the data to localStorage
+                 */
+                storage.setValue(obj._key, obj._data);
+
+                /**
+                 * refresh variables to match the saved data
+                 */
+                obj.refresh(obj._data, obj.model);
+                $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
+                $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+
+
+                /**
+                 * Close the modal
+                 *
+                 * @type {boolean}
+                 */
+                obj.attrs.open = false;
+            }
 
         };
 
@@ -282,6 +319,7 @@ define(['angular', 'services/_module'], function (angular, service) {
          * close the modal
          */
         obj.close = function () {
+
             /**
              * Remove new to clean up code
              */

@@ -6,6 +6,7 @@ require.config(
     {
         paths: {
             'angular': '../components/angular/angular.min',
+            'angular-animate': '../components/angular-animate/angular-animate.min',
             'angular-cookies': '../components/angular-cookies/angular-cookies.min',
             'angular-route': '../components/angular-route/angular-route.min',
             'bootstrap-daterangepicker': '../components/bootstrap-daterangepicker/daterangepicker',
@@ -17,6 +18,9 @@ require.config(
             'angular': {
                 exports: 'angular',
                 deps: ['jquery']
+            },
+            'angular-animate': {
+                deps: ['angular']
             },
             'angular-cookies': {
                 deps: ['angular']
@@ -38,6 +42,6 @@ require.config(
             }
         },
         // Initialize the app
-        deps: ['angular', 'angular-cookies', 'angular-route', 'bootstrap', 'bootstrap-daterangepicker', 'jquery', 'moment', 'twitter-bootstrap']
+        deps: ['angular', 'angular-animate', 'angular-cookies', 'angular-route', 'bootstrap', 'bootstrap-daterangepicker', 'jquery', 'moment', 'twitter-bootstrap']
     }
 );
