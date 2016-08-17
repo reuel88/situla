@@ -166,6 +166,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.errors = validation.execute(fields, obj.model);
 
             if (isEmpty(obj.errors)) {
+
                 /**
                  * save to array
                  */

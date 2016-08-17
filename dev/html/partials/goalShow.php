@@ -80,9 +80,9 @@
 
                                     <!-- start of, hr-->
                                     <div class="non-hoverable-side">
-                                        <div class="bucketlist-list-progress" ng-show="!modal.model.new && !modal.attrs.editing">
+                                        <div class="bucketlist-list-progress" ng-show="modal.model.alreadySaved && !modal.model.new && !modal.attrs.editing">
                                             <div class="bar" style=" width: {{modal.model.alreadySaved / modal.model.totalCost * 100}}%;"></div>
-                                            <p ng-show="((modal.model.alreadySaved || 0)/ (modal.model.totalCost|| 0) * 100) >= 100"><i class="glyphicon glyphicon-ok"></i></p>
+                                            <p ng-show="(((modal.model.alreadySaved || 0)/ (modal.model.totalCost|| 0) * 100) >= 100)"><i class="glyphicon glyphicon-ok"></i></p>
                                         </div>
                                     </div>
                                     <!-- end of, hr-->

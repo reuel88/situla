@@ -616,6 +616,7 @@ table {
     color: white;
   }
   .bucketlist-list-progress {
+    transition: all 0.5s;
     background: $brand-success;
     bottom: 0;
     display: block;
@@ -669,6 +670,7 @@ table {
   }
 
   .bucketlist-list-progress .bar {
+    transition: all 0.5s;
     background: $brand-success;
     display: block;
     height: 1px;
@@ -793,5 +795,4 @@ table {
   p, .form-group.content{
     margin-bottom: 0;
   }
-
 }
