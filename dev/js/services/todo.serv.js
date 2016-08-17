@@ -28,7 +28,7 @@ define(['angular', 'services/_module'], function (angular, service) {
         /**
          * The Original Model
          *
-         * @type {{}}
+         * @type {object}
          * @private
          */
         obj._original = {};
@@ -115,6 +115,7 @@ define(['angular', 'services/_module'], function (angular, service) {
              */
             obj.refresh(obj._data, obj.model);
             $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
 
             /**
              * Close
@@ -202,6 +203,21 @@ define(['angular', 'services/_module'], function (angular, service) {
              */
             obj.refresh(obj._data, obj._data[index]);
             $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
+            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
+
+
+            obj.attrs.isEditing = false;
+        };
+
+
+        /**
+         * Delete
+         */
+        obj.cancel = function () {
+            delete obj.temp.editing; // also changes the style
+            delete _itemOriginal.editing; // also changes the style
+
+
 
             obj.attrs.isEditing = false;
         };
@@ -236,35 +252,14 @@ define(['angular', 'services/_module'], function (angular, service) {
                  */
                 obj.refresh(obj._data, obj._data[index]);
                 $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
+                $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
+
 
                 obj.attrs.isEditing = false;
 
             }
         };
 
-        obj.cancel = function () {
-            delete _itemOriginal.editing; // also changes the style
-
-            /**
-             * save the cahnges on to do list
-             */
-            var itemIndex = _itemData.indexOf(_itemOriginal);
-            if (itemIndex !== -1) _itemData[itemIndex] = _itemOriginal;
-
-            /**
-             * replaces the to do list with new list , lol
-             */
-            var index = obj._data.indexOf(obj._original);
-            if (index !== -1) obj._data[index].todo = angular.copy(_itemData);
-
-            /**
-             * Refresh for that minty goodness
-             */
-            obj.refresh(obj._data, obj._data[index]);
-            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
-
-            obj.attrs.isEditing = false;
-        };
 
         return obj;
 

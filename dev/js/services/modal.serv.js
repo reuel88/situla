@@ -132,6 +132,8 @@ define(['angular', 'services/_module'], function (angular, service) {
              */
             obj.refresh(obj._data, obj.model);
             $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+
 
             /**
              * Close editing
@@ -168,6 +170,8 @@ define(['angular', 'services/_module'], function (angular, service) {
                  */
                 obj.refresh(obj._data, obj.model);
                 $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
+                $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+
 
                 /**
                  * Cancel contribution
@@ -212,6 +216,8 @@ define(['angular', 'services/_module'], function (angular, service) {
              */
             obj.refresh(obj._data, obj.model);
             $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+
 
             /**
              * Close the modal
@@ -245,11 +251,6 @@ define(['angular', 'services/_module'], function (angular, service) {
                  * Save the data to localStorage
                  */
                 storage.setValue(obj._key, obj._data);
-
-                /**
-                 * refresh variables to match the saved data
-                 */
-                obj.refresh(obj._data, obj.model);
 
                 /**
                  * Close the modal
@@ -310,6 +311,8 @@ define(['angular', 'services/_module'], function (angular, service) {
              */
             obj.refresh(obj._data, model);
             $parse('todo')($rootScope.$$childHead).refresh(obj._data, model);
+            $parse('comment')($rootScope.$$childHead).refresh(obj._data, model);
+
 
             /**
              * Close editing

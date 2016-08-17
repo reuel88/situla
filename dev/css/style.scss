@@ -337,6 +337,11 @@ table {
   padding: floor(($grid-gutter-width / 2));
 }
 
+.non-hoverable-side {
+  margin-bottom: 0;
+  padding:0 floor(($grid-gutter-width / 2));
+}
+
 .expand-hoverable {
   margin-bottom: 0;
   padding-left: floor(($grid-gutter-width / 2));
@@ -459,6 +464,9 @@ table {
     &:hover .sr-only {
       margin: 0 5px;
       position: relative;
+    }
+    &:hover i{
+      margin: 0 3px;
     }
   }
 
@@ -605,10 +613,38 @@ table {
  *
  *  Comment list
  */
+
+// Comment
+.comments{
+  .comment-img{
+    //border: 1px solid $gray;
+
+  }
+
+  .img-container.ng-hide + .comment-img-content{
+    min-height: 33px !important;
+  }
+
+  .img-container.ng-hide + .comment-img-content .container-fluid{
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
 .comment-list {
   list-style: none;
   padding: 0;
   hr {
     margin-bottom: 0;
   }
+
+  .img-container.ng-hide + .comment-item-img-content{
+    min-height: 33px !important;
+  }
+
+  .img-container.ng-hide + .comment-item-img-content .container-fluid{
+    margin-bottom: 0;
+    padding: 0;
+  }
 }
+

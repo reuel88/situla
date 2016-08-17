@@ -3,7 +3,8 @@
  */
 
 require([
-    'services/formatNumbers.serv',
+    'services/comment.serv',
+    'services/formatNumber.serv',
     'services/modal.serv',
     'services/storage.serv',
     'services/todo.serv',

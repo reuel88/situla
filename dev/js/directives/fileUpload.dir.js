@@ -23,7 +23,7 @@ define(['angular', 'directives/_module'], function (angular, directive) {
                         var image = new Image();
 
                         image.addEventListener("load", function () {
-                            var model = $parse(attrs.model);
+                            var model = $parse(attrs.fileUpload);
 
                             model.assign(scope, this.src);
 

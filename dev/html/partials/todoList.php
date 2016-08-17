@@ -8,7 +8,7 @@
 ?>
 
 <section class="todo" ng-show="!modal.model.new ">
-    <header class="non-hoverable">
+    <header class="non-hoverable-side">
         <h2>Todo</h2>
     </header>
 

@@ -36,7 +36,7 @@
                                                     <div class="form-group container-fluid" ng-show="!modal.model.edit || modal.attrs.editing">
                                                         <label for="img" class="btn btn-default">Replace Image</label>
 
-                                                        <input type="file" id="img" class="sr-only" data-model="modal.model.img" file-upload>
+                                                        <input type="file" id="img" class="sr-only" file-upload="modal.model.img">
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,6 +149,8 @@
                                 </form>
 
                                 <?php include 'todoList.php' ?>
+
+                                <hr>
 
                                 <?php include 'comments.php' ?>
 

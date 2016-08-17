@@ -5,9 +5,9 @@
 
 define(['angular', 'services/_module'], function (angular, service) {
 
-    service.service('formatNumbers.serv', ['$rootScope', function ($rootScope) {
+    service.service('formatNumber.serv', ['$rootScope', function ($rootScope) {
 
-        return function formatNumbers(x) {
+        return function formatNumber(x) {
             x = parseFloat(x) || x;
 
             var parts = x.toString().split(".");

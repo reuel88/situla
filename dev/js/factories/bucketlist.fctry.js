@@ -6,7 +6,7 @@
 
 define(['angular', 'jquery', 'factories/_module'], function (angular, $, factory) {
 
-    factory.factory('bucketlist.fctry', ['$rootScope', '$location', 'modal.serv', 'storage.serv', 'todo.serv', function ($rootScope, $location, modal, storage, todo) {
+    factory.factory('bucketlist.fctry', ['$rootScope', '$location', 'comment.serv', 'modal.serv', 'storage.serv', 'todo.serv', function ($rootScope, $location, comment, modal, storage, todo) {
 
         var factories = {};
 
@@ -58,7 +58,7 @@ define(['angular', 'jquery', 'factories/_module'], function (angular, $, factory
                     img: 'Because, I\'ll be over written, lol',
                     new: true,
                     todo: [],
-                    comments: []
+                    comment: []
                 };
 
                 obj.model = $.extend({}, defaults, model);
@@ -84,6 +84,8 @@ define(['angular', 'jquery', 'factories/_module'], function (angular, $, factory
                 modal.init(obj._key, obj._data, obj.model);
 
                 todo.init(obj._key, obj._data, obj.model);
+
+                comment.init(obj._key, obj._data, obj.model);
 
             };
 

@@ -15,7 +15,7 @@ define(
     ],
     function (isEmpty, angular) {
 
-        var app = angular.module('app', ['ngCookies', 'ngRoute', 'app.controllers', 'app.directives', 'app.factories', 'app.services']);
+        var app = angular.module('app', ['ngCookies', 'ngRoute', 'app.controllers', 'app.directives', 'app.factories',  'app.services']);
 
         app
             .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

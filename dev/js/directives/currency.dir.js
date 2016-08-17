@@ -5,7 +5,7 @@
 
 define(['angular', 'jquery', 'directives/_module'], function (angular, $, directive) {
 
-    directive.directive('currency', ['formatNumbers.serv', function (formatNumbers) {
+    directive.directive('currency', ['formatNumber.serv', function (formatNumber) {
 
         return {
             require: '?ngModel', // ctrl
@@ -18,7 +18,7 @@ define(['angular', 'jquery', 'directives/_module'], function (angular, $, direct
 
                     var plainNumber = ctrl.$modelValue.toString().replace(/[^\d|\.+]/g, '');
 
-                    return formatNumbers(plainNumber);
+                    return formatNumber(plainNumber);
                 });
 
                 //This is when typing it automatically changes the numbers
@@ -27,7 +27,7 @@ define(['angular', 'jquery', 'directives/_module'], function (angular, $, direct
                     var plainNumber = viewValue.toString().replace(/[^\d|\.+]/g, ''),
                         parts = plainNumber.split('.');
 
-                    parts[0] = formatNumbers(parts[0]);
+                    parts[0] = formatNumber(parts[0]);
 
                     // redundant stuff because java script fucks up sometimes on different browsers
                     if (typeof parts[1] !== 'undefined' && parts[1].length >= 3) parts[1] = Math.round(parts[1].substring(0, 3) / 10);
