@@ -169,6 +169,9 @@ input[type="checkbox"] {
 
   &:checked + label .checkbox:before {
     content: "\e013";
+    position: absolute;
+    top: 2px;
+    left: 2px;
   }
 
 }
@@ -746,11 +749,6 @@ table {
 
 // Comment
 .comments {
-  .comment-img {
-    //border: 1px solid $gray;
-
-  }
-
   .img-container.ng-hide + .comment-img-content {
     min-height: 33px !important;
   }
@@ -759,6 +757,13 @@ table {
     margin-bottom: 0;
     padding: 0;
   }
+}
+
+.comment-new .comment-new-subtitle{
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
 }
 
 .comment-list {
@@ -777,4 +782,12 @@ table {
     padding: 0;
   }
 }
+.comment-item{
+  padding: floor(($grid-gutter-width / 2));
+  background: white;
+  border: 1px solid $gray-lighter;
+  p, .form-group.content{
+    margin-bottom: 0;
+  }
 
+}

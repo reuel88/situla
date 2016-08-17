@@ -8,7 +8,7 @@
 ?>
 <section class="comments" ng-show="!modal.model.new">
     <header class="non-hoverable-side">
-        <h2 class="h3">Comments</h2>
+        <h2 clas        s="h3">Comments</h2>
     </header>
 
     <form class="comment-new non-hoverable" ng-submit="comment.new()">
@@ -19,11 +19,14 @@
             </div>
 
             <div class="img-content comment-img-content tbl height-100">
+                <div class="tbl-cell height-100 bottom left">
+                    <p class="h5 comment-new-subtitle" ng-show="!comment.temp.img">Add a Comment</p>
+                </div>
                 <div class="tbl-cell height-100 bottom right">
                     <div class="form-group container-fluid">
                         <label for="image" class="btn btn-default">
-                            <span ng-show="!comment.temp.img ">Choose Image</span>
-                            <span ng-show="comment.temp.img ">Replace Image</span>
+                            <span ng-show="!comment.temp.img">Choose Image</span>
+                            <span ng-show="comment.temp.img">Replace Image</span>
                         </label>
 
                         <input type="file" id="image" class="sr-only" file-upload="comment.temp.img">
@@ -56,86 +59,64 @@
 
     <ol class="comment-list">
         <li ng-repeat="(k,v) in modal.model.comment track by $index ">
-sud
-            <div class="tbl hoverable">
-                <div class="tbl-row" ng-show="!v.editing && v.img">
-                    <div class="tbl-cell">
-                        <div class="img-frame comment-item-img margin-bottom">
-                            <div class="img-container comment-item-img">
-                                <img alt="{{v.content}}" ng-src="{{v.img}}">
-                            </div>
 
-                            <div class="img-content comment-item-img-content tbl height-100">
-                                <div class="tbl-cell height-100">
+           <div class="hoverable">
+               <div class="comment-item">
+                   <div class="tbl"  ng-show="v.editing || v.img">
+                       <div class="tbl-cell">
+                           <div class="img-frame comment-item-img margin-bottom">
+                               <div class="img-container comment-item-img" ng-show="comment.tempItem.img || (v.img && !v.editing)">
+                                   <img alt="{{v.content}}" ng-src="{{v.img}}" ng-show="(v.img && !v.editing)">
+                                   <img alt="{{comment.tempItem.content}}" ng-src="{{comment.tempItem.img}}" ng-show="(comment.tempItem.img && v.editing)">
+                               </div>
 
-                                </div>
-                            </div>
-                        </div>
+                               <div class="img-content comment-item-img-content tbl height-100">
+                                   <div class="tbl-cell height-100 right bottom">
+                                       <div class="form-group container-fluid" ng-show="v.editing">
+                                           <label for="image_{{k}}" class="btn btn-default">
+                                               <span ng-show="!comment.tempItem.img">Choose Image</span>
+                                               <span ng-show="comment.tempItem.img ">Replace Image</span>
+                                           </label>
 
-                    </div>
-                </div>
+                                           <input type="file" id="image_{{k}}" class="sr-only" file-upload="comment.tempItem.img">
 
-                <div class="tbl-row" ng-show="v.editing">
-                    <div class="tbl-cell">
-                        <div class="img-frame comment-item-img margin-bottom">
-                            <div class="img-container comment-item-img" ng-show="comment.tempItem.img ">
-                                <img alt="{{comment.tempItem.content}}" ng-src="{{comment.tempItem.img}}">
-                            </div>
+                                           <input type="button" value="Delete Image" class="btn btn-default" ng-show="comment.tempItem.img " ng-click="comment.tempItem.img = ''; ">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
 
-                            <div class="img-content comment-item-img-content tbl height-100">
-                                <div class="tbl-cell height-100 bottom right">
-                                    <div class="form-group container-fluid">
-                                        <label for="image_{{k}}" class="btn btn-default">
-                                            <span ng-show="!comment.tempItem.img ">Choose Image</span>
-                                            <span ng-show="comment.tempItem.img ">Replace Image</span>
-                                        </label>
+                       </div>
+                   </div>
 
-                                        <input type="file" id="image_{{k}}" class="sr-only" file-upload="comment.tempItem.img">
+                   <p ng-show="!v.editing">{{v.content}}</p>
 
-                                        <input type="button" value="Delete Image" class="btn btn-default" ng-show="comment.tempItem.img " ng-click="comment.tempItem.img = ''; ">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                   <div class="form-group content" ng-show="v.editing">
+                       <label for="comment" class="control-label sr-only">Write a comment...</label>
+                       <textarea name="comment" id="comment" cols="30" rows="4" placeholder="Write a comment..." class="form-control" ng-model="comment.tempItem.content"></textarea>
+                   </div>
+               </div>
 
-                    </div>
-                </div>
 
-                <div class="tbl-row">
-                    <div class="tbl-cell">
-                        <p ng-show="!v.editing">{{v.content}}</p>
+               <div class="tbl" ng-show="!v.editing">
+                   <div class="tbl-cell middle"><span class="small">{{v.date | date : 'MMM d, y h:mma'}}</span></div>
 
-                        <div class="form-group " ng-show="v.editing">
-                            <label for="comment" class="control-label">Write a comment...</label>
-                            <textarea name="comment" id="comment" cols="30" rows="4" class="form-control" ng-model="comment.tempItem.content"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="tbl-row">
-                    <div class="tbl-cell">
-                        <div class="tbl" ng-show="!v.editing">
-                            <div class="tbl-cell middle"><span class="small">{{v.date | date : 'MMM d, y h:mma'}}</span></div>
+                   <div class="tbl-cell middle right">
+                       <input type="button" value="Edit" class="btn btn-link" ng-click="comment.edit(modal.model.comment, k)" ng-disabled="comment.attrs.isEditing">
+                   </div>
+               </div>
 
-                            <div class="tbl-cell middle right">
-                                <input type="button" value="Edit" class="btn btn-link" ng-click="comment.edit(modal.model.comment, k)" ng-disabled="comment.attrs.isEditing">
-                            </div>
-                        </div>
+               <div class="tbl padding-top" ng-show="v.editing">
+                   <div class="tbl-cell">
+                       <input type="submit" value="Save" class="btn btn-primary" ng-click="comment.update()">
+                       <input type="button" value="Cancel" class="btn btn-link" ng-click="comment.cancel()">
+                   </div>
+                   <div class="tbl-cell right">
+                       <input type="button" value="Delete" class="btn btn-default" ng-click="comment.delete()">
+                   </div>
+               </div>
+           </div>
 
-                        <div class="tbl" ng-show="v.editing">
-                            <div class="tbl-cell">
-                                <input type="submit" value="Save" class="btn btn-primary" ng-click="comment.update()">
-                                <input type="button" value="Cancel" class="btn btn-link" ng-click="comment.cancel()">
-                            </div>
-                            <div class="tbl-cell right">
-                                <input type="button" value="Delete" class="btn btn-default" ng-click="comment.delete()">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <hr>
 
         </li>
 

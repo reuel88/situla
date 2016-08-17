@@ -4,6 +4,10 @@
 
 define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, factory, isEmpty) {
 
+
+    /**
+     * I didn't really need to make a this a factory. This could be a service. I was just being cocky
+     */
     factory.factory('start.fctry', ['$rootScope', '$location', 'validation.required.serv', 'storage.serv', function ($rootScope, $location, validationRequired, storage) {
 
         var factories = {};

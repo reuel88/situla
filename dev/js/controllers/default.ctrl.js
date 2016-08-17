@@ -4,8 +4,7 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('default.ctrl', ['$scope', '$location', 'storage.serv', 'start.fctry', 'bucketlist.fctry', function ($scope, $location, storage, start, bucketlist) {
-
+    controller.controller('default.ctrl', ['$scope', '$location', 'start.fctry', 'bucketlist.fctry', 'goal.serv', 'storage.serv',  function ($scope, $location, start, bucketlist, goal, storage) {
 
         /**
          * Get User
@@ -48,14 +47,15 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
         $scope.completeBucketlist = bucketlist('completeBucketlist', completeBucketlistModel);
 
 
-        /**
-         * Quick path redirect
-         */
-        $scope.pathTo = function (path) {
+        $scope.goal = goal();
 
-            if (path) $location.path(path);
 
-        };
+            /**
+             * Quick path redirect
+             */
+            $scope.pathTo = function (path) {
+                if (path) $location.path(path);
+            };
 
         /**
          * FIXME: Quick dirty way to check if bucketlist is available
