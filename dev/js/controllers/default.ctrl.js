@@ -21,6 +21,9 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
          */
         $scope.completeBucketlist = bucketlist('completeBucketlist', storage.getValue('completeBucketlist'));
 
+
+
+
         /**
          * Quick path redirect
          */

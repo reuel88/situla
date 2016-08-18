@@ -41,7 +41,7 @@
 
                             <div class="form-group">
                                 <label for="todo-date" class="control-date sr-only">Date</label>
-                                <input type="text" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker='{"singleDatePicker":true,"showDropdowns":true, "locale":{"format":"Do of MMM, YYYY"}}'>
+                                <input type="text" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker>
                             </div>
 
                             <div class="tbl">
@@ -70,9 +70,8 @@
 
                     <div class="form-group">
                         <label for="todo-date" class="control-date sr-only">Date</label>
-                        <input type="text" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker='{"singleDatePicker":true,"showDropdowns":true, "locale":{"format":"Do of MMM, YYYY"}}'>
+                        <input type="text" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker>
                     </div>
-
                     <input type="submit" value="Create" class="btn btn-primary">
                     <input type="button" value="Cancel" class="btn btn-link" ng-click="todo.attrs.new = false">
             </form>

@@ -7,8 +7,6 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
     service.directive('modal', ['$parse', 'modal.serv', function ($parse, modal) {
         return {
             link: function (scope, elem, attrs) {
-
-
                 $(elem).on('click', function (e) {
                     if (e.target !== this)
                         return;
@@ -16,18 +14,22 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                     $parse('modal')(scope).close();
 
                     scope.$apply(function () {
-                    }); // Applys the close
+                    }); // Apply the close
                 });
-
             }
         }
-
     }]);
 
-
-    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'storage.serv', 'validation.serv', function ($rootScope, $location, $parse, storage, validation) {
+    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'weeklyContribute.cal', 'storage.serv', 'validation.serv', function ($rootScope, $location, $parse, weeklyContribute, storage, validation) {
 
         var obj = {};
+
+        var fields = {
+            img: ['required'],
+            title: ['required'],
+            totalCost: ['required'],
+            date: ['required']
+        };
 
         /**
          * Used for localStorage key and $scope.name
@@ -67,20 +69,10 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
          */
         obj.model = {};
 
-
         /**
          * Errors
          */
         obj.errors = {};
-
-
-        var fields = {
-            img: ['required'],
-            title: ['required'],
-            totalCost: ['required'],
-            date: ['required']
-        };
-
 
         /**
          * Setup the variables
@@ -91,7 +83,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
          */
         obj.init = function (key, data, model) {
 
-            document.getElementsByTagName('body')[0].className+=' modal-open';
+            document.getElementsByTagName('body')[0].className += ' modal-open';
 
             obj.attrs.open = true;
 
@@ -118,6 +110,17 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.model = angular.copy(model); // sets the model
         };
 
+        /**
+         * Uniforms the refresh
+         *
+         * @param data
+         * @param model
+         */
+        obj.refreshAction = function(data, model){
+            obj.refresh(data, model);
+            $parse('todo')($rootScope.$$childHead).refresh(data, model);
+            $parse('comment')($rootScope.$$childHead).refresh(data, model);
+        };
 
         /**
          * create a new item
@@ -132,6 +135,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                  */
                 delete obj.model.new;
 
+                obj.model._weeklyContribute = weeklyContribute(obj.model.totalCost, obj.model.alreadySaved, obj.model.date);
                 /**
                  * save response to model
                  */
@@ -153,7 +157,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                  * @type {boolean}
                  */
                 obj.attrs.open = false;
-                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open","");
+                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open", "");
 
             }
         };
@@ -166,6 +170,12 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.errors = validation.execute(fields, obj.model);
 
             if (isEmpty(obj.errors)) {
+
+
+
+                obj.model._weeklyContribute = weeklyContribute(obj.model.totalCost, obj.model.alreadySaved, obj.model.date);
+
+
 
                 /**
                  * save to array
@@ -181,10 +191,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                 /**
                  * refresh variables to match the saved data
                  */
-                obj.refresh(obj._data, obj.model);
-                $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
-                $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
-
+                obj.refreshAction(obj._data, obj.model);
 
                 /**
                  * Close editing
@@ -195,6 +202,9 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             }
         };
 
+        /**
+         * Update only the already saved
+         */
         obj.contribute = function () {
             obj.model.alreadySaved = parseInt(obj.model.alreadySaved || 0) + parseInt(obj.model._contribute || 0);
 
@@ -203,6 +213,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
              */
             delete obj.model['_contribute'];
 
+            obj.model._weeklyContribute = weeklyContribute(obj.model.totalCost, obj.model.alreadySaved, obj.model.date);
             /**
              * save to array
              */
@@ -219,10 +230,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             /**
              * refresh variables to match the saved data
              */
-            obj.refresh(obj._data, obj.model);
-            $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
-            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
-
+            obj.refreshAction(obj._data, obj.model);
 
             /**
              * Cancel contribution
@@ -244,6 +252,9 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                  */
                 delete obj.model.edit;
                 delete obj._original.edit;
+
+
+                obj.model._weeklyContribute = weeklyContribute(obj.model.totalCost, obj.model.alreadySaved, obj.model.date);
 
                 /**
                  * Get completeBucketlist & add it to data
@@ -267,16 +278,14 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                 /**
                  * refresh variables to match the saved data
                  */
-                obj.refresh(obj._data, obj.model);
-                $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
-                $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+                obj.refreshAction(obj._data, obj.model);
 
 
                 /**
                  * Close the modal
                  */
                 obj.attrs.open = false;
-                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open","");
+                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open", "");
 
 
                 /**
@@ -286,7 +295,6 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             }
 
         };
-
 
         /**
          * Delete the item
@@ -317,11 +325,9 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                  * @type {boolean}
                  */
                 obj.attrs.open = false;
-                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open","");
-
+                document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open", "");
             }
         };
-
 
         /**
          * Submit the form
@@ -357,7 +363,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.attrs.editing = false;
             obj.attrs.contributing = false;
 
-            document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open","");
+            document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open", "");
 
             /**
              * empty errors
@@ -365,6 +371,9 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.errors = {};
         };
 
+        /**
+         * Cancel
+         */
         obj.cancel = function () {
 
             var model = angular.copy(obj._original);
@@ -378,9 +387,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             /**
              * refresh variables to match the saved data
              */
-            obj.refresh(obj._data, model);
-            $parse('todo')($rootScope.$$childHead).refresh(obj._data, model);
-            $parse('comment')($rootScope.$$childHead).refresh(obj._data, model);
+            obj.refreshAction(obj._data, model);
 
             /**
              * Close editing

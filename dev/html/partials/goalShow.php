@@ -133,9 +133,7 @@
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing">
                                             <label for="target-date" class="control-label">Target Date <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
-                                            <input type="text" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker='{"singleDatePicker":true,"showDropdowns":true, "locale":{"format":"MMM DD, YYYY"}}'>
-                                            <!--                                            <input type="date" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker='{"singleDatePicker":true,"showDropdowns":true, "locale":{"format":"x"}}'>-->
-                                            <!--                                            <input type="date" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" format-date>-->
+                                            <input type="text" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker>
                                         </div>
 
                                     </div>

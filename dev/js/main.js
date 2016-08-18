@@ -9,7 +9,7 @@ require.config(
             'angular-animate': '../components/angular-animate/angular-animate.min',
             'angular-cookies': '../components/angular-cookies/angular-cookies.min',
             'angular-route': '../components/angular-route/angular-route.min',
-            'bootstrap-daterangepicker': '../components/bootstrap-daterangepicker/daterangepicker',
+            'bootstrap-datepicker': '../components/bootstrap-datepicker/dist/js/bootstrap-datepicker',
             'jquery': '../components/jquery/dist/jquery',
             'moment': '../components/moment/min/moment.min',
             'twitter-bootstrap': '../components/bootstrap-sass/assets/javascripts/bootstrap'
@@ -28,8 +28,8 @@ require.config(
             'angular-route': {
                 deps: ['angular']
             },
-            'bootstrap-daterangepicker': {
-                deps: ['jquery', 'moment']
+            'bootstrap-datepicker': {
+                deps: ['jquery', 'twitter-bootstrap']
             },
             'jquery': {
                 exports: '$'
@@ -42,6 +42,6 @@ require.config(
             }
         },
         // Initialize the app
-        deps: ['angular', 'angular-animate', 'angular-cookies', 'angular-route', 'bootstrap', 'bootstrap-daterangepicker', 'jquery', 'moment', 'twitter-bootstrap']
+        deps: ['angular', 'angular-animate', 'angular-cookies', 'angular-route', 'bootstrap', 'bootstrap-datepicker',  'jquery', 'moment', 'twitter-bootstrap']
     }
 );

@@ -3,8 +3,9 @@
  */
 
 require([
-    'calculators/cashFlow.cal'
-
+    'calculators/cashFlow.cal',
+    'calculators/remainTotal.cal',
+    'calculators/weeklyContribute.cal'
 ], function () {
 
 });

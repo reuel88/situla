@@ -1,22 +1,24 @@
 /**
- * Created by reuelteodoro on 15/08/2016.
+ * Created by reuelteodoro on 18/08/2016.
  */
-
 
 define(['angular', 'calculators/_module'], function (angular, calculator) {
 
-    calculator.service('cashFlow.cal', ['$rootScope', function ($rootScope) {
+    calculator.service('remainTotal.cal', ['$rootScope', function ($rootScope) {
 
-        return function cashFlow(income, expenses, freq, callback) {
+        /**
+         * Don't know why I used the apple and wedge analogy
+         */
+        return function remainTotal(apple, wedge, callback) {
             /**
-             * quick check they are set
+             * quick way to test if wedge is set
              */
-            if(!(income * expenses * freq)) return 0 ;
+            if(!(apple * wedge)) return apple;
 
             /**
              * does the calculation
              */
-            var result = (income - expenses) / freq;
+            var result = (apple - wedge) > 0 ? (apple - wedge) : 0 ;
 
             /**
              * return callback

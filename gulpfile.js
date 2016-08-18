@@ -24,7 +24,8 @@ gulp.task('default', function () {
             'angular-animate': '../components/angular-animate/angular-animate.min',
             'angular-cookies': '../components/angular-cookies/angular-cookies.min',
             'angular-route': '../components/angular-route/angular-route.min',
-            'bootstrap-daterangepicker': '../components/bootstrap-daterangepicker/daterangepicker',
+            'bootstrap-datepicker': '../components/bootstrap-datepicker/dist/js/bootstrap-datepicker',
+            // 'bootstrap-daterangepicker': '../components/bootstrap-daterangepicker/daterangepicker',
             'jquery': '../components/jquery/dist/jquery',
             'moment': '../components/moment/min/moment.min',
             'twitter-bootstrap': '../components/bootstrap-sass/assets/javascripts/bootstrap'

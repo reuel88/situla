@@ -10,7 +10,25 @@ define(['angular', 'jquery', 'directives/_module'], function (angular, $, direct
         return {
             require: '?ngModel', // ctrl
             link: function (scope, elem, attrs, ctrl) {
-                $(elem).daterangepicker(JSON.parse(attrs.datePicker));
+
+                var nowDate = new Date();
+                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
+
+                var opt = {
+                    autoclose: true,
+                    startDate: today,
+                    format: 'M dd, yyyy',
+                    todayHighlight: true,
+                    startView: 1
+                };
+
+                if(attrs.datePicker){
+                    opt = $.extend({}, opt , JSON.parse(attrs.datePicker));
+                }
+
+
+                $(elem).datepicker(opt);
 
             }
         }
