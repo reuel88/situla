@@ -2,7 +2,7 @@
  * Created by reuelteodoro on 18/08/2016.
  */
 
-define(['angular', 'services/_module'], function (angular, service) {
+define(['angular', 'services/_module',  'utils/isEmpty'], function (angular, service,isEmpty) {
 
     /**
      * Remember service is a singleton, lol
@@ -40,13 +40,16 @@ define(['angular', 'services/_module'], function (angular, service) {
 
             obj._listData = $parse('bucketlist')($rootScope.$$childHead);
 
+
+            if(isEmpty(obj._userModel.model) || isEmpty(obj._listData._data)) return;
+
             /**
              * Calculate Totals
              */
             obj.model = contribute.total(obj._listData._data);
 
 
-            obj.model.weeklyCashFlow = obj._userModel.model._cashFlow * obj._userModel.model._cashFlowFreq / 52;
+            obj.model.weeklyCashFlow = parseInt(obj._userModel.model._cashFlow || 0) * parseInt(obj._userModel.model._cashFlowFreq || 0) / 52;
 
 
             // console.log(obj._userModel);
@@ -92,7 +95,6 @@ define(['angular', 'services/_module'], function (angular, service) {
 
 
         obj.optimize = function () {
-
 
 
             for (var i = 0, k = obj._listData._data; i < k.length; i++) {

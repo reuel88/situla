@@ -47,8 +47,8 @@
         <div class="tbl">
             <div class="tbl-row">
                 <div class="tbl-cell">
-                    <input type="submit" value="Create" class="btn btn-default">
-                    <input type="button" value="Cancel" class="btn btn-link" ng-click="comment.cancel()" ng-disabled="!comment.temp.img && !comment.temp.content">
+                    <input type="submit" value="Create" class="btn btn-default" ng-disabled="!comment.temp.img && !comment.temp.content">
+                    <input type="button" value="Cancel" class="btn btn-link" ng-click="comment.cancel()" ng-show="comment.temp.img || comment.temp.content">
                 </div>
 
             </div>

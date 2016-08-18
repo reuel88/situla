@@ -100,7 +100,7 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
             /**
              * Check if data is not an object
              */
-            if(typeof model !== 'object')
+            if(typeof model !== 'object' || isEmpty(model))
                 model = defaults;
 
             /**

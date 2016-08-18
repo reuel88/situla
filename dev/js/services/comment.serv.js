@@ -181,7 +181,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * refresh variables to match the saved data
              */
-            obj.refresh(obj._data, obj.model);
+            obj.refresh(obj._data, obj._data[index]);
             $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
             $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
 
