@@ -149,7 +149,7 @@
 
                                         <div class="contribute alert alert-info" ng-show="!(((modal.model.alreadySaved || 0)/ (modal.model.totalCost|| 0) * 100) >= 100) ">
                                             <div class="form-group">
-                                                <label for="contribute" class="control-label">Contribute to my Savings <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Contribute more money to your goal"><span class="sr-only">description</span></i></label>
+                                                <label for="contribute" class="control-label">Contribute to your Savings <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Contribute more money to your goal"><span class="sr-only">description</span></i></label>
 
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>

@@ -6,8 +6,13 @@
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
     controller.controller('modal.ctrl', [
-        '$scope', '$parse', 'bucketlist.fctry', 'comment.serv', 'modal.serv', 'storage.serv', 'todo.serv',
-        function ($scope, $parse, bucketlist, comment, modal, storage, todo) {
+        '$scope', '$parse', 'bucketlist.fctry',  'user.fctry', 'comment.serv', 'goal.serv', 'modal.serv', 'storage.serv', 'todo.serv',
+        function ($scope, $parse, bucketlist, user, comment, goal, modal, storage, todo) {
+
+            /**
+             * Get User
+             */
+            $scope.user = user('user', storage.getValue('user'));
 
             /**
              * Get Bucketlist
@@ -18,6 +23,13 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
              * Get Complete Bucketlist
              */
             $scope.completeBucketlist = bucketlist('completeBucketlist', storage.getValue('completeBucketlist'));
+
+            /**
+             * Get Goal
+             *
+             * Allow the modal to be accessed by the view
+             */
+            $scope.goal = goal;
 
             /**
              * Get Modal

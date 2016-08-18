@@ -5,7 +5,6 @@
 
 define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, factory, isEmpty) {
 
-
     factory.factory('user.fctry', ['$rootScope', '$location','cashFlow.cal', 'validation.serv', 'storage.serv', function ($rootScope, $location, cashFlow, validation, storage) {
 
         var factories = {};
@@ -23,9 +22,16 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
 
             var obj = {};
 
+            obj._key = key;
+
             obj.model = model;
 
             obj.errors = {};
+
+            obj.refresh = function () {
+                obj.model = storage.getValue(obj._key);
+                obj.calCashFlow();
+            };
 
             /**
              * save the user spending and earning
@@ -33,7 +39,7 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
             obj.saveSpending = function () {
 
                 /**
-                 * TODO: I updated the validation process for greater flexibility
+                 * TODO: Update - I updated the validation process for greater flexibility
                  *
                  * loops through model to make sure there are any errors
                  */

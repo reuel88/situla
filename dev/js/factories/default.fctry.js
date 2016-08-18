@@ -8,9 +8,11 @@ define(['angular', 'factories/_module'], function (angular, factory) {
 
         var factories = {};
 
-        var fctry = function (model){
+        var fctry = function (key, model){
 
             var obj = {};
+
+            obj._key = key;
 
             return obj;
         };
@@ -22,22 +24,22 @@ define(['angular', 'factories/_module'], function (angular, factory) {
              *
              * @type {string}
              */
-            key = key.replace(/\s+/g, '-').toLowerCase();
+            var newKey = key.replace(/\s+/g, '-').toLowerCase();
 
             /**
              * Finds the Factory and returns it
              */
-            if(factories[key]) return factories[key];
+            if(factories[newKey]) return factories[newKey];
 
             /**
              * Creates the factory
              */
-            factories[key] = new fctry(model);
+            factories[newKey] = new fctry(key,model);
 
             /**
              * Don't forget to return the object
              */
-            return factories[key];
+            return factories[newKey];
 
         };
 

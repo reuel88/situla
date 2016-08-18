@@ -546,6 +546,22 @@ table {
 /**
 *  -------------------------------------------------------------------------
 *
+*  Bucketlist INfo
+*/
+.bucketlist-info{
+  .contribute-info{
+    background: white;
+    border: 1px solid $gray-lighter;
+    padding: floor(($grid-gutter-width / 2));
+  }
+  .contribute-info .h1, .contribute-info .h2{
+    margin-top: 0;
+  }
+}
+
+/**
+*  -------------------------------------------------------------------------
+*
 *  Bucketlist
 */
 .bucketlist-modal {

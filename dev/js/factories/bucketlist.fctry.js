@@ -47,6 +47,12 @@ define(['angular', 'jquery', 'factories/_module'], function (angular, $, factory
                 return obj[key];
             };
 
+
+            obj.refresh = function () {
+                obj.model = storage.getValue(obj._key);
+            };
+
+
             /**
              * Creates a new bucketlist item
              *

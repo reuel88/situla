@@ -5,7 +5,7 @@
 require([
     'calculators/cashFlow.cal',
     'calculators/remainTotal.cal',
-    'calculators/weeklyContribute.cal'
+    'calculators/contribute.cal'
 ], function () {
 
 });

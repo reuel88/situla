@@ -14,13 +14,8 @@
     </header>
 
     <div class="page-content">
-        <p class="text-center">Based on your needs you to contribute $999,999.00 a week to achieve your goals</p>
 
-        <div class="alert alert-info text-center" ng-show="false">
-            <p class="">Warning you do not earn enough per week to achieve your goals.</p>
-            <br>
-            <button class="btn btn-primary">Click here to optimize your goals</button>
-        </div>
+        <?php include 'bucketlistInfo.php' ?>
 
         <div class="row bucketlist-list">
             <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in bucketlist.get('_data') track by $index">

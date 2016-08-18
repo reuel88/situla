@@ -20,7 +20,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
         }
     }]);
 
-    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'weeklyContribute.cal', 'storage.serv', 'validation.serv', function ($rootScope, $location, $parse, weeklyContribute, storage, validation) {
+    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'storage.serv', 'validation.serv', function ($rootScope, $location, $parse, storage, validation) {
 
         var obj = {};
 
@@ -120,6 +120,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.refresh(data, model);
             $parse('todo')($rootScope.$$childHead).refresh(data, model);
             $parse('comment')($rootScope.$$childHead).refresh(data, model);
+            $parse('goal')($rootScope.$$childHead).refresh(obj._key);
         };
 
         /**
@@ -135,7 +136,6 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                  */
                 delete obj.model.new;
 
-                obj.model._weeklyContribute = weeklyContribute(obj.model.totalCost, obj.model.alreadySaved, obj.model.date);
                 /**
                  * save response to model
                  */
@@ -172,11 +172,6 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             if (isEmpty(obj.errors)) {
 
 
-
-                obj.model._weeklyContribute = weeklyContribute(obj.model.totalCost, obj.model.alreadySaved, obj.model.date);
-
-
-
                 /**
                  * save to array
                  */
@@ -206,14 +201,15 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
          * Update only the already saved
          */
         obj.contribute = function () {
-            obj.model.alreadySaved = parseInt(obj.model.alreadySaved || 0) + parseInt(obj.model._contribute || 0);
+            var newAlreadySaved = parseInt(obj.model.alreadySaved || 0) + parseInt(obj.model._contribute || 0);
+
+            obj.model.alreadySaved = newAlreadySaved <= obj.model.totalCost ? newAlreadySaved : obj.model.totalCost;
 
             /**
              * Clean up
              */
             delete obj.model['_contribute'];
 
-            obj.model._weeklyContribute = weeklyContribute(obj.model.totalCost, obj.model.alreadySaved, obj.model.date);
             /**
              * save to array
              */
@@ -253,8 +249,6 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                 delete obj.model.edit;
                 delete obj._original.edit;
 
-
-                obj.model._weeklyContribute = weeklyContribute(obj.model.totalCost, obj.model.alreadySaved, obj.model.date);
 
                 /**
                  * Get completeBucketlist & add it to data

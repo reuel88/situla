@@ -4,12 +4,12 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('default.ctrl', ['$scope', '$location', 'bucketlist.fctry', 'user.fctry', 'storage.serv', function ($scope, $location, bucketlist, user, storage) {
+    controller.controller('default.ctrl', ['$scope', '$location', 'bucketlist.fctry',  'user.fctry', 'goal.serv','storage.serv', function ($scope, $location, bucketlist,  user, goal, storage) {
 
         /**
          * Get User
          */
-        $scope.user = user('start', storage.getValue('user'));
+        $scope.user = user('user', storage.getValue('user'));
 
         /**
          * Get Bucketlist
@@ -21,11 +21,18 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
          */
         $scope.completeBucketlist = bucketlist('completeBucketlist', storage.getValue('completeBucketlist'));
 
+        /**
+         * Get Goal
+         *
+         * Allow the modal to be accessed by the view
+         */
+        $scope.goal = goal;
 
-
+        $scope.goal.refresh('ctrl');
 
         /**
          * Quick path redirect
+         *
          */
         $scope.pathTo = function (path) {
             if (path) $location.path(path);

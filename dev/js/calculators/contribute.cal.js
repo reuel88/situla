@@ -9,12 +9,14 @@ define(['angular', 'calculators/_module'], function (angular, calculator) {
     }
 
 
-    calculator.service('weeklyContribute.cal', ['$rootScope', function ($rootScope) {
+    calculator.service('contribute.cal', ['$rootScope', function ($rootScope) {
+
+        var obj = {};
 
         /**
          * Don't know why I used the apple and wedge analogy
          */
-        return function weeklyContribute(apple, wedge, date, callback) {
+        obj.weekly = function (apple, wedge, date, callback) {
 
             /**
              * get current date
@@ -37,7 +39,6 @@ define(['angular', 'calculators/_module'], function (angular, calculator) {
              */
             var result = (apple - (wedge || 0)) > 0 ? (apple - (wedge || 0)) / weeklyDifference : 0;
 
-            console.log(result);
 
             /**
              * return callback
@@ -50,6 +51,31 @@ define(['angular', 'calculators/_module'], function (angular, calculator) {
              */
             return result;
         };
+
+        obj.total = function (data) {
+            var output = {};
+
+            var totalWeeklyContribution = 0;
+            var totalAlreadySaved = 0;
+            var totalCost = 0;
+
+            for (var i = 0, k = data; i < k.length; i++) {
+                totalAlreadySaved += k[i].alreadySaved;
+                totalCost += k[i].totalCost;
+                totalWeeklyContribution += obj.weekly(k[i].totalCost, k[i].alreadySaved, k[i].date);
+            }
+
+            output.totalWeeklyContribution = totalWeeklyContribution;
+            output.totalAlreadySaved = totalAlreadySaved;
+            output.totalCost = totalCost;
+
+
+            return angular.copy(output);
+
+        };
+
+
+        return obj;
 
     }]);
 
