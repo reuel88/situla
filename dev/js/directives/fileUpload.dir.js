@@ -40,6 +40,8 @@ define(['angular', 'directives/_module'], function (angular, directive) {
 
 
                 elem.on("change", function () {
+                    console.log('change');
+
                     var files = this.files;
                     var errors = "";
                     if (!files) {

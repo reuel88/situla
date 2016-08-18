@@ -18,9 +18,9 @@
                             <section class="well bucketlist-item">
 
                                 <form class="" enctype="multipart/form-data" ng-submit="modal.submit()">
-                                    <div class="visible-xs-block visible-sm-block visible-md-block visible-lg-block clearfix">
-                                        <input type="button" value="Delete your Goal" class="btn btn-link" ng-click="modal.delete()">
-                                        <input type="button" value="Close" class="pull-right btn btn-default" ng-click="modal.close()">
+                                    <div class="tools visible-xs-block visible-sm-block visible-md-block visible-lg-block clearfix">
+                                        <input type="button" value="Delete your Goal" class="btn btn-link" ng-show="!modal.model.new" ng-click="modal.delete()">
+                                        <button type="button"class="close btn btn-default" ng-click="modal.close()"><span class="sr-only">Close</span> <i class="glyphicon glyphicon-remove"></i></button>
                                     </div>
 
 
@@ -31,7 +31,7 @@
                                                 <img alt="{{modal.model.title}}" ng-src="{{modal.model.img}}">
                                             </div>
 
-                                            <div class="img-content bucketlist-item-img-content tbl height-100" ng-click="(modal.model.edit) ? (modal.attrs.editing = true) : (modal.attrs.editing = false)">
+                                            <div class="img-content bucketlist-item-img-content tbl height-100" ng-click="(modal.model.edit) ? (modal.attrs.editing = true) : (modal.attrs.editing = false)" min-height="250">
                                                 <div class="tbl-cell height-100 bottom right">
                                                     <div class="form-group container-fluid" ng-show="!modal.model.edit || modal.attrs.editing">
                                                         <label for="img" class="btn btn-default">Replace Image</label>
@@ -70,7 +70,7 @@
 
                                         <div class="form-group" ng-show="!modal.model.edit ||  modal.attrs.editing">
                                             <label for="description" class="control-label">Short Description <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Short Description of your Goal"><span class="sr-only">description</span></i></label>
-                                            <textarea name="description" id="description" cols="30" rows="3" class="form-control" ng-model="modal.model.description"></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="3" class="form-control" placeholder="Write a description..." ng-model="modal.model.description"></textarea>
                                         </div>
                                     </div>
                                     <div class="alert alert-warning" ng-show="modal.errors.description">
@@ -90,7 +90,7 @@
 
                                     <div class="tbl-sm expand-hoverable cost-date">
                                         <div class="tbl-cell-6">
-                                            <p class="h4 bucketlist-item-savings pointer" ng-show="!modal.model.new && !modal.attrs.editing" ng-click="modal.attrs.editing = true">{{modal.model.alreadySaved | currency}} <span class="small" ng-show="modal.model.totalCost"><span ng-show="modal.model.alreadySaved">of</span> {{modal.model.totalCost | currency}}</span></p>
+                                            <p class="h4 bucketlist-item-savings pointer" ng-show="!modal.model.new && !modal.attrs.editing" ng-click="modal.attrs.editing = true">{{modal.model.alreadySaved | currency}} <span class="small">of {{modal.model.totalCost | currency}}</span></p>
                                         </div>
                                         <div class="tbl-cell-6 right">
                                             <p class="h4 bucketlist-item-date pointer" ng-show="!modal.model.new && !modal.attrs.editing" ng-click="modal.attrs.editing = true">{{modal.model.date | date : 'MMM d, y' }}</p>
@@ -170,7 +170,7 @@
                                         <input type="button" value="Cancel" class=" btn btn-link" ng-show="modal.model.new " ng-click="modal.close()">
                                         <input type="button" value="Cancel" class=" btn btn-link" ng-show="!modal.model.new || modal.attrs.editing" ng-click="modal.cancel();">
 
-                                        <hr>
+                                        <hr >
                                     </div>
                                     <!-- esnd of, save-->
 
@@ -178,7 +178,7 @@
 
                                 <?php include 'todoList.php' ?>
 
-                                <hr>
+                                <hr ng-show="!modal.model.new ">
 
                                 <?php include 'comments.php' ?>
 

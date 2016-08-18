@@ -43,10 +43,9 @@
 
 
 </div>
-
-<div class="alert alert-warning text-center" ng-show="!(goal.model.weeklyCashFlow <=0) &&(goal.model.weeklyCashFlow < goal.model.totalWeeklyContribution)">
+<div class="alert alert-danger text-center" ng-show="!(goal.model.weeklyCashFlow <=0) && (goal.model.weeklyCashFlow != 'Infinity') && (goal.model.weeklyCashFlow < goal.model.totalWeeklyContribution)">
     <p class="">Warning you do not earn enough per week to achieve your goals.</p>
     <br>
-    <button class="btn btn-primary" ng-click="goal.optimize()">Click here to optimize your goals</button>
+    <button class="btn btn-success" ng-click="goal.optimize()">Click here to optimize your goals</button>
 </div>
 

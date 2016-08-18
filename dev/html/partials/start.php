@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-sm-push-3 col-sm-6">
-        <section class="well">
+        <section class="well start-modal">
 
             <header class="home-header page-header">
                 <hgroup>
@@ -19,11 +19,13 @@
             </header>
 
             <div class="home-body page-body">
+                <div class="non-hoverable">
+                    <p class="text-center">We actually believe in reaching your goals,
+                        And sometimes your goals take money.</p>
+                    <p class="text-center">Completing your bucketlist can be as simple as
+                        budgeting your money. That's why we need to ask what is your average income and expenses?</p>
 
-                <p class="text-center">We actually believe in reaching your goals,
-                    And sometimes your goals take money.</p>
-                <p class="text-center">Completing your bucketlist can be as simple as
-                    budgeting your money. That's why we need to ask what is your average income and expenses?</p>
+                </div>
 
                 <form ng-submit="user.saveSpending()">
                     <div class="form-group hoverable">
@@ -70,7 +72,8 @@
                     </div>
 
                     <div class="home-result" ng-show="((user.model.expense || 0) * (user.model.income || 0)) != 0">
-                        <p class="text-center">You earn</p>
+                        <hr>
+                        <p class="text-center">You earn approximately</p>
                         <p class="h1 text-center">{{user.model._cashFlow | currency}}</p>
 
                         <div class="row">

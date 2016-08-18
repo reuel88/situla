@@ -7,6 +7,7 @@ require([
     'directives/currency.dir',
     'directives/datePicker.dir',
     'directives/fileUpload.dir',
+    'directives/minHeight.dir',
     'directives/tooltip.dir'
 ], function () {
     

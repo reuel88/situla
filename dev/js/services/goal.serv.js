@@ -2,7 +2,7 @@
  * Created by reuelteodoro on 18/08/2016.
  */
 
-define(['angular', 'services/_module',  'utils/isEmpty'], function (angular, service,isEmpty) {
+define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, service, isEmpty) {
 
     /**
      * Remember service is a singleton, lol
@@ -41,7 +41,16 @@ define(['angular', 'services/_module',  'utils/isEmpty'], function (angular, ser
             obj._listData = $parse('bucketlist')($rootScope.$$childHead);
 
 
-            if(isEmpty(obj._userModel.model) || isEmpty(obj._listData._data)) return;
+            if (isEmpty(obj._userModel.model) || isEmpty(obj._listData._data)) {
+
+                obj.model.totalWeeklyContribution = 0;
+                obj.model.totalAlreadySaved = 0;
+                obj.model.totalCost = 0;
+
+                obj.model.weeklyCashFlow = 0;
+
+                return;
+            }
 
             /**
              * Calculate Totals
@@ -95,54 +104,67 @@ define(['angular', 'services/_module',  'utils/isEmpty'], function (angular, ser
 
 
         obj.optimize = function () {
+            if (confirm('Are you sure? We will push back the dates of your goals.')) {
+
+                for (var i = 0, k = obj._listData._data; i < k.length; i++) {
+                    // don't calculate if infinity
+                    if (obj.model.totalWeeklyContribution == 'Infinity') break;
+
+                    /**
+                     * get current date
+                     */
+                    var nowDate = new Date();
+                    var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
+                    //
+                    // var dateSet = new Date(k[i].date);
+                    // var target = new Date(dateSet.getFullYear(), dateSet.getMonth(), dateSet.getDate(), 0, 0, 0, 0);
+                    //
+                    //
+                    // /**
+                    //  * don't calculate if the target date is today
+                    //  */
+                    // if(today.getTime() === target.getTime()) continue;
 
 
-            for (var i = 0, k = obj._listData._data; i < k.length; i++) {
+                    // The current outstanding about I currently own
+                    var remainingAmount = parseFloat(k[i].totalCost || 0) - parseFloat(k[i].alreadySaved || 0);
 
-                // The current outstanding about I currently own
-                var remainingAmount = parseFloat(k[i].totalCost || 0) - parseFloat(k[i].alreadySaved || 0);
+                    // how much i have to earn to achieve THIS goal at THIS date
+                    var weeklyContribution = contribute.weekly(k[i].totalCost, k[i].alreadySaved, k[i].date);
 
-                // how much i have to earn to achieve THIS goal at THIS date
-                var weeklyContribution = contribute.weekly(k[i].totalCost, k[i].alreadySaved, k[i].date);
+                    // the percent this contribution is to the ratio of
+                    var tributePercent = weeklyContribution / obj.model.totalWeeklyContribution;
 
-                // the percent this contribution is to the ratio of
-                var tributePercent = weeklyContribution / obj.model.totalWeeklyContribution;
+                    // The amount I actually earn each week
+                    // obj.model.weeklyCashFlow
 
-                // The amount I actually earn each week
-                // obj.model.weeklyCashFlow
+                    // based on how much I currently earn
+                    // keeping with the ratio of contribution
+                    // this is currently how of my money will go to the goal each week
+                    // tributePercent * obj.model.weeklyCashFlow
 
-                // based on how much I currently earn
-                // keeping with the ratio of contribution
-                // this is currently how of my money will go to the goal each week
-                // tributePercent * obj.model.weeklyCashFlow
+                    // the amount of week I need to add to current date to achieve this goal
+                    var weeksToAdd = Math.ceil(remainingAmount / (tributePercent * obj.model.weeklyCashFlow));
 
-                // the amount of week I need to add to current date to achieve this goal
-                var weeksToAdd = Math.ceil(remainingAmount / (tributePercent * obj.model.weeklyCashFlow));
 
+                    var goalDate = new Date().setDate(today.getDate() + (weeksToAdd * 7));
+
+
+                    obj._listData._data[i].date = angular.copy(new Date(goalDate));
+
+                }
 
                 /**
-                 * get current date
+                 * Save to storage
                  */
-                var nowDate = new Date();
-                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+                storage.setValue('bucketlist', obj._listData._data);
 
-
-                var goalDate = new Date().setDate(today.getDate() + (weeksToAdd * 7));
-
-
-                obj._listData._data[i].date = angular.copy(new Date(goalDate));
-
+                /**
+                 * Refresh the data
+                 */
+                obj.refreshAction();
             }
-
-            /**
-             * Save to storage
-             */
-            storage.setValue('bucketlist', obj._listData._data);
-
-            /**
-             * Refresh the data
-             */
-            obj.refreshAction();
         };
 
         return obj;

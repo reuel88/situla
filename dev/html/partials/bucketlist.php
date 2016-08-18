@@ -27,7 +27,7 @@
                     <div class="img-container bucketlist-list-img">
                         <img  alt="{{v.title}}" ng-src="{{v.img}}">
                     </div>
-                    <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
+                    <div class="img-content bucketlist-list-item-content tbl height-100" min-height="190">
                         <div class="tbl-row">
                             <div class="tbl-cell top">
                                 <p class="h4">{{v.date | date : 'MMM d, y'}}</p>
@@ -48,7 +48,7 @@
 
             <div class="col-sm-6 col-md-4">
                 <article class="well img-frame bucketlist-list-item-add" tabindex="1" ng-click="pathTo('/select')">
-                    <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
+                    <div class="img-content bucketlist-list-item-content tbl height-100" min-height="190">
                         <div class="tbl-row">
                             <div class="tbl-cell height-100 center middle">
                                 <h3 class="bucketlist-list-title">Add a Goal</h3>
@@ -80,7 +80,7 @@
                     <div class="img-container bucketlist-list-img">
                         <img  alt="{{v.title}}" ng-src="{{v.img}}">
                     </div>
-                    <div class="img-content bucketlist-list-item-content tbl height-100" data-min-height="190px">
+                    <div class="img-content bucketlist-list-item-content tbl height-100" min-height="190">
                         <div class="tbl-row">
                             <div class="tbl-cell top">
                                 <p class="h4">{{v.date | date : 'MMM d, y'}}</p>

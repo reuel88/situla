@@ -11,14 +11,14 @@
         <h2 clas        s="h3">Comments</h2>
     </header>
 
-    <form class="comment-new non-hoverable" ng-submit="comment.new()">
+    <form class="comment-new non-hoverable" enctype="multipart/form-data" ng-submit="comment.new()" autocomplete="off">
 
         <div class="img-frame comment-img margin-bottom">
             <div class="img-container" ng-show="comment.temp.img ">
                 <img alt="{{comment.temp.content}}" ng-src="{{comment.temp.img}}">
             </div>
 
-            <div class="img-content comment-img-content tbl height-100">
+            <div class="img-content comment-img-content tbl height-100" min-height="250">
                 <div class="tbl-cell height-100 bottom left">
                     <p class="h5 comment-new-subtitle" ng-show="!comment.temp.img">Add a Comment</p>
                 </div>
@@ -47,7 +47,7 @@
         <div class="tbl">
             <div class="tbl-row">
                 <div class="tbl-cell">
-                    <input type="submit" value="Create" class="btn btn-default" ng-disabled="!comment.temp.img && !comment.temp.content">
+                    <input type="submit" value="Create" class="btn btn-primary" ng-show="comment.temp.img || comment.temp.content">
                     <input type="button" value="Cancel" class="btn btn-link" ng-click="comment.cancel()" ng-show="comment.temp.img || comment.temp.content">
                 </div>
 
@@ -55,7 +55,6 @@
         </div>
     </form>
 
-    <hr>
 
     <ol class="comment-list">
         <li ng-repeat="(k,v) in modal.model.comment track by $index ">
@@ -70,7 +69,7 @@
                                    <img alt="{{comment.tempItem.content}}" ng-src="{{comment.tempItem.img}}" ng-show="(comment.tempItem.img && v.editing)">
                                </div>
 
-                               <div class="img-content comment-item-img-content tbl height-100">
+                               <div class="img-content comment-item-img-content tbl height-100" min-height="250">
                                    <div class="tbl-cell height-100 right bottom">
                                        <div class="form-group container-fluid" ng-show="v.editing">
                                            <label for="image_{{k}}" class="btn btn-default">

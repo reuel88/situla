@@ -216,8 +216,6 @@ define(['angular', 'services/_module'], function (angular, service) {
             delete obj.temp.editing; // also changes the style
             delete _itemOriginal.editing; // also changes the style
 
-
-
             obj.attrs.isEditing = false;
         };
 

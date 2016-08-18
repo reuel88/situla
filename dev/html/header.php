@@ -22,22 +22,29 @@
 <div class="tbl height-100">
     <div class="tbl-row">
         <div id="site-masterhead" class="tbl-cell">
-            <div id="site-navbar" class="navbar navbar-default">
+            <div id="site-navbar" class="">
                 <div class="container-fluid">
-                    <header class="navbar-header" itemscope itemtype="http://schema.org/WPHeader">
-                        <a href="#/" class="h1 site-nav-title">Situla List</a>
-                    </header>
 
-                    <nav class="pull-right">
-                        <div class="sr-only sr-only-focusable"><a href="#site-content" title="Skip to content">Skip to content</a></div>
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a itemprop="url" href="#/start">
-                                    <span itemprop="name">Start</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <div class="tbl-sm">
+                        <div class="tbl-cell middle">
+                            <header class="navbar-header" itemscope itemtype="http://schema.org/WPHeader">
+                                <a href="#/" class="h1 site-title">Situla List</a>
+                            </header>
+                        </div>
+                        <div class="tbl-cell middle right">
+                            <nav class="clearfix">
+                                <div class="sr-only sr-only-focusable"><a href="#site-content" title="Skip to content">Skip to content</a></div>
+                                <ul class="">
+                                    <li>
+                                        <a itemprop="url" href="#/start">
+                                            <span itemprop="name">Start</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
