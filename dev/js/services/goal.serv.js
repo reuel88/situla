@@ -40,11 +40,14 @@ define(['angular', 'services/_module'], function (angular, service) {
 
             obj._listData = $parse('bucketlist')($rootScope.$$childHead);
 
-
             /**
              * Calculate Totals
              */
             obj.model = contribute.total(obj._listData._data);
+
+
+            obj.model.weeklyCashFlow = obj._userModel.model._cashFlow * obj._userModel.model._cashFlowFreq / 52;
+
 
             // console.log(obj._userModel);
             // console.log(obj._listData._data);
@@ -75,6 +78,59 @@ define(['angular', 'services/_module'], function (angular, service) {
              * reset the form
              */
             obj.contributeModel.contribute = '';
+
+            /**
+             * Save to storage
+             */
+            storage.setValue('bucketlist', obj._listData._data);
+
+            /**
+             * Refresh the data
+             */
+            obj.refreshAction();
+        };
+
+
+        obj.optimize = function () {
+
+
+
+            for (var i = 0, k = obj._listData._data; i < k.length; i++) {
+
+                // The current outstanding about I currently own
+                var remainingAmount = parseFloat(k[i].totalCost || 0) - parseFloat(k[i].alreadySaved || 0);
+
+                // how much i have to earn to achieve THIS goal at THIS date
+                var weeklyContribution = contribute.weekly(k[i].totalCost, k[i].alreadySaved, k[i].date);
+
+                // the percent this contribution is to the ratio of
+                var tributePercent = weeklyContribution / obj.model.totalWeeklyContribution;
+
+                // The amount I actually earn each week
+                // obj.model.weeklyCashFlow
+
+                // based on how much I currently earn
+                // keeping with the ratio of contribution
+                // this is currently how of my money will go to the goal each week
+                // tributePercent * obj.model.weeklyCashFlow
+
+                // the amount of week I need to add to current date to achieve this goal
+                var weeksToAdd = Math.ceil(remainingAmount / (tributePercent * obj.model.weeklyCashFlow));
+
+
+                /**
+                 * get current date
+                 */
+                var nowDate = new Date();
+                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
+
+                var goalDate = new Date().setDate(today.getDate() + (weeksToAdd * 7));
+
+
+                obj._listData._data[i].date = angular.copy(new Date(goalDate));
+
+            }
 
             /**
              * Save to storage

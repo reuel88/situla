@@ -31,20 +31,22 @@
                         <span class="input-group-addon">$</span>
                         <input type="text" name="contribute" id="contribute" class="form-control" ng-model="goal.contributeModel.contribute" currency>
                         <div class="input-group-btn">
-                            <input type="submit" value="Save" class="btn btn-primary" >
+                            <input type="submit" value="Save" class="btn btn-primary">
                         </div>
                     </div>
                 </div>
             </form>
         </div>
+
+
     </div>
 
 
-    <div class="alert alert-info text-center" ng-show="false">
-        <p class="">Warning you do not earn enough per week to achieve your goals.</p>
-        <br>
-        <button class="btn btn-primary">Click here to optimize your goals</button>
-    </div>
 </div>
 
+<div class="alert alert-info text-center" ng-show="goal.model.weeklyCashFlow < goal.model.totalWeeklyContribution">
+    <p class="">Warning you do not earn enough per week to achieve your goals.</p>
+    <br>
+    <button class="btn btn-primary" ng-click="goal.optimize()">Click here to optimize your goals</button>
+</div>
 

@@ -36,7 +36,7 @@
                         <div class="tbl-row bottom">
                             <div class="tbl-cell">
                                 <h3 class="h2 bucketlist-list-title">{{v.title}}</h3>
-                                <p class="h4 bucketlist-list-saving" ><span ng-show="v.alreadySaved">Saved</span> {{v.alreadySaved | currency}} <span class="small" ng-show="v.totalCost"><span ng-show="v.alreadySaved">of</span> {{v.totalCost | currency}}</span></p>
+                                <p class="h4 bucketlist-list-saving" >Saved {{v.alreadySaved | currency}} <span class="small">of {{v.totalCost | currency}}</span></p>
                             </div>
                         </div>
 

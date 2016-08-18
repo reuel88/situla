@@ -66,7 +66,7 @@ define(['angular', 'calculators/_module'], function (angular, calculator) {
             }
 
             output.totalWeeklyContribution = totalWeeklyContribution;
-            output.totalAlreadySaved = totalAlreadySaved;
+            output.totalAlreadySaved = totalAlreadySaved || 0;
             output.totalCost = totalCost;
 
 

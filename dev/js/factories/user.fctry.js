@@ -60,7 +60,7 @@ define(['angular', 'factories/_module', 'utils/isEmpty'], function (angular, fac
                  */
                 if (isEmpty(obj.errors)) {
                     storage.setValue('user', obj.model); // Save to localStorage or server
-                    $location.path("/select"); // redirect to home
+                    $location.path("/"); // redirect to home
                 }
             };
 
