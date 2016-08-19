@@ -89,6 +89,14 @@ define(['angular', 'services/_module'], function (angular, service) {
             obj.model = angular.copy(model); // sets the model
         };
 
+        obj.refreshAction = function () {
+            obj.refresh(obj._data, obj.model);
+            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
+
+            $rootScope.$apply(function () {});
+        };
+
         /**
          * New Comment
          */
@@ -120,9 +128,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * refresh variables to match the saved data
              */
-            obj.refresh(obj._data, obj.model);
-            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj.model);
-            $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            obj.refreshAction();
 
         };
 
@@ -181,9 +187,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * refresh variables to match the saved data
              */
-            obj.refresh(obj._data, obj._data[index]);
-            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
-            $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
+            obj.refreshAction();
 
             obj.attrs.isEditing = false;
         };
@@ -228,11 +232,9 @@ define(['angular', 'services/_module'], function (angular, service) {
                 storage.setValue(obj._key, obj._data);
 
                 /**
-                 * Refresh for that minty goodness
+                 * refresh variables to match the saved data
                  */
-                obj.refresh(obj._data, obj._data[index]);
-                $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
-                $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
+                obj.refreshAction();
 
 
                 obj.attrs.isEditing = false;

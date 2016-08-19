@@ -83,6 +83,19 @@ define(['angular', 'services/_module'], function (angular, service) {
             obj.model = angular.copy(model); // sets the model
         };
 
+        obj.refreshAction = function () {
+
+            /**
+             * refresh variables to match the saved data
+             */
+            obj.refresh(obj._data, obj.model);
+            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+
+            $rootScope.$apply(function () {});
+        };
+
+
 
         /**
          * Add new to do item
@@ -111,11 +124,9 @@ define(['angular', 'services/_module'], function (angular, service) {
             storage.setValue(obj._key, obj._data);
 
             /**
-             * refresh variables to match the saved data
+             * Refresh for that minty goodness
              */
-            obj.refresh(obj._data, obj.model);
-            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj.model);
-            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            obj.refreshAction();
 
             /**
              * Close
@@ -200,9 +211,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * Refresh for that minty goodness
              */
-            obj.refresh(obj._data, obj._data[index]);
-            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
-            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
+            obj.refreshAction();
 
 
             obj.attrs.isEditing = false;
@@ -247,9 +256,7 @@ define(['angular', 'services/_module'], function (angular, service) {
                 /**
                  * Refresh for that minty goodness
                  */
-                obj.refresh(obj._data, obj._data[index]);
-                $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
-                $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj._data[index]);
+                obj.refreshAction();
 
 
                 obj.attrs.isEditing = false;
