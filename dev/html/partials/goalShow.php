@@ -176,11 +176,15 @@
 
                                 </form>
 
-                                <?php include 'todoList.php' ?>
 
-                                <hr ng-show="!modal.model.new ">
+                                <div ng-show="!modal.model.new && !modal.attrs.editing">
+                                    <?php include 'todoList.php' ?>
 
-                                <?php include 'comments.php' ?>
+                                    <hr ng-show="!modal.model.new ">
+
+                                    <?php include 'comments.php' ?>
+                                </div>
+
 
                             </section>
                         </div>
