@@ -10,7 +10,6 @@
 <div class="row">
     <div class="col-sm-push-3 col-sm-6">
         <section class="well start-modal">
-
             <header class="home-header page-header">
                 <hgroup>
                     <h1 class="page-title text-center">Situla List</h1>
