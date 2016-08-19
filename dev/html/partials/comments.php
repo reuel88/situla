@@ -8,7 +8,7 @@
 ?>
 <section class="comments" ng-show="!modal.model.new">
     <header class="non-hoverable-side">
-        <h2 clas        s="h3">Comments</h2>
+        <h2 class="h3">Comments</h2>
     </header>
 
     <form class="comment-new non-hoverable" enctype="multipart/form-data" ng-submit="comment.new()" autocomplete="off">
@@ -37,12 +37,10 @@
             </div>
         </div>
 
-
         <div class="form-group ">
             <label for="comment" class="control-label sr-only">Write a comment...</label>
             <textarea name="comment" id="comment" cols="30" rows="3" placeholder="Write a comment..." class="form-control" ng-model="comment.temp.content"></textarea>
         </div>
-
 
         <div class="tbl">
             <div class="tbl-row">

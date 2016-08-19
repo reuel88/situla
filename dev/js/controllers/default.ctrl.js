@@ -30,7 +30,6 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
          * Allow the modal to be accessed by the view
          */
         $scope.goal = goal;
-
         $scope.goal.refresh('ctrl');
 
         /**

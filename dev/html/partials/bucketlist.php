@@ -6,8 +6,6 @@
  * Time: 4:22 PM
  */
 ?>
-
-
 <section id="bucketlist">
     <header class="page-header">
         <h1 class="page-title text-center">Your Bucketlist</h1>
@@ -16,6 +14,47 @@
     <div class="page-content">
 
         <?php include 'bucketlistInfo.php' ?>
+
+        <div class="bucketlist-add">
+            <div class="well">
+                <form class="tbl-sm height-100">
+                    <div class="tbl-cell bottom">
+                        <div class="non-hoverable">
+                            <p class="h3">Add a Goal</p>
+                        </div>
+                    </div>
+
+                    <div class="tbl-cell">
+
+                        <div class="form-group hoverable">
+                            <label for="title" class="control-label">Title <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Title of your Goal"><span class="sr-only">description</span></i></label>
+                            <input type="text" name="title" id="title" class="form-control">
+                        </div>
+                    </div>
+                    <div class="tbl-cell">
+                        <div class="form-group hoverable">
+                            <label for="total-cost" class="control-label">Total Cost <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Total Cost of your Goal"><span class="sr-only">description</span></i></label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="text" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tbl-cell hoverable">
+                        <div class="form-group">
+                            <label for="target-date" class="control-label">Target Date <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
+                            <input type="text" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker>
+                        </div>
+                    </div>
+                    <div class="tbl-cell bottom hoverable">
+                        <div class="form-group ">
+                            <input type="submit" value="Save" class="btn btn-block btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <div class="row bucketlist-list">
             <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in bucketlist.get('_data') track by $index">
