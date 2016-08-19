@@ -36,3 +36,20 @@ Clone repository
 $ sudo git clone https://github.com/reuel88/situla.git
 ```
 
+Install the npm dependencies
+```
+$ sudo npm install
+```
+
+Install bower dependencies
+```
+$ sudo bower install --allow-root
+```
+Follow the prompts. 
+
+
+Compile the Assets to public 
+
+```
+$ sudo gulp
+```
