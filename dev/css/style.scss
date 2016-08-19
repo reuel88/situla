@@ -340,7 +340,7 @@ table {
   }
 }
 
-.always-hoverable {
+.active-hoverable {
   margin-bottom: 0;
   padding: floor(($grid-gutter-width / 2));
   background: $gray-lighter;
@@ -540,12 +540,58 @@ table {
 /**
  *  -------------------------------------------------------------------------
  *
+ *  ng view
+ */
+.view{
+  position: relative;
+}
+
+.view > {
+  .ng-enter, .ng-leave {
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    position:inherit;
+
+  }
+  .ng-enter {
+    top: 0px;
+    opacity: 0;
+    position:absolute;
+    width:100%;
+  }
+  .ng-enter.ng-enter-active{
+    top: 0px;
+    opacity: 1;
+    position:absolute;
+    width:100%;
+  }
+  .ng-leave {
+    top: 0px;
+    opacity: 1;
+    position:absolute;
+    width:100%;
+  }
+  .ng-leave.ng-leave-active {
+    opacity: 0;
+    position:absolute;
+    width:100%;
+  }
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
  *  Site Header
  */
 
 #site-masterhead {
   a {
     color: white;
+    &:hover{
+      background-color: white;
+      border-color: #ccc;
+      color: $link-color;
+    }
   }
 
   ul {
@@ -643,6 +689,10 @@ table {
   &.ng-hide-add { // hiding
     animation: 0.5s fadeOutUp ease;
   }
+}
+
+.bucketlist-list > {
+  transition: all 0.5s;
 }
 
 .bucketlist-list-item {
@@ -883,7 +933,8 @@ table {
   }
 
   .img-container.ng-hide + .comment-item-img-content {
-    min-height: 33px !important;
+    height: 33px !important;
+    min-height: auto;
   }
 
   .img-container.ng-hide + .comment-item-img-content .container-fluid {

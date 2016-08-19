@@ -18,6 +18,7 @@
 </div>
 </div>
 
+<?php include 'html/partials/goalShow.php' ?>
 
 <script src="js/require.js" data-main="js/main.min.js"></script>
 </body>

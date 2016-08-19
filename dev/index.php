@@ -5,7 +5,10 @@
 
             <div class="container">
 
-                <div  ng-view></div>
+                <div class="view" >
+                    <div ng-view></div>
+
+                </div>
 
             </div>
 

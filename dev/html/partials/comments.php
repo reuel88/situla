@@ -59,7 +59,7 @@
     <ol class="comment-list">
         <li ng-repeat="(k,v) in modal.model.comment track by $index ">
 
-           <div class="hoverable">
+           <div ng-class="v.editing? 'active-hoverable' : 'hoverable'">
                <div class="comment-item">
                    <div class="tbl"  ng-show="v.editing || v.img">
                        <div class="tbl-cell">

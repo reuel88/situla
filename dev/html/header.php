@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<?php include 'html/partials/goalShow.php' ?>
+
 
 <div class="tbl height-100">
     <div class="tbl-row">
@@ -36,7 +36,7 @@
                                 <div class="sr-only sr-only-focusable"><a href="#site-content" title="Skip to content">Skip to content</a></div>
                                 <ul class="">
                                     <li>
-                                        <a itemprop="url" href="#/start">
+                                        <a class="btn" itemprop="url" href="#/start">
                                             <span itemprop="name">Start</span>
                                         </a>
                                     </li>

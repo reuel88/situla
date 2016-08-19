@@ -13,7 +13,7 @@
     </header>
 
     <ol class="todo-list">
-        <li  ng-class="v.editing? 'hoverable' : 'expand-hoverable'" ng-repeat="(k,v) in modal.model.todo track by $index">
+        <li  ng-class="v.editing? 'active-hoverable' : 'expand-hoverable'" ng-repeat="(k,v) in modal.model.todo track by $index">
 
             <div class="tbl">
                 <div class="tbl-row">

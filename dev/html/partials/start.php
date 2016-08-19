@@ -21,9 +21,9 @@
             <div class="home-body page-body">
                 <div class="non-hoverable">
                     <p class="text-center">We actually believe in reaching your goals,
-                        And sometimes your goals take money.</p>
+                        And sometimes your goals take&nbsp;money.</p>
                     <p class="text-center">Completing your bucketlist can be as simple as
-                        budgeting your money. That's why we need to ask what is your average income and expenses?</p>
+                        budgeting your money. That's why we need to ask what is your average income and&nbsp;expenses?</p>
 
                 </div>
 
