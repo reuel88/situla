@@ -16,15 +16,12 @@ define(
     ],
     function (isEmpty, angular) {
 
-        var app = angular.module('app', ['ngAnimate', 'ngCookies', 'ngRoute','app.calculators', 'app.controllers', 'app.directives', 'app.factories',  'app.services']);
+        var app = angular.module('app', ['ngAnimate', 'ngCookies', 'ngRoute', 'app.calculators', 'app.controllers', 'app.directives', 'app.factories', 'app.services']);
 
         app
             .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
                 $routeProvider
-                    .when("/", {
-                        templateUrl: "html/partials/bucketlist.php",
-                        controller: 'default.ctrl'
-                    })
+
                     .when("/start", {
                         templateUrl: "html/partials/start.php",
                         controller: 'default.ctrl'
@@ -33,10 +30,17 @@ define(
                         templateUrl: "html/partials/goalSelect.php",
                         controller: 'default.ctrl'
                     })
+                    .when("/:m", {
+                        templateUrl: "html/partials/bucketlist.php",
+                        controller: 'default.ctrl'
+                    })
+                    .when("/", {
+                        templateUrl: "html/partials/bucketlist.php",
+                        controller: 'default.ctrl'
+                    })
                     .otherwise('/')
                 ;
             }])
-
             .run(['$rootScope', '$location', 'storage.serv', function ($rootScope, $location, storage) {
                 $rootScope.$on("$routeChangeStart", function (event, next, current) {
 
@@ -45,7 +49,6 @@ define(
                     } else if (!storage.getValue('bucketlist') || isEmpty(storage.getValue('bucketlist'))) { // Check if exist or is empty
                         $location.path("/select");
                     }
-
 
                 });
             }])
