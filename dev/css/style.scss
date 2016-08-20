@@ -542,7 +542,7 @@ table {
  *
  *  ng view
  */
-.view{
+.view {
   position: relative;
 }
 
@@ -550,31 +550,31 @@ table {
   .ng-enter, .ng-leave {
     -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    position:inherit;
+    position: inherit;
 
   }
   .ng-enter {
     top: 0px;
     opacity: 0;
-    position:absolute;
-    width:100%;
+    position: absolute;
+    width: 100%;
   }
-  .ng-enter.ng-enter-active{
+  .ng-enter.ng-enter-active {
     top: 0px;
     opacity: 1;
-    position:absolute;
-    width:100%;
+    position: absolute;
+    width: 100%;
   }
   .ng-leave {
     top: 0px;
     opacity: 1;
-    position:absolute;
-    width:100%;
+    position: absolute;
+    width: 100%;
   }
   .ng-leave.ng-leave-active {
     opacity: 0;
-    position:absolute;
-    width:100%;
+    position: absolute;
+    width: 100%;
   }
 }
 
@@ -587,7 +587,7 @@ table {
 #site-masterhead {
   a.btn {
     color: white;
-    &:hover{
+    &:hover {
       background-color: white;
       border-color: #ccc;
       color: $link-color;
@@ -670,32 +670,71 @@ table {
 /**
 *  -------------------------------------------------------------------------
 *
-*  Bucketlist add
+*  Bucketlist Select
 */
-.bucketlist-add{
-  .tbl-sm .tbl-cell .h3{
-    margin:0;
+.bucketlist-select {
+
+  &.active{
+    display: block;
+    height: 128px;
   }
-  .form-group{
+
+  &.active .bucketlist-add-modal{
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 300;
+  }
+
+  &.active .bucketlist-add-modal .container {
+    padding-left: floor(($grid-gutter-width / 2));
+    padding-right: floor(($grid-gutter-width / 2));
+    @media (min-width: $screen-sm-min) {
+      width: $container-sm;
+    }
+    @media (min-width: $screen-md-min) {
+      width: $container-md;
+    }
+    @media (min-width: $screen-lg-min) {
+      width: $container-lg;
+    }
+  }
+
+  &.active .save{
+    display: inline-block;
+  }
+  &.active .cancel{
+    display: inline-block;
+  }
+
+
+  .container {
+    padding: 0;
+    width: auto;
+  }
+  .tbl-sm .tbl-cell .h3 {
+    margin: 0;
+  }
+  .form-group {
     margin-bottom: 0;
   }
-}
 
+  .save{
+    display: block;
+  }
+  .cancel{
+    display: none;
+  }
+}
 
 /**
 *  -------------------------------------------------------------------------
 *
 *  Bucketlist
 */
-.bucketlist-modal {
-  &.ng-hide-remove { // showing
-    animation: 0.5s fadeIn ease;
-  }
-
-  &.ng-hide-add { // hiding
-    animation: 0.5s fadeOut ease;
-  }
-}
 
 .alert {
   &.ng-hide-remove { // showing
@@ -877,6 +916,14 @@ table {
     display: block;
   }
 
+  &.ng-hide-remove { // showing
+    animation: 0.5s fadeIn ease;
+  }
+
+  &.ng-hide-add { // hiding
+    animation: 0.5s fadeOut ease;
+  }
+
   .scrollable {
     overflow: scroll;
     height: 100%;
@@ -908,8 +955,8 @@ table {
       position: absolute;
       width: 100%;
       height: 1px;
-      top:50%;
-      background: lighten($text-color,25%);
+      top: 50%;
+      background: lighten($text-color, 25%);
     }
   }
 }

@@ -106,7 +106,7 @@
 
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <input type="text" name="already-saved" id="already-saved" class="form-control" ng-model="modal.model.alreadySaved" currency>
+                                                <input type="tel" name="already-saved" id="already-saved" class="form-control" ng-model="modal.model.alreadySaved" currency>
                                             </div>
                                         </div>
 
@@ -115,7 +115,7 @@
 
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <input type="text" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
+                                                <input type="tel" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
                                             </div>
                                         </div>
 
@@ -153,7 +153,7 @@
 
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="text" name="contribute" id="contribute" class="form-control" ng-model="modal.model._contribute" currency>
+                                                    <input type="tel" name="contribute" id="contribute" class="form-control" ng-model="modal.model._contribute" currency>
                                                     <div class="input-group-btn">
                                                         <input type="button" value="Save" class="btn btn-primary" ng-click="modal.contribute()">
 

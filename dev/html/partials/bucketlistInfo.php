@@ -29,7 +29,7 @@
 
                     <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" name="contribute" id="contribute" class="form-control" ng-model="goal.contributeModel.contribute" currency>
+                        <input type="tel" name="contribute" id="contribute" class="form-control" ng-model="goal.contributeModel.contribute" currency>
                         <div class="input-group-btn">
                             <input type="submit" value="Save" class="btn btn-primary">
                         </div>
