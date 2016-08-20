@@ -28,7 +28,7 @@
 
                 <form ng-submit="user.saveSpending()">
                     <div class="form-group hoverable">
-                        <label for="income" class="control-label">Income <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Your average income"><span class="sr-only">description</span></i></label>
+                        <label for="income" class="control-label">Income*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Your average income"><span class="sr-only">description</span></i></label>
 
                         <div class="input-group input-select">
                             <span class="input-group-addon">$</span>
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="form-group hoverable">
-                        <label for="expense" class="control-label" >Expenses <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Your average expenses"><span class="sr-only">description</span></i></label>
+                        <label for="expense" class="control-label" >Expenses*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Your average expenses"><span class="sr-only">description</span></i></label>
 
                         <div class="input-group input-select">
                             <span class="input-group-addon">$</span>

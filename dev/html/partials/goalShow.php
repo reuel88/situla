@@ -54,7 +54,7 @@
                                         <h1 class="page-title h2 bucketlist-item-title pointer" ng-show="!modal.model.new && !modal.attrs.editing" ng-click="modal.attrs.editing = true">{{modal.model.title}}</h1>
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing">
-                                            <label for="title" class="control-label">Title <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Title of your Goal"><span class="sr-only">description</span></i></label>
+                                            <label for="title" class="control-label">Title*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Title of your Goal"><span class="sr-only">description</span></i></label>
                                             <input type="text" name="title" id="title" class="form-control" ng-model="modal.model.title">
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@
 
                                         <div class="form-group" ng-show="!modal.model.edit ||  modal.attrs.editing">
                                             <label for="description" class="control-label">Short Description <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Short Description of your Goal"><span class="sr-only">description</span></i></label>
-                                            <textarea name="description" id="description" cols="30" rows="3" class="form-control" placeholder="Write a description..." ng-model="modal.model.description"></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="2" class="form-control" placeholder="Write a description..." ng-model="modal.model.description"></textarea>
                                         </div>
                                     </div>
                                     <div class="alert alert-warning" ng-show="modal.errors.description">
@@ -111,7 +111,7 @@
                                         </div>
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing ">
-                                            <label for="total-cost" class="control-label">Total Cost <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Total Cost of your Goal"><span class="sr-only">description</span></i></label>
+                                            <label for="total-cost" class="control-label">Total Cost*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Total Cost of your Goal"><span class="sr-only">description</span></i></label>
 
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
@@ -132,7 +132,7 @@
                                     <div ng-class="modal.model.new || modal.attrs.editing ? 'hoverable' : 'expand-hoverable'">
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing">
-                                            <label for="target-date" class="control-label">Target Date <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
+                                            <label for="target-date" class="control-label">Target Date*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
                                             <input type="text" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker>
                                         </div>
 
@@ -156,7 +156,6 @@
                                                     <input type="tel" name="contribute" id="contribute" class="form-control" ng-model="modal.model._contribute" currency>
                                                     <div class="input-group-btn">
                                                         <input type="button" value="Save" class="btn btn-primary" ng-click="modal.contribute()">
-
                                                     </div>
                                                 </div>
                                             </div>
