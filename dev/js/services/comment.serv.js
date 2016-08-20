@@ -94,7 +94,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj.model);
             $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
 
-            $rootScope.$apply(function () {});
+            $rootScope.safeApply(function () {});
         };
 
         /**

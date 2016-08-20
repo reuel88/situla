@@ -15,9 +15,6 @@
 
         <?php include 'bucketlistInfo.php' ?>
 
-<!--        --><?php //include 'bucketlistSelect.php' ?>
-
-
 
         <div class="row bucketlist-list">
             <div class="col-sm-6 col-md-4" ng-repeat="(k,v) in bucketlist.get('_data') track by $index">

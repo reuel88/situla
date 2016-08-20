@@ -30,10 +30,10 @@ define(
                         templateUrl: "html/partials/goalSelect.php",
                         controller: 'default.ctrl'
                     })
-                    .when("/:m", {
-                        templateUrl: "html/partials/bucketlist.php",
-                        controller: 'default.ctrl'
-                    })
+                    // .when("/:m", {
+                    //     templateUrl: "html/partials/bucketlist.php",
+                    //     controller: 'default.ctrl'
+                    // })
                     .when("/", {
                         templateUrl: "html/partials/bucketlist.php",
                         controller: 'default.ctrl'
@@ -42,15 +42,35 @@ define(
                 ;
             }])
             .run(['$rootScope', '$location', 'storage.serv', function ($rootScope, $location, storage) {
-                $rootScope.$on("$routeChangeStart", function (event, next, current) {
 
+
+                $rootScope.$on("$routeChangeStart", function (event, next, current) {
                     if (!storage.getValue('user')) {
                         $location.path("/start");
                     } else if (!storage.getValue('bucketlist') || isEmpty(storage.getValue('bucketlist'))) { // Check if exist or is empty
                         $location.path("/select");
                     }
-
                 });
+
+
+                /**
+                 * SafeApply
+                 *
+                 * @param fn
+                 * @returns {*}
+                 */
+                $rootScope.safeApply = function (fn) {
+                    var phase = this.$root.$$phase;
+
+                    if (phase == '$apply' || phase == '$digest') {
+                        if (fn && (typeof(fn) === 'function')) {
+                            return fn();
+                        }
+                    } else {
+                        return this.$apply(fn);
+                    }
+                };
+
             }])
         ;
 

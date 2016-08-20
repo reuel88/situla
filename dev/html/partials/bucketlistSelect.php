@@ -4,7 +4,8 @@
  * User: reuelteodoro
  * Date: 21/08/2016
  * Time: 3:02 PM
- */?>
+ */
+?>
 
 <div class="bucketlist-add active">
     <div class="bucketlist-add-modal">

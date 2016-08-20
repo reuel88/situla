@@ -27,7 +27,7 @@ define(['angular', 'directives/_module'], function (angular, directive) {
 
                             model.assign(scope, this.src);
 
-                            scope.$apply(function () {});
+                            scope.safeApply(function () {});
                         });
 
                         image.src = useBlob ? window.URL.createObjectURL(file) : reader.result; // Activates the load event
@@ -40,8 +40,6 @@ define(['angular', 'directives/_module'], function (angular, directive) {
 
 
                 elem.on("change", function () {
-                    console.log('change');
-
                     var files = this.files;
                     var errors = "";
                     if (!files) {

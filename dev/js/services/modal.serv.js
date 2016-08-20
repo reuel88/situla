@@ -13,7 +13,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
 
                     $parse('modal')(scope).close();
 
-                    scope.$apply(function () {
+                    scope.safeApply(function () {
                     }); // Apply the close
                 });
             }
