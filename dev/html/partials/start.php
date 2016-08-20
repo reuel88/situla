@@ -32,7 +32,7 @@
 
                         <div class="input-group input-select">
                             <span class="input-group-addon">$</span>
-                            <input type="text" name="income" id="income" class="form-control" ng-model="user.model.income" ng-change="user.calCashFlow()" currency>
+                            <input type="tel" name="income" id="income" class="form-control" ng-model="user.model.income" ng-change="user.calCashFlow()" currency>
 
 
                             <label for="incomeFreq" class="sr-only">Income Frequency</label>
@@ -54,7 +54,7 @@
 
                         <div class="input-group input-select">
                             <span class="input-group-addon">$</span>
-                            <input type="text" name="expense" id="expense" class="form-control" ng-model="user.model.expense" ng-change="user.calCashFlow()" currency>
+                            <input type="tel" name="expense" id="expense" class="form-control" ng-model="user.model.expense" ng-change="user.calCashFlow()" currency>
 
                             <label for="expenseFreq" class="sr-only">Expense Frequency</label>
                             <select name="expenseFreq" id="expenseFreq" class="form-control" ng-model="user.model.expenseFreq" ng-change="user.calCashFlow()" convert-to-integer>

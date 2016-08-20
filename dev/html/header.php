@@ -25,7 +25,7 @@
             <div id="site-navbar" class="">
                 <div class="container-fluid">
 
-                    <div class="tbl-sm">
+                    <div class="tbl">
                         <div class="tbl-cell middle">
                             <header class="navbar-header" itemscope itemtype="http://schema.org/WPHeader">
                                 <a href="#/" class="h1 site-title">Situla List</a>

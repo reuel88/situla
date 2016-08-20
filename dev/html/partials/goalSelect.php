@@ -9,6 +9,8 @@
 
 
 <section id="bucketlist-selection">
+    <a href="#/" class="btn btn-link" ng-show="bucketlistAvailable()"><i class="glyphicon glyphicon-chevron-left"></i> Back to Bucketlist</a>
+
     <header class="page-header">
         <h1 class="page-title text-center">Add a Goal</h1>
     </header>

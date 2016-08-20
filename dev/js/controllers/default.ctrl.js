@@ -6,9 +6,6 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
 
     controller.controller('default.ctrl', ['$scope', '$location', '$routeParams', 'bucketlist.fctry',  'user.fctry', 'goal.serv','storage.serv', function ($scope, $location, $routeParams, bucketlist,  user, goal, storage) {
 
-
-        console.log($routeParams.m);
-
         /**
          * Get User
          */
@@ -46,7 +43,6 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
         $scope.bucketlistAvailable = function () {
             return storage.getValue('bucketlist') ? true : false;
         }
-
 
     }]);
 
