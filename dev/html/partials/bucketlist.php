@@ -27,13 +27,13 @@
                     <div class="tbl-cell">
 
                         <div class="form-group hoverable">
-                            <label for="title" class="control-label">Title <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Title of your Goal"><span class="sr-only">description</span></i></label>
+                            <label for="title" class="control-label">Title*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Title of your Goal"><span class="sr-only">description</span></i></label>
                             <input type="text" name="title" id="title" class="form-control">
                         </div>
                     </div>
                     <div class="tbl-cell">
                         <div class="form-group hoverable">
-                            <label for="total-cost" class="control-label">Total Cost <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Total Cost of your Goal"><span class="sr-only">description</span></i></label>
+                            <label for="total-cost" class="control-label">Total Cost*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Total Cost of your Goal"><span class="sr-only">description</span></i></label>
 
                             <div class="input-group">
                                 <span class="input-group-addon">$</span>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="tbl-cell hoverable">
                         <div class="form-group">
-                            <label for="target-date" class="control-label">Target Date <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
+                            <label for="target-date" class="control-label">Target Date*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
                             <input type="text" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker>
                         </div>
                     </div>
