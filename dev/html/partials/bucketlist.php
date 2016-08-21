@@ -40,7 +40,7 @@
                         </div>
 
                     </div>
-                    <div class="bucketlist-list-progress" style=" width: {{v.alreadySaved / v.totalCost * 100}}%;"></div>
+                    <div class="bucketlist-list-progress" ng-style="{ width: v.alreadySaved / v.totalCost * 100 + '%'}"></div>
                     <div class="img-overlay"></div>
                 </article>
             </div>

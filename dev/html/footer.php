@@ -11,7 +11,12 @@
     <div id="site-footer" class="tbl-cell">
         <footer>
                <div class="container">
-                   <p class="text-center">Created by Reuel Teodoro</p>
+                   <p class="text-center">Created by Reuel Teodoro |  <a href="https://github.com/reuel88/situla">
+                         Fork it on GitHub
+                       </a></p>
+
+
+
                </div>
         </footer>
     </div>

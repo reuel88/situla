@@ -128,7 +128,7 @@ html, body {
 }
 
 body.modal-open {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 /**
@@ -969,9 +969,9 @@ table {
 
 // Comment
 .comments {
-  .img-container.ng-hide + .comment-img-content {
+  .img-container.ng-hide + .comment-img-content, .min {
     height: 33px !important;
-    min-height: auto;
+    min-height: inherit !important;
   }
 
   .img-container.ng-hide + .comment-img-content .container-fluid {

@@ -36,8 +36,8 @@
                                 <div class="sr-only sr-only-focusable"><a href="#site-content" title="Skip to content">Skip to content</a></div>
                                 <ul class="">
                                     <li>
-                                        <a class="btn" itemprop="url" href="https://github.com/reuel88/situla">
-                                            <span itemprop="name">Fork it on GitHub</span>
+                                        <a class="btn" itemprop="url" href="#/profile">
+                                            <span itemprop="name">Profile</span>
                                         </a>
                                     </li>
                                 </ul>

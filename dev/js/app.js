@@ -30,10 +30,10 @@ define(
                         templateUrl: "html/partials/goalSelect.php",
                         controller: 'default.ctrl'
                     })
-                    // .when("/:m", {
-                    //     templateUrl: "html/partials/bucketlist.php",
-                    //     controller: 'default.ctrl'
-                    // })
+                    .when("/profile", {
+                        templateUrl: "html/partials/profile.php",
+                        controller: 'default.ctrl'
+                    })
                     .when("/", {
                         templateUrl: "html/partials/bucketlist.php",
                         controller: 'default.ctrl'

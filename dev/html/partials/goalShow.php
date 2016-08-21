@@ -20,7 +20,7 @@
                                 <form class="" enctype="multipart/form-data" ng-submit="modal.submit()">
                                     <div class="tools visible-xs-block visible-sm-block visible-md-block visible-lg-block clearfix">
                                         <input type="button" value="Delete your Goal" class="btn btn-link" ng-show="!modal.model.new" ng-click="modal.delete()">
-                                        <button type="button"class="close btn btn-default" ng-click="modal.close()"><span class="sr-only">Close</span> <i class="glyphicon glyphicon-remove"></i></button>
+                                        <button type="button" class="close btn btn-default" ng-click="modal.close()"><span class="sr-only">Close</span> <i class="glyphicon glyphicon-remove"></i></button>
                                     </div>
 
 
@@ -81,7 +81,7 @@
                                     <!-- start of, hr-->
                                     <div class="non-hoverable-side">
                                         <div class="bucketlist-list-progress" ng-show="modal.model.alreadySaved && !modal.model.new && !modal.attrs.editing">
-                                            <div class="bar" style=" width: {{modal.model.alreadySaved / modal.model.totalCost * 100}}%;"></div>
+                                            <div class="bar" ng-style=" {width:modal.model.alreadySaved / modal.model.totalCost * 100 +'%'}"></div>
                                             <p ng-show="(((modal.model.alreadySaved || 0)/ (modal.model.totalCost|| 0) * 100) >= 100)"><i class="glyphicon glyphicon-ok"></i></p>
                                         </div>
                                     </div>
@@ -169,7 +169,7 @@
                                         <input type="button" value="Cancel" class=" btn btn-link" ng-show="modal.model.new " ng-click="modal.close()">
                                         <input type="button" value="Cancel" class=" btn btn-link" ng-show="!modal.model.new || modal.attrs.editing" ng-click="modal.cancel();">
 
-                                        <hr >
+                                        <hr>
                                     </div>
                                     <!-- esnd of, save-->
 
