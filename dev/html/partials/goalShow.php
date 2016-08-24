@@ -112,7 +112,6 @@
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing ">
                                             <label for="total-cost" class="control-label">Total Cost*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Total Cost of your Goal"><span class="sr-only">description</span></i></label>
-
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
                                                 <input type="tel" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
@@ -133,7 +132,10 @@
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing">
                                             <label for="target-date" class="control-label">Target Date*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
-                                            <input type="text" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker>
+                                            <div class="date-control">
+                                                <input type="date" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker>
+                                                <div class="cover form-control">{{modal.model.date | date : 'MMM d, y' }}</div>
+                                            </div>
                                         </div>
 
                                     </div>

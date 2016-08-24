@@ -2,7 +2,7 @@
  * Created by reuelteodoro on 16/08/2016.
  */
 
-define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, service, isEmpty) {
+define(['angular', 'services/_module', 'utils/isEmpty', 'utils/climbTree'], function (angular, service, isEmpty, climbTree) {
 
     service.directive('modal', ['$parse', 'modal.serv', function ($parse, modal) {
         return {
@@ -93,7 +93,9 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
 
             obj._original = model; // sets the model
 
-            obj.model = angular.copy(model); // sets the model
+            obj.model = climbTree(angular.copy(model));
+
+            // obj.model = angular.copy(model); // sets the model
         };
 
         /**
@@ -107,7 +109,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
 
             obj._original = model; // sets the model
 
-            obj.model = angular.copy(model); // sets the model
+            obj.model = climbTree(angular.copy(model)); // sets the model
         };
 
         /**
@@ -116,7 +118,9 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
          * @param data
          * @param model
          */
-        obj.refreshAction = function(data, model){
+        obj.refreshAction = function (data, model) {
+
+
             obj.refresh(data, model);
             $parse('todo')($rootScope.$$childHead).refresh(data, model);
             $parse('comment')($rootScope.$$childHead).refresh(data, model);

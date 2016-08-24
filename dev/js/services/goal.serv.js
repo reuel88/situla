@@ -116,16 +116,6 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                     var nowDate = new Date();
                     var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 
-                    //
-                    // var dateSet = new Date(k[i].date);
-                    // var target = new Date(dateSet.getFullYear(), dateSet.getMonth(), dateSet.getDate(), 0, 0, 0, 0);
-                    //
-                    //
-                    // /**
-                    //  * don't calculate if the target date is today
-                    //  */
-                    // if(today.getTime() === target.getTime()) continue;
-
 
                     // The current outstanding about I currently own
                     var remainingAmount = parseFloat(k[i].totalCost || 0) - parseFloat(k[i].alreadySaved || 0);

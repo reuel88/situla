@@ -13,7 +13,7 @@
     </header>
 
     <ol class="todo-list">
-        <li  ng-class="v.editing? 'active-hoverable' : 'expand-hoverable'" ng-repeat="(k,v) in modal.model.todo track by $index">
+        <li ng-class="v.editing? 'active-hoverable' : 'expand-hoverable'" ng-repeat="(k,v) in modal.model.todo track by $index">
 
             <div class="tbl">
                 <div class="tbl-row">
@@ -27,7 +27,7 @@
 
                     <div class="tbl-cell middle width-100">
                         <div class="tbl pointer" ng-class="{'done': v.done}" ng-click="todo.edit(modal.model.todo, k)" ng-show="!v.editing">
-                            <div class="tbl-row" >
+                            <div class="tbl-row">
                                 <div class="tbl-cell">{{v.label}}</div>
                                 <div class="tbl-cell right">{{v.date | date : 'MMM d, y'}}</div>
                             </div>
@@ -41,7 +41,10 @@
 
                             <div class="form-group">
                                 <label for="todo-date" class="control-date sr-only">Date</label>
-                                <input type="text" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker>
+                                <div class="date-control">
+                                    <input type="date" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker>
+                                    <div class="cover form-control">{{todo.temp.date | date : 'MMM d, y'}}</div>
+                                </div>
                             </div>
 
                             <div class="tbl">
@@ -63,17 +66,20 @@
 
         <li>
             <form class="non-hoverable" ng-show="todo.attrs.new" ng-submit="todo.new()">
-                    <div class="form-group">
-                        <label for="todo-label" class="control-label sr-only">Label</label>
-                        <input type="text" placeholder="Label" id="todo-label" class="form-control" ng-model="todo.temp.label">
-                    </div>
+                <div class="form-group">
+                    <label for="todo-label" class="control-label sr-only">Label</label>
+                    <input type="text" placeholder="Label" id="todo-label" class="form-control" ng-model="todo.temp.label">
+                </div>
 
-                    <div class="form-group">
-                        <label for="todo-date" class="control-date sr-only">Date</label>
-                        <input type="text" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker>
+                <div class="form-group">
+                    <label for="todo-date" class="control-date sr-only">Date</label>
+                    <div class="date-control">
+                        <input type="date" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker>
+                        <div class="cover form-control">{{todo.temp.date | date : 'MMM d, y'}}</div>
                     </div>
-                    <input type="submit" value="Create" class="btn btn-primary">
-                    <input type="button" value="Cancel" class="btn btn-link" ng-click="todo.attrs.new = false">
+                </div>
+                <input type="submit" value="Create" class="btn btn-primary">
+                <input type="button" value="Cancel" class="btn btn-link" ng-click="todo.attrs.new = false">
             </form>
 
             <input type="button" value="Add New Item..." class="btn btn-link" ng-click="todo.attrs.new = true;">

@@ -14,10 +14,10 @@ define(['angular', 'jquery', 'directives/_module'], function (angular, $, direct
 
 
                 // This is and init of the current value
-                ctrl.$formatters.unshift(function (a) {
-                    if (typeof ctrl.$modelValue == 'undefined' || !ctrl.$modelValue ) return ctrl.$modelValue;
+                ctrl.$formatters.unshift(function (modelValue) {
+                    if (typeof modelValue == 'undefined' || !modelValue ) return modelValue;
 
-                    var plainNumber = ctrl.$modelValue.toString().replace(/[^\d|\.+]/g, '');
+                    var plainNumber = modelValue.toString().replace(/[^\d|\.+]/g, '');
 
 
                     return formatNumber(plainNumber);

@@ -2,7 +2,7 @@
  * Created by reuelteodoro on 13/08/2016.
  */
 
-define(['angular', 'services/_module'], function (angular, service) {
+define(['angular', 'services/_module', 'utils/climbTree'], function (angular, service, climbTree) {
 
     service.service('comment.serv', ['$rootScope', '$parse', 'storage.serv', function ($rootScope, $parse, storage) {
 
@@ -72,7 +72,7 @@ define(['angular', 'services/_module'], function (angular, service) {
 
             obj._original = model; // sets the model
 
-            obj.model = angular.copy(model); // sets the model
+            obj.model = climbTree(angular.copy(model)); // sets the model
         };
 
         /**
@@ -86,13 +86,13 @@ define(['angular', 'services/_module'], function (angular, service) {
 
             obj._original = model; // sets the model
 
-            obj.model = angular.copy(model); // sets the model
+            obj.model = climbTree(angular.copy(model)); // sets the model
         };
 
-        obj.refreshAction = function () {
-            obj.refresh(obj._data, obj.model);
-            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj.model);
-            $parse('todo')($rootScope.$$childHead).refresh(obj._data, obj.model);
+        obj.refreshAction = function (data, model) {
+            obj.refresh(data, model);
+            $parse('modal')($rootScope.$$childHead).refresh(data, model);
+            $parse('todo')($rootScope.$$childHead).refresh(data, model);
 
             $rootScope.safeApply(function () {});
         };
@@ -128,7 +128,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * refresh variables to match the saved data
              */
-            obj.refreshAction();
+            obj.refreshAction(obj._data, obj._data[index]);
 
         };
 
@@ -187,7 +187,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * refresh variables to match the saved data
              */
-            obj.refreshAction();
+            obj.refreshAction(obj._data, obj._data[index]);
 
             obj.attrs.isEditing = false;
         };
@@ -234,7 +234,7 @@ define(['angular', 'services/_module'], function (angular, service) {
                 /**
                  * refresh variables to match the saved data
                  */
-                obj.refreshAction();
+                obj.refreshAction(obj._data, obj._data[index]);
 
 
                 obj.attrs.isEditing = false;

@@ -2,7 +2,7 @@
  * Created by reuelteodoro on 13/08/2016.
  */
 
-define(['angular', 'services/_module'], function (angular, service) {
+define(['angular', 'services/_module', 'utils/climbTree'], function (angular, service, climbTree) {
 
     service.service('todo.serv', ['$rootScope', '$parse', 'storage.serv', function ($rootScope, $parse, storage) {
 
@@ -66,7 +66,8 @@ define(['angular', 'services/_module'], function (angular, service) {
 
             obj._original = model; // sets the model
 
-            obj.model = angular.copy(model); // sets the model
+            obj.model = climbTree(angular.copy(model)); // sets the model
+
         };
 
         /**
@@ -80,17 +81,18 @@ define(['angular', 'services/_module'], function (angular, service) {
 
             obj._original = model; // sets the model
 
-            obj.model = angular.copy(model); // sets the model
+            obj.model = climbTree(angular.copy(model)); // sets the model
+
+
         };
 
-        obj.refreshAction = function () {
-
+        obj.refreshAction = function (data, model) {
             /**
              * refresh variables to match the saved data
              */
-            obj.refresh(obj._data, obj.model);
-            $parse('modal')($rootScope.$$childHead).refresh(obj._data, obj.model);
-            $parse('comment')($rootScope.$$childHead).refresh(obj._data, obj.model);
+            obj.refresh(data, model);
+            $parse('modal')($rootScope.$$childHead).refresh(data, model);
+            $parse('comment')($rootScope.$$childHead).refresh(data, model);
 
             $rootScope.safeApply(function () {});
         };
@@ -126,7 +128,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * Refresh for that minty goodness
              */
-            obj.refreshAction();
+            obj.refreshAction(obj._data, obj._data[index]);
 
             /**
              * Close
@@ -160,7 +162,7 @@ define(['angular', 'services/_module'], function (angular, service) {
             model.editing = true;
             _itemOriginal = model;
 
-            obj.temp = angular.copy(model);
+            obj.temp = climbTree(angular.copy(model));
         };
 
         /**
@@ -201,7 +203,6 @@ define(['angular', 'services/_module'], function (angular, service) {
             var index = obj._data.indexOf(obj._original);
             if (index !== -1) obj._data[index].todo = angular.copy(_itemData);
 
-
             /**
              * Save to storage
              */
@@ -211,7 +212,8 @@ define(['angular', 'services/_module'], function (angular, service) {
             /**
              * Refresh for that minty goodness
              */
-            obj.refreshAction();
+            obj.refreshAction(obj._data, obj._data[index]);
+
 
 
             obj.attrs.isEditing = false;
@@ -256,7 +258,7 @@ define(['angular', 'services/_module'], function (angular, service) {
                 /**
                  * Refresh for that minty goodness
                  */
-                obj.refreshAction();
+                obj.refreshAction(obj._data, obj._data[index]);
 
 
                 obj.attrs.isEditing = false;

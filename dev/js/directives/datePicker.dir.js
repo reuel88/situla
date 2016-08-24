@@ -3,32 +3,36 @@
  */
 
 
-define(['angular', 'jquery', 'directives/_module'], function (angular, $, directive) {
+define(['angular', 'jquery', 'directives/_module' , 'utils/isMobile'], function (angular, $, directive, isMobile) {
 
-    directive.directive('datePicker', ['$filter', function ($filter) {
-
+    directive.directive('datePicker', ['$parse', function ($parse) {
         return {
             require: '?ngModel', // ctrl
             link: function (scope, elem, attrs, ctrl) {
 
                 var nowDate = new Date();
-                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
-
+                var tomorrow = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 1, 0, 0, 0, 0);
 
                 var opt = {
                     autoclose: true,
-                    startDate: today,
-                    format: 'M dd, yyyy',
+                    // startDate: tomorrow,
+                    format: 'yyyy-mm-dd',
                     todayHighlight: true,
                     startView: 1
                 };
 
-                if(attrs.datePicker){
-                    opt = $.extend({}, opt , JSON.parse(attrs.datePicker));
+                if (attrs.datePicker) {
+                    opt = $.extend({}, opt, JSON.parse(attrs.datePicker));
                 }
 
 
-                $(elem).datepicker(opt);
+                /**
+                 * Only adds datepicker on mobile
+                 */
+                if(!isMobile) {
+                    $(elem).datepicker(opt);
+                }
+
 
             }
         }

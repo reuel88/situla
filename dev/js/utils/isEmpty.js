@@ -6,7 +6,6 @@
 define([], function () {
     var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-
     return function isEmpty(obj) {
 
         // null and undefined are "empty"
