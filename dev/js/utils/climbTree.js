@@ -19,7 +19,6 @@ define([], function () {
 
             output = [];
             for (var i = 0, v = tree; i < v.length; i++) {
-
                 if ( (tree[i] && tree[i].constructor !== Array ) && (typeof tree[i] !== 'object')) {
                     output[i] = tree[i];
                 } else {
@@ -31,7 +30,11 @@ define([], function () {
             for (var key in tree) {
                 if (tree.hasOwnProperty(key)) {
                     if ( (tree[key] && tree[key].constructor !== Array ) && (typeof tree[key] !== 'object')) {
-                        if(key == 'date'){
+
+                        /**
+                         * Check if is date
+                         */
+                        if((Date.parse(tree[key] )>= 0)){
                             tree[key] = new Date (tree[key]);
                         }
                         output[key] = tree[key];

@@ -170,7 +170,6 @@
                                         <input type="submit" value="Save" class="btn btn-primary">
                                         <input type="button" value="Cancel" class=" btn btn-link" ng-show="modal.model.new " ng-click="modal.close()">
                                         <input type="button" value="Cancel" class=" btn btn-link" ng-show="!modal.model.new || modal.attrs.editing" ng-click="modal.cancel();">
-
                                         <hr>
                                     </div>
                                     <!-- esnd of, save-->
