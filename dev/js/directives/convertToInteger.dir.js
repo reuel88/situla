@@ -20,6 +20,4 @@ define(['angular', 'jquery', 'directives/_module'], function (angular, $, direct
         }
 
     }]);
-
-
 });

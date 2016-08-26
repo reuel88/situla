@@ -7,6 +7,8 @@
  */
 ?>
 
+
+
 <section class="todo" ng-show="!modal.model.new ">
     <header class="non-hoverable-side">
         <h2 class="h3">Todo</h2>
@@ -43,7 +45,7 @@
                                 <label for="todo-date" class="control-date sr-only">Date</label>
                                 <div class="date-control">
                                     <input type="date" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker>
-                                    <div class="cover form-control">{{todo.temp.date | date : 'MMM d, y'}}</div>
+                                    <div class="cover form-control" contenteditable data-text="Date">{{todo.temp.date | date : 'MMM d, y'}}</div>
                                 </div>
                             </div>
 
@@ -75,7 +77,7 @@
                     <label for="todo-date" class="control-date sr-only">Date</label>
                     <div class="date-control">
                         <input type="date" placeholder="Date" id="todo-date" class="form-control" ng-model="todo.temp.date" date-picker>
-                        <div class="cover form-control">{{todo.temp.date | date : 'MMM d, y'}}</div>
+                        <div class="cover form-control" contenteditable data-text="Date">{{todo.temp.date | date : 'MMM d, y'}}</div>
                     </div>
                 </div>
                 <input type="submit" value="Create" class="btn btn-primary">

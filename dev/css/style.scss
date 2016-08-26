@@ -191,6 +191,17 @@ input[type="checkbox"] {
 /**
  *  -------------------------------------------------------------------------
  *
+ *  Contenteditable
+ */
+
+[contenteditable]:empty:not(:focus):before {
+  content: attr(data-text);
+  color: $input-color-placeholder;
+}
+
+/**
+ *  -------------------------------------------------------------------------
+ *
  *  Margin
  */
 .margin-0 {
@@ -499,7 +510,6 @@ table {
   }
 }
 
-
 /**
  *  -------------------------------------------------------------------------
  *
@@ -593,19 +603,19 @@ table {
  *
  *  Date Control
  */
-.date-control{
+.date-control {
   position: relative;
 
   .input-group & {
-    display:table-cell;
+    display: table-cell;
 
-    input, .cover{
+    input, .cover {
       border-radius: 0;
     }
   }
 
-  input{
-    opacity:0;
+  input {
+    opacity: 0;
     position: relative;
     outline: none;
     color: white;
@@ -613,37 +623,36 @@ table {
     z-index: 2;
   }
 
-  input:focus + .cover{
+  input:focus + .cover {
     border-color: $input-border-focus;
     outline: 0;
-    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(red($input-border-focus), green($input-border-focus), blue($input-border-focus), .6));
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(red($input-border-focus), green($input-border-focus), blue($input-border-focus), .6));
   }
 
-  input:focus + .cover:after{
+  input:focus + .cover:after {
     content: " ";
-    position:absolute;
-    background:black;
-    display:block;
-    height:20px;
-    width:1px;
-    top:6px;
-    z-index:4;
+    position: absolute;
+    background: black;
+    display: block;
+    height: 20px;
+    width: 1px;
+    top: 6px;
+    z-index: 4;
     animation: 1s blink step-end infinite;
   }
-  .cover{
+  .cover {
     position: absolute;
-    display:block;
+    display: block;
     height: 100%;
-    width:100%;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    z-index:1;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
   }
 
 }
-
 
 /**
  *  -------------------------------------------------------------------------
@@ -741,12 +750,12 @@ table {
 */
 .bucketlist-select {
 
-  &.active{
+  &.active {
     display: block;
     height: 128px;
   }
 
-  &.active .bucketlist-add-modal{
+  &.active .bucketlist-add-modal {
     background: rgba(0, 0, 0, 0.5);
     bottom: 0;
     left: 0;
@@ -770,13 +779,12 @@ table {
     }
   }
 
-  &.active .save{
+  &.active .save {
     display: inline-block;
   }
-  &.active .cancel{
+  &.active .cancel {
     display: inline-block;
   }
-
 
   .container {
     padding: 0;
@@ -789,10 +797,10 @@ table {
     margin-bottom: 0;
   }
 
-  .save{
+  .save {
     display: block;
   }
-  .cancel{
+  .cancel {
     display: none;
   }
 }

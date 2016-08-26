@@ -33,7 +33,7 @@
 
                                     <div class="input-group">
                                         <span class="input-group-addon">$</span>
-                                        <input type="tel" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
+                                        <input type="text" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
                                     </div>
                                 </div>
                             </div>

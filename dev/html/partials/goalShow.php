@@ -106,7 +106,7 @@
 
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <input type="tel" name="already-saved" id="already-saved" class="form-control" ng-model="modal.model.alreadySaved" currency>
+                                                <input type="text" name="already-saved" id="already-saved" class="form-control" ng-model="modal.model.alreadySaved" currency>
                                             </div>
                                         </div>
 
@@ -114,7 +114,7 @@
                                             <label for="total-cost" class="control-label">Total Cost*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Total Cost of your Goal"><span class="sr-only">description</span></i></label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <input type="tel" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
+                                                <input type="text" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
                                             </div>
                                         </div>
 
@@ -134,7 +134,7 @@
                                             <label for="target-date" class="control-label">Target Date*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
                                             <div class="date-control">
                                                 <input type="date" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker>
-                                                <div class="cover form-control">{{modal.model.date | date : 'MMM d, y' }}</div>
+                                                <div class="cover form-control" contenteditable data-text="Date">{{modal.model.date | date : 'MMM d, y' }}</div>
                                             </div>
                                         </div>
 
@@ -155,7 +155,7 @@
 
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="tel" name="contribute" id="contribute" class="form-control" ng-model="modal.model._contribute" currency>
+                                                    <input type="text" name="contribute" id="contribute" class="form-control" ng-model="modal.model._contribute" currency>
                                                     <div class="input-group-btn">
                                                         <input type="button" value="Save" class="btn btn-primary" ng-click="modal.contribute()">
                                                     </div>
@@ -177,7 +177,7 @@
                                 </form>
 
 
-                                <div ng-show="!modal.model.new && !modal.attrs.editing">
+                                <div ng-if="!modal.model.new && !modal.attrs.editing">
                                     <?php include 'todoList.php' ?>
 
                                     <hr ng-show="!modal.model.new ">
