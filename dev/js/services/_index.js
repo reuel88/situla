@@ -6,6 +6,7 @@ require([
     'services/comment.serv',
     'services/formatNumber.serv',
     'services/goal.serv',
+    'services/loop.serv',
     'services/modal.serv',
     'services/storage.serv',
     'services/todo.serv',

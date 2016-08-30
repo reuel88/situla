@@ -4,7 +4,7 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('default.ctrl', ['$scope', '$location', '$routeParams', 'bucketlist.fctry',  'user.fctry', 'goal.serv','storage.serv', function ($scope, $location, $routeParams, bucketlist,  user, goal, storage) {
+    controller.controller('default.ctrl', ['$scope', '$location', '$routeParams', 'bucketlist.fctry',  'user.fctry', 'goal.serv','storage.serv','loop.serv', function ($scope, $location, $routeParams, bucketlist,  user, goal, storage, loop) {
 
         /**
          * Get User
@@ -42,7 +42,63 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
          */
         $scope.bucketlistAvailable = function () {
             return storage.getValue('bucketlist') ? true : false;
-        }
+        };
+
+        loop.create('add', {
+            model: {
+                val: 0
+            },
+            loop: function (model) {
+                model.val += 1;
+
+                return model;
+            },
+            stop: function (model) {
+                return (model.val >= 10);
+            }
+        });
+
+        loop.create('subtract', {
+            model: {
+                val: 10
+            },
+            loop: function (model) {
+                model.val -= 1;
+
+                return model;
+            },
+            stop: function (model) {
+                return (model.val <= 5);
+            }
+        });
+
+
+
+        console.log(loop.get('add'));
+        console.log(loop.get('subtract'));
+
+        loop.update('subtract', {
+            model: {
+                val: 1
+            },
+            preLoop: function(model){
+                return model;
+            },
+            loop: function (model) {
+                model.val += 1;
+
+                return model;
+            },
+            postLoop: function(model){
+                return model;
+            },
+            stop: function (model) {
+                return (model.val % 24 == 0);
+            }
+        });
+
+        console.log(loop.get('add'));
+        console.log(loop.get('subtract'));
 
     }]);
 

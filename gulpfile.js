@@ -35,7 +35,7 @@ gulp.task('default', function () {
         }
         // ... more require.js options
     })
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('./public/js')); // pipe it to the output DIR
 
     gulp.src('dev/components/requirejs/require.js')

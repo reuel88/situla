@@ -73,7 +73,6 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             obj.refresh('this');
         };
 
-
         obj.contribute = function () {
 
             var tribute = angular.copy(obj.contributeModel.contribute);
@@ -107,6 +106,7 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
             if (confirm('Are you sure? We will push back the dates of your goals.')) {
 
                 for (var i = 0, k = obj._listData._data; i < k.length; i++) {
+
                     // don't calculate if infinity
                     if (obj.model.totalWeeklyContribution == 'Infinity') break;
 
@@ -137,12 +137,13 @@ define(['angular', 'services/_module', 'utils/isEmpty'], function (angular, serv
                     // the amount of week I need to add to current date to achieve this goal
                     var weeksToAdd = Math.ceil(remainingAmount / (tributePercent * obj.model.weeklyCashFlow));
 
-
                     var goalDate = new Date().setDate(today.getDate() + (weeksToAdd * 7));
 
+                    /**
+                     * FIXME: Breaks when date is to large.
+                     */
 
                     obj._listData._data[i].date = angular.copy(new Date(goalDate));
-
                 }
 
                 /**
