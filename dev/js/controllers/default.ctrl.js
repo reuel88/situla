@@ -44,7 +44,7 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
             return storage.getValue('bucketlist') ? true : false;
         };
 
-        loop.create('add', {
+        loop.set('add', {
             model: {
                 val: 0
             },
@@ -58,7 +58,7 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
             }
         });
 
-        loop.create('subtract', {
+        loop.set('subtract', {
             model: {
                 val: 10
             },
@@ -69,31 +69,6 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
             },
             stop: function (model) {
                 return (model.val <= 5);
-            }
-        });
-
-
-
-        console.log(loop.get('add'));
-        console.log(loop.get('subtract'));
-
-        loop.update('subtract', {
-            model: {
-                val: 1
-            },
-            preLoop: function(model){
-                return model;
-            },
-            loop: function (model) {
-                model.val += 1;
-
-                return model;
-            },
-            postLoop: function(model){
-                return model;
-            },
-            stop: function (model) {
-                return (model.val % 24 == 0);
             }
         });
 

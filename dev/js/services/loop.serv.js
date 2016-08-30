@@ -12,7 +12,6 @@ define(['angular', 'services/_module'], function (angular, service) {
 
         var obj = {};
 
-
         function run() {
             /**
              * Does pre loop setup
@@ -32,8 +31,6 @@ define(['angular', 'services/_module'], function (angular, service) {
                 for (var c = 0, d = objects; c < d.length; c++) {
 
                     if (!objects[c].stop(objects[c].model)) { // Test if the loop for this object should stop
-
-                        console.log(objects[c]._key, objects[c].model.val);
 
                         objects[c].model = dictionary[objects[c]._key].model = objects[c].loop(objects[c].model);
                     } else { // if stopped add to count
@@ -61,10 +58,20 @@ define(['angular', 'services/_module'], function (angular, service) {
 
         obj = {
             _run: true,
-            create: function (key, obj) {
+            set: function (key, obj) {
                 this._run = true;
 
-                if (!dictionary[key]) {
+                if (dictionary[key]) { // update
+                    obj._key = key;
+
+                    dictionary[key] = obj;
+
+                    var index = objects.map(function (x) {
+                        return x._key;
+                    }).indexOf(key);
+
+                    objects[index] = obj;
+                } else { // create
                     obj._key = key;
 
                     dictionary[key] = obj;
@@ -80,43 +87,12 @@ define(['angular', 'services/_module'], function (angular, service) {
                     this._run = false;
                 }
 
-                if (dictionary[key]) {
-                    var copy = dictionary[key];
-
-                    return copy;
-                }
-
-
-                return this;
-            },
-            update: function (key, obj) {
-                this._run = true;
-
-                if (dictionary[key]) { // update
-                    obj._key = key;
-
-                    dictionary[key] = obj;
-
-                    console.log(objects);
-
-                    var index = objects.map(function (x) {
-                        return x._key;
-                    }).indexOf(key);
-
-
-                    objects[index] = obj;
-                } else { // create
-                    obj._key = key;
-
-                    dictionary[key] = obj;
-
-                    objects.push(obj);
-                }
+                if (dictionary[key])
+                    return dictionary[key];
 
                 return this;
             }
         };
-
 
         return obj;
 
