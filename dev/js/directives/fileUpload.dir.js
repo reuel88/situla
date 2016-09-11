@@ -1,5 +1,8 @@
 /**
  * Created by reuelteodoro on 15/08/2016.
+ * 
+ * Based on this stackOverflow Answer
+ * http://stackoverflow.com/questions/12570834/how-to-preview-image-get-file-size-image-height-and-width-before-upload#answer-12570870
  */
 
 
