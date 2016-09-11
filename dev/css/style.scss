@@ -889,6 +889,119 @@ table {
   }
 }
 
+.bucketlist-list-item-v2 {
+  cursor: pointer;
+  display: table;
+  padding: 0;
+  position: relative;
+  width: 100%;
+
+  .bucketlist-list-item-img, .bucketlist-list-item-content {
+    display: table-cell;
+  }
+  .bucketlist-list-item-img {
+    width: 30%;
+  }
+
+  .img-overlay {
+    background: none;
+  }
+
+  .bucketlist-list-item-content {
+    position: relative;
+    padding: floor(($grid-gutter-width / 2));
+  }
+
+  .bucketlist-list-item-badges {
+    left: floor(($grid-gutter-width / 2));
+    position: absolute;
+    right: floor(($grid-gutter-width / 2));
+    top: floor(($grid-gutter-width / 2));
+    z-index: 200;
+  }
+  .bucketlist-list-item-badges p {
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    &:hover .sr-only {
+      margin: 0 5px;
+      position: relative;
+    }
+    &:hover i {
+      margin: 0 3px;
+    }
+  }
+
+  .bucketlist-list-item-badges p.complete {
+    background: $brand-success;
+    -webkit-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.5);
+    i {
+      top: 3px;
+    }
+  }
+  .bucketlist-list-item-badges p.message {
+    background: $brand-danger;
+  }
+
+  .bucketlist-list-item-date {
+    margin-top: 0;
+  }
+  .bucketlist-list-progress {
+    transition: all 0.5s;
+    background: $brand-success;
+    bottom: 0;
+    display: block;
+    height: 5px;
+    left: 0;
+    position: absolute;
+    z-index: 100;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    display: block;
+    margin-bottom: 30px;
+
+    .img-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    &:hover .img-overlay {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .bucketlist-list-item-img {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
+    }
+    .bucketlist-list-item-content, .h4 .small, .bucketlist-list-saving span {
+      color: white;
+    }
+    .bucketlist-list-item-content {
+      display: block;
+      width: 100%;
+    }
+
+    .bucketlist-list-item-content .tbl {
+      min-height: 190px;
+    }
+    .bucketlist-list-item-date {
+      margin-top: 10px;
+    }
+  }
+}
+
 .bucketlist-list-item-add {
   transition: all 0.5s;
   background: $brand-primary;
@@ -913,6 +1026,55 @@ table {
 
   i {
     font-size: $font-size-h1;
+  }
+}
+
+.bucketlist-list-item-add-v2 {
+  background: $brand-primary;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: all 0.5s;
+  width: 100%;
+
+  &:hover {
+    background: $link-hover-color;
+  }
+
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  i {
+    font-size: $font-size-h1;
+  }
+
+  .cell {
+    display: table-cell;
+    padding: floor(($grid-gutter-width / 2));
+    vertical-align: middle;
+  }
+  .left-cell {
+    text-align: center;
+    width: 30%;
+
+  }
+  .bucketlist-list-item-content {
+    display: table;
+    width: 100%;
+
+  }
+  @media (min-width: $screen-sm-min) {
+    padding: floor(($grid-gutter-width / 2));
+    .tbl-sm {
+      min-height: 190px;
+    }
+    .cell {
+      display: block;
+      padding: 0;
+      width: 100%;
+    }
   }
 }
 
