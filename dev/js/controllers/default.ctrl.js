@@ -4,7 +4,7 @@
 
 define(['angular', 'controllers/_module'], function (angular, controller) {
 
-    controller.controller('default.ctrl', ['$scope', '$location', '$routeParams', 'bucketlist.fctry',  'user.fctry', 'goal.serv','storage.serv','loop.serv', function ($scope, $location, $routeParams, bucketlist,  user, goal, storage, loop) {
+    controller.controller('default.ctrl', ['$scope', '$location', '$routeParams', 'bucketlist.fctry',  'user.fctry', 'goal.serv','storage.serv','loopServ', function ($scope, $location, $routeParams, bucketlist,  user, goal, storage, loopServ) {
 
         /**
          * Get User
@@ -44,7 +44,7 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
             return storage.getValue('bucketlist') ? true : false;
         };
 
-        loop.set('add', {
+        loopServ.set('add', {
             model: {
                 val: 0
             },
@@ -58,7 +58,7 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
             }
         });
 
-        loop.set('subtract', {
+        loopServ.set('subtract', {
             model: {
                 val: 10
             },
@@ -72,8 +72,8 @@ define(['angular', 'controllers/_module'], function (angular, controller) {
             }
         });
 
-        console.log(loop.get('add'));
-        console.log(loop.get('subtract'));
+        console.log(loopServ.get('add'));
+        console.log(loopServ.get('subtract'));
 
     }]);
 

@@ -43,7 +43,7 @@ define([], function () {
                         /**
                          * Check if is date
                          */
-                        if ((Date.parse(tree[key]) >= 0)) {
+                        if ((key.toLowerCase().indexOf('date') !== -1) && (Date.parse(tree[key]) >= 0)) {
                             tree[key] = new Date(tree[key]);
                         }
                         output[key] = tree[key];

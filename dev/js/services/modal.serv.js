@@ -97,9 +97,6 @@ define(['angular', 'services/_module', 'utils/isEmpty', 'utils/climbTree'], func
             obj.model = climbTree(angular.copy(model));
             console.log('after',    obj.model);
 
-
-
-
             // obj.model = angular.copy(model); // sets the model
         };
 

@@ -4,7 +4,8 @@
 
 define(['angular', 'services/_module'], function (angular, service) {
 
-    service.service('loop.serv', ['$rootScope', function ($rootScope) {
+
+    service.service('loopServ', ['$rootScope', function ($rootScope) {
 
         var dictionary = {};
 
@@ -12,13 +13,24 @@ define(['angular', 'services/_module'], function (angular, service) {
 
         var obj = {};
 
+        /**
+         * Varaibles used to prevent to many multiple calls
+         */
+        var runTimer; // Timer to help prevent calling run too many times
+        var runDelay = 1000; // waits 1 second (1000ms) before call run command
+
         function run() {
+            var model = {};
+
             /**
              * Does pre loop setup
              */
             for (var a = 0, b = objects; a < b.length; a++) {
-                if (typeof objects[a].preLoop === 'function')
-                    objects[a].model = dictionary[objects[a]._key].model = objects[a].preLoop(objects[a].model)
+                if (typeof objects[a].preLoop === 'function'){
+                    model = objects[a].preLoop(objects[a].model);
+
+                    objects[a].model = dictionary[objects[a]._key].model = (typeof model !== 'undefined') ? model : objects[a].model;
+                }
             }
 
             /**
@@ -30,10 +42,14 @@ define(['angular', 'services/_module'], function (angular, service) {
 
                 for (var c = 0, d = objects; c < d.length; c++) {
 
-                    if (!objects[c].stop(objects[c].model)) { // Test if the loop for this object should stop
+                    var stop = objects[c].stop(objects[c].model);
 
-                        objects[c].model = dictionary[objects[c]._key].model = objects[c].loop(objects[c].model);
+                    if (!(typeof stop !== 'undefined' ? stop : true)) { // Test if the loop for this object should stop
+                        model = objects[c].loop(objects[c].model);
+
+                        objects[c].model = dictionary[objects[c]._key].model = (typeof model !== 'undefined') ? model : objects[c].model;
                     } else { // if stopped add to count
+
                         count++;
                     }
                 }
@@ -49,8 +65,14 @@ define(['angular', 'services/_module'], function (angular, service) {
              * Does post loop setup
              */
             for (var e = 0, f = objects; e < f.length; e++) {
-                if (typeof objects[e].postLoop === 'function')
-                    objects[e].model = dictionary[objects[e]._key].model = objects[e].postLoop(objects[e].model)
+
+
+
+                if (typeof objects[e].postLoop === 'function'){
+                    model = objects[e].postLoop(objects[e].model);
+
+                    objects[e].model = dictionary[objects[e]._key].model =  (typeof model !== 'undefined') ? model : objects[e].model;
+                }
             }
 
             return obj;
@@ -82,9 +104,13 @@ define(['angular', 'services/_module'], function (angular, service) {
                 return this;
             },
             get: function (key) {
+                var _this = this;
                 if (this._run) {
-                    run();
-                    this._run = false;
+                    clearTimeout(runTimer);
+                    runTimer = setTimeout(function () {
+                        run();
+                        _this._run = false;
+                    }, runDelay);
                 }
 
                 if (dictionary[key])
