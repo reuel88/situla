@@ -16,14 +16,6 @@ define(
     ],
     function (isEmpty, angular) {
 
-        if(document.referrer){ // Checks if document.referrer is set
-            console.log('document.referrer');
-            console.log( (document.referrer.match(/:\/\/(.[^/]+)/)[1]).replace(/^(https?:\/\/)?(www\.)?/,''));
-        }else{ // not set default to window location
-            console.log('window.location.hostname;');
-            console.log(  window.location.hostname);
-        }
-
         var app = angular.module('app', ['ngAnimate', 'ngCookies', 'ngRoute', 'app.calculators', 'app.controllers', 'app.directives', 'app.factories', 'app.services']);
 
         app
@@ -35,7 +27,7 @@ define(
                         controller: 'default.ctrl'
                     })
                     .when("/select", {
-                        templateUrl: "html/partials/goalSelect.php",
+                        templateUrl: "html/partials/bucketlist.php",
                         controller: 'default.ctrl'
                     })
                     .when("/profile", {

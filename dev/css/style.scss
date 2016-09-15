@@ -509,6 +509,14 @@ table {
     opacity: 1;
   }
 }
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  fade
+ */
+.fade{
+  opacity: 0.2;
+}
 
 /**
  *  -------------------------------------------------------------------------
@@ -711,6 +719,8 @@ table {
   -webkit-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  max-width: 550px;
 }
 
 .home-result {
@@ -802,6 +812,72 @@ table {
   }
   .cancel {
     display: none;
+  }
+}
+
+/**
+*  -------------------------------------------------------------------------
+*
+*  Bucketlist Selection
+*/
+#bucketlist-selection-v2{
+
+  @include box-shadow(inset 0 10px 40px rgba(0,0,0,.075));
+  background-color: $gray-lighter;
+  border-top: 1px solid $hr-border;
+  border-bottom: 1px solid $hr-border;
+  opacity: 1;
+  overflow: visible;
+  height: auto;
+  padding: floor(($grid-gutter-width / 2)) 0;
+  position: relative;
+  transition: height cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  &:before{
+    border-top: 20px solid $hr-border;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-right: -10px;
+  }
+  &:after{
+    border-top: 20px solid $body-bg;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    margin-right: -10px;
+  }
+
+  &.ng-hide{
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .page-header{
+    margin-top: 0;
+  }
+
+  .bucketlist-list-title{
+    margin-bottom: 20px;
+  }
+
+
+  .bucketlist-list-item-v2:hover .img-overlay > .tbl {
+    opacity: 1;
+  }
+  @media (min-width: $screen-sm-min) {
+    .bucketlist-list-title{
+      margin-bottom: 10px;
+    }
   }
 }
 
