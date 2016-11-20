@@ -143,43 +143,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/**
- *  -------------------------------------------------------------------------
- *
- *  Form
- */
-input[type="checkbox"] {
-  display: none;
-  + label {
-    margin: 0;
-  }
 
-  + label .checkbox {
-    -webkit-font-smoothing: antialiased;
-    background: white;
-    border: 1px solid $gray;
-    border-radius: $border-radius-base;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    height: 19px;
-    line-height: 1;
-    margin: 10px 15px 10px 0;
-    position: relative;
-    width: 19px;
-    vertical-align: middle;
-  }
-
-  &:checked + label .checkbox:before {
-    content: "\e013";
-    position: absolute;
-    top: 2px;
-    left: 2px;
-  }
-
-}
 
 .input-select {
   width: 100%;
@@ -512,10 +476,19 @@ table {
 /**
  *  -------------------------------------------------------------------------
  *
- *  fade
+ *  fade-section
  */
-.fade{
+.fade-section{
   opacity: 0.2;
+  position: relative;
+  > .close-select{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 300;
+  }
 }
 
 /**
@@ -669,6 +642,8 @@ table {
  */
 
 #site-masterhead {
+  margin-bottom: floor(($grid-gutter-width / 2));
+
   a.btn {
     color: white;
     &:hover {
@@ -690,7 +665,6 @@ table {
 
   #site-navbar {
     background: $brand-primary;
-    margin-bottom: floor(($grid-gutter-width / 2));
     color: white;
 
   }
@@ -828,10 +802,10 @@ table {
   border-bottom: 1px solid $hr-border;
   opacity: 1;
   overflow: visible;
-  height: auto;
+  max-height: 1000px;
   padding: floor(($grid-gutter-width / 2)) 0;
   position: relative;
-  transition: height cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
   &:before{
     border-top: 20px solid $hr-border;
     border-bottom: 20px solid transparent;
@@ -840,6 +814,7 @@ table {
     content: "";
     position: absolute;
     top: 0;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     left: 50%;
     margin-right: -10px;
   }
@@ -851,16 +826,31 @@ table {
     content: "";
     position: absolute;
     top: -1px;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     left: 50%;
     margin-right: -10px;
   }
 
-  &.ng-hide{
-    height: 0;
-    opacity: 0;
+  &.ng-hide, &.ng-animate{
     overflow: hidden;
+  }
+  &.ng-animate{
+    opacity: 1 !important;
+    padding: floor(($grid-gutter-width / 2)) 0 !important;
+  }
+
+  &.ng-hide{
+    max-height: 0;
+    opacity: 0;
     padding: 0;
   }
+  &.ng-hide:before{
+    top: -20px;
+  }
+  &.ng-hide::after{
+    top: -21px;
+  }
+
 
   .page-header{
     margin-top: 0;
@@ -1274,6 +1264,39 @@ table {
   }
 }
 
+.todo-list input[type="checkbox"] {
+  display: none;
+  + label {
+    margin: 0;
+  }
+
+  + label .checkbox {
+    -webkit-font-smoothing: antialiased;
+    background: white;
+    border: 1px solid $gray;
+    border-radius: $border-radius-base;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    height: 19px;
+    line-height: 1;
+    margin: 10px 15px 10px 0;
+    position: relative;
+    width: 19px;
+    vertical-align: middle;
+  }
+
+  &:checked + label .checkbox:before {
+    content: "\e013";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+  }
+
+}
+
 /**
  *  -------------------------------------------------------------------------
  *
@@ -1327,5 +1350,100 @@ table {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.1);
   p, .form-group.content {
     margin-bottom: 0;
+  }
+}
+
+
+/**
+ *  -------------------------------------------------------------------------
+ *
+ *  Insight
+ */
+
+.insight{
+  border-radius: 0 !important;
+  border-left: none;
+  border-right: none;
+
+  p.label{
+    color: inherit;
+    display: block;
+    font-size: inherit;
+    padding: 0;
+    text-align: left;
+  }
+
+  p.label .small{
+    cursor: pointer;
+  }
+
+  hr{
+    border-top-color: transparent;
+  }
+  .row{
+    position: relative;
+  }
+  .row:before{
+    content: attr(data-content);
+    display: block;
+    padding-left: floor(($grid-gutter-width / 2));
+    padding-right: floor(($grid-gutter-width / 2));
+    position: relative;
+  }
+
+  @media (min-width: $screen-sm-min){
+
+    .container-sm{
+      padding: 0;
+    }
+
+    .tbl-sm p.label{
+      display: inline;
+    }
+    .tbl-sm .tbl-cell{
+      padding: 0 floor(($grid-gutter-width / 2));
+    }
+    .tbl-sm  .form-group{
+      margin-bottom: 0;
+    }
+    .form-inline .radio, .form-inline .checkbox{
+      margin-left: 10px;
+    }
+
+  }
+  @media (min-width: $screen-md-min){
+    .container-md{
+      padding: 0;
+    }
+
+    .row:before{
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+    .tbl-md p.label{
+      display: inline;
+    }
+    .tbl-md .tbl-cell{
+      padding: 0 floor(($grid-gutter-width / 2));
+    }
+    .tbl-md .form-group{
+      margin-bottom: 0;
+    }
+  }
+
+  @media (min-width: $screen-lg-min){
+    .container-lg{
+      padding: 0;
+    }
+    .tbl-lg p.label{
+      display: inline;
+    }
+    .tbl-lg .tbl-cell{
+      padding: 0 floor(($grid-gutter-width / 2));
+    }
+    .tbl-lg .form-group{
+      margin-bottom: 0;
+    }
   }
 }

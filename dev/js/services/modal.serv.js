@@ -20,7 +20,8 @@ define(['angular', 'services/_module', 'utils/isEmpty', 'utils/climbTree'], func
         }
     }]);
 
-    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'storage.serv', 'validation.serv', function ($rootScope, $location, $parse, storage, validation) {
+    // service.service('modal.serv', ['$rootScope', '$location', '$parse', 'storage.serv', 'validation.serv', function ($rootScope, $location, $parse, storage, validation) {
+    service.service('modal.serv', ['$rootScope', '$location', '$parse', 'selectItemServ', 'storage.serv', 'validation.serv', function ($rootScope, $location, $parse, selectItemServ, storage, validation) {
 
         var obj = {};
 
@@ -161,6 +162,8 @@ define(['angular', 'services/_module', 'utils/isEmpty', 'utils/climbTree'], func
                  */
                 obj.attrs.open = false;
                 document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace("modal-open", "");
+
+                selectItemServ.close();
 
             }
         };
@@ -366,6 +369,7 @@ define(['angular', 'services/_module', 'utils/isEmpty', 'utils/climbTree'], func
              * empty errors
              */
             obj.errors = {};
+
         };
 
         /**

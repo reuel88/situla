@@ -6,13 +6,15 @@
  * Time: 4:22 PM
  */
 ?>
-<section id="bucketlist" ng-class="{fade:selectItem}">
+<section id="bucketlist" ng-class="{'fade-section':selectItem.getStatus()}">
+    <div class="close-select" ng-click="selectItem.close()"></div>
     <div class="container">
         <header class="page-header">
-            <h1 class="page-title text-center">Your Bucketlist</h1>
+            <h1 class="page-title text-center">My Bucketlist</h1>
         </header>
 
         <div class="page-content">
+
 
             <?php include 'bucketlistInfo.php' ?>
 
@@ -46,14 +48,15 @@
                                 </div>
                             </div>
 
-                            <div class="bucketlist-list-progress" ng-style="{ width: v.alreadySaved / v.totalCost * 100 + '%'}"></div>
                         </div>
+                        <div class="bucketlist-list-progress" ng-style="{ width: v.alreadySaved / v.totalCost * 100 + '%'}"></div>
+
                     </article>
 
                 </div>
 
                 <div class="col-sm-6 col-md-4">
-                    <article id="bucketlist-list-item-add" class="well bucketlist-list-item-add-v2" tabindex="1" ng-click="pathTo('/select')">
+                    <article id="bucketlist-list-item-add" class="well bucketlist-list-item-add-v2" tabindex="1" ng-click="selectItem.open()">
                         <div class="tbl-sm">
                             <div class="tbl-cell middle center">
                                 <div class="bucketlist-list-item-content">
@@ -73,7 +76,9 @@
 
 <?php include 'goalSelect.php' ?>
 
-<section id="complete-bucketlist" ng-class="{fade:selectItem}">
+<section id="complete-bucketlist" ng-class="{'fade-section':selectItem.getStatus()}">
+    <div class="close-select" ng-click="selectItem.close()"></div>
+
     <div class="container">
 
         <header class="page-header">
@@ -113,9 +118,9 @@
                                 </div>
                             </div>
 
-                            <div class="bucketlist-list-progress" ng-style="{ width: v.alreadySaved / v.totalCost * 100 + '%'}"></div>
-
                         </div>
+                        <div class="bucketlist-list-progress" ng-style="{ width: v.alreadySaved / v.totalCost * 100 + '%'}"></div>
+
                     </article>
 
                 </div>

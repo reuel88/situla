@@ -19,7 +19,7 @@
 
                                 <form class="" enctype="multipart/form-data" ng-submit="modal.submit()">
                                     <div class="tools visible-xs-block visible-sm-block visible-md-block visible-lg-block clearfix">
-                                        <input type="button" value="Delete your Goal" class="btn btn-link" ng-show="!modal.model.new" ng-click="modal.delete()">
+                                        <input type="button" value="Delete my Goal" class="btn btn-link" ng-show="!modal.model.new" ng-click="modal.delete()">
                                         <button type="button" class="close btn btn-default" ng-click="modal.close()"><span class="sr-only">Close</span> <i class="glyphicon glyphicon-remove"></i></button>
                                     </div>
 
@@ -54,7 +54,7 @@
                                         <h1 class="page-title h2 bucketlist-item-title pointer" ng-show="!modal.model.new && !modal.attrs.editing" ng-click="modal.attrs.editing = true">{{modal.model.title}}</h1>
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing">
-                                            <label for="title" class="control-label">Title*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Title of your Goal"><span class="sr-only">description</span></i></label>
+                                            <label for="title" class="control-label">Title*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The title of my goal"><span class="sr-only">description</span></i></label>
                                             <input type="text" name="title" id="title" class="form-control" ng-model="modal.model.title">
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@
                                         <p class="bucketlist-item-description pointer" ng-show="!modal.model.new && !modal.attrs.editing" ng-click="modal.attrs.editing = true">{{modal.model.description}}</p>
 
                                         <div class="form-group" ng-show="!modal.model.edit ||  modal.attrs.editing">
-                                            <label for="description" class="control-label">Short Description <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Short Description of your Goal"><span class="sr-only">description</span></i></label>
+                                            <label for="description" class="control-label">Short Description <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Short description of my goal"><span class="sr-only">description</span></i></label>
                                             <textarea name="description" id="description" cols="30" rows="2" class="form-control" placeholder="Write a description..." ng-model="modal.model.description"></textarea>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                                     <div ng-class="modal.model.new || modal.attrs.editing? 'hoverable' : 'expand-hoverable'">
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing ">
-                                            <label for="already-saved" class="control-label">Already Saved <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="How much have you saved towards your Goal"><span class="sr-only">description</span></i></label>
+                                            <label for="already-saved" class="control-label">Already Saved <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="How much I have saved towards my goal"><span class="sr-only">description</span></i></label>
 
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
@@ -111,7 +111,7 @@
                                         </div>
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing ">
-                                            <label for="total-cost" class="control-label">Total Cost*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Total Cost of your Goal"><span class="sr-only">description</span></i></label>
+                                            <label for="total-cost" class="control-label">Total Cost*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The total cost of my goal"><span class="sr-only">description</span></i></label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
                                                 <input type="text" name="total-cost" id="total-cost" class="form-control" ng-model="modal.model.totalCost" currency>
@@ -131,7 +131,7 @@
                                     <div ng-class="modal.model.new || modal.attrs.editing ? 'hoverable' : 'expand-hoverable'">
 
                                         <div class="form-group" ng-show="!modal.model.edit || modal.attrs.editing">
-                                            <label for="target-date" class="control-label">Target Date*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The Date you Expect to Complete your Goal"><span class="sr-only">description</span></i></label>
+                                            <label for="target-date" class="control-label">Target Date*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="The date I expect to complete my goal"><span class="sr-only">description</span></i></label>
                                             <div class="date-control">
                                                 <input type="date" name="target-date" id="target-date" class="form-control" ng-model="modal.model.date" date-picker>
                                                 <div class="cover form-control" contenteditable data-text="Date">{{modal.model.date | date : 'MMM d, y' }}</div>
@@ -146,12 +146,12 @@
 
                                     <div class="non-hoverable" ng-show="!modal.model.new && !modal.attrs.editing && !modal.model.complete">
                                         <div class="form-group text-center ">
-                                            <input type="button" value="Complete your Goal" class="btn btn-default" ng-click="modal.complete()" ng-class="!(((modal.model.alreadySaved || 0)/ (modal.model.totalCost|| 0) * 100) >= 100) ?'btn-default':'btn-primary'">
+                                            <input type="button" value="Complete my goal" class="btn btn-default" ng-click="modal.complete()" ng-class="!(((modal.model.alreadySaved || 0)/ (modal.model.totalCost|| 0) * 100) >= 100) ?'btn-default':'btn-primary'">
                                         </div>
 
                                         <div class="contribute alert alert-info" ng-show="!(((modal.model.alreadySaved || 0)/ (modal.model.totalCost|| 0) * 100) >= 100) ">
                                             <div class="form-group">
-                                                <label for="contribute" class="control-label">Contribute to your Savings <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Contribute more money to your goal"><span class="sr-only">description</span></i></label>
+                                                <label for="contribute" class="control-label">Contribute to my savings <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Contribute more money to my goal"><span class="sr-only">description</span></i></label>
 
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>

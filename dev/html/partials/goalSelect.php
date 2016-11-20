@@ -8,11 +8,11 @@
 ?>
 
 
-<section id="bucketlist-selection-v2" class="" ng-show="selectItem">
+<section id="bucketlist-selection-v2" class="" ng-show="selectItem.getStatus()">
 
         <div class="container">
 
-            <button type="button" class="close btn btn-default" ng-click="pathTo('/')"><span class="sr-only">Close</span> <i class="glyphicon glyphicon-remove"></i></button>
+            <button type="button" class="close btn btn-default" ng-click="selectItem.close()"><span class="sr-only">Close</span> <i class="glyphicon glyphicon-remove"></i></button>
 
             <header class="page-header">
                 <h1 class="page-title text-center">Add a Goal</h1>
@@ -192,7 +192,7 @@
                                     </div>
                                     <div class="tbl-row bottom">
                                         <div class="tbl-cell">
-                                            <h3 class="h2 bucketlist-list-title">Other (Add your own)</h3>
+                                            <h3 class="h2 bucketlist-list-title">Other (Add my own)</h3>
                                         </div>
                                     </div>
                                 </div>

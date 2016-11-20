@@ -10,13 +10,13 @@
 <div class="well bucketlist-info">
     <div class="row">
         <div class="col-sm-6">
-            <p class="h4 ">Based on your needs, you need to contribute
+            <p class="h4 ">Based on my needs, I need to contribute
                 <br>
                 <br>
                 <span class="h1">{{goal.model.totalWeeklyContribution | currency}}</span>
                 <br>
                 <br>
-                a week to achieve your goals.</p>
+                a week to achieve my goals.</p>
         </div>
         <div class="col-sm-6">
             <form class="contribute-info" ng-submit="goal.contribute()">
@@ -25,7 +25,7 @@
 
 
                 <div class="form-group ">
-                    <label for="contribute" class="control-label">Contribute to your Savings <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Contribute more money to your goal"><span class="sr-only">description</span></i></label>
+                    <label for="contribute" class="control-label">Contribute to my savings <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Contribute more money to my goal"><span class="sr-only">description</span></i></label>
 
                     <div class="input-group">
                         <span class="input-group-addon">$</span>
@@ -44,8 +44,8 @@
 
 </div>
 <div class="alert alert-danger text-center" ng-show="!(goal.model.weeklyCashFlow <=0) && (goal.model.weeklyCashFlow != 'Infinity') && (goal.model.weeklyCashFlow < goal.model.totalWeeklyContribution)">
-    <p class="">Warning you do not earn enough per week to achieve your goals.</p>
+    <p class="">Warning I do not earn enough per week to achieve my goals.</p>
     <br>
-    <button class="btn btn-success" ng-click="goal.optimize()">Click here to optimize your goals</button>
+    <button class="btn btn-success" ng-click="goal.optimize()">Click here to optimize my goals</button>
 </div>
 

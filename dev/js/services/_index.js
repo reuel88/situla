@@ -8,6 +8,7 @@ require([
     'services/goal.serv',
     'services/loop.serv',
     'services/modal.serv',
+    'services/selectItem.serv',
     'services/storage.serv',
     'services/todo.serv',
     'services/validation.serv'

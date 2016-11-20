@@ -34,10 +34,14 @@ define(['angular', 'calculators/_module'], function (angular, calculator) {
              */
             var weeklyDifference = Math.ceil(daydiff(today, goal) / 7);
 
+
+            var diff = (apple - (wedge || 0)) / weeklyDifference;
             /**
              * does the calculation
              */
-            var result = (apple - (wedge || 0)) > 0 ? (apple - (wedge || 0)) / weeklyDifference : 0;
+            var result = (apple - (wedge || 0)) > 0 ?
+                (diff > 0 ? diff : (apple - (wedge || 0)) ) :
+                0;
 
 
             /**
@@ -68,7 +72,6 @@ define(['angular', 'calculators/_module'], function (angular, calculator) {
             output.totalWeeklyContribution = totalWeeklyContribution;
             output.totalAlreadySaved = totalAlreadySaved || 0;
             output.totalCost = totalCost;
-
 
             return angular.copy(output);
 

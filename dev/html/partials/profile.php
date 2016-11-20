@@ -21,7 +21,7 @@
 
                 <form ng-submit="user.saveSpending()">
                     <div class="form-group hoverable">
-                        <label for="income" class="control-label">Income*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Your average income"><span class="sr-only">description</span></i></label>
+                        <label for="income" class="control-label">Income*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="My average income"><span class="sr-only">description</span></i></label>
 
                         <div class="input-group input-select">
                             <span class="input-group-addon">$</span>
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group hoverable">
-                        <label for="expense" class="control-label" >Expenses*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="Your average expenses"><span class="sr-only">description</span></i></label>
+                        <label for="expense" class="control-label" >Expenses*<span class="sr-only">required</span> <i class="glyphicon glyphicon-question-sign" tooltip data-toggle="tooltip" data-placement="top" title="My average expenses"><span class="sr-only">description</span></i></label>
 
                         <div class="input-group input-select">
                             <span class="input-group-addon">$</span>
@@ -65,7 +65,7 @@
 
                     <div class="home-result" ng-show="((user.model.expense || 0) * (user.model.income || 0)) != 0">
                         <hr>
-                        <p class="text-center">You earn approximately</p>
+                        <p class="text-center">I earn approximately</p>
                         <p class="h1 text-center">{{user.model._cashFlow | currency}}</p>
 
                         <div class="row">
@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="form-group non-hoverable">
-                        <button type="submit" class="btn btn-primary btn-block">Achieve Greatness<br><span class="small">(Start your bucket list)</span></button>
+                        <button type="submit" class="btn btn-primary btn-block">Achieve Greatness<br><span class="small">(Start my bucket list)</span></button>
                     </div>
 
                 </form>

@@ -12,12 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Situla - Bucketlist with a difference</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-
 
 <div class="tbl height-100">
     <div class="tbl-row">
@@ -28,7 +26,10 @@
                     <div class="tbl">
                         <div class="tbl-cell middle">
                             <header class="navbar-header" itemscope itemtype="http://schema.org/WPHeader">
-                                <a href="#/" class="h1 site-title">Situla List</a>
+                                <a href="#/" class="site-title">
+                                    <img src="img/situla.png" alt="">
+                                    <span class="sr-only">Situla List</span>
+                                </a>
                             </header>
                         </div>
                         <div class="tbl-cell middle right">
@@ -48,6 +49,9 @@
 
                 </div>
             </div>
+
+            <?php include 'partials/insight.php' ?>
+
         </div>
     </div>
 
